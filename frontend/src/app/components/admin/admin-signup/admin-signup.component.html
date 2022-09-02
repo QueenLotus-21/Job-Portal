@@ -1,0 +1,95 @@
+<!-- offset for space horizontal -->
+<br><br>
+<div class="mt-4 col-8 offset-2">
+  <div class="card">
+    <div class="card-header text-center ">Sign Up</div>
+    <div class="card-body">
+
+      <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+
+            <!-- <div class="alert alert-danger" [hidden]="!error">
+              {{error}}
+            </div> -->
+
+        <div class="form-group row mb-3">
+          <label for="exampleInputEmail1" class="col-sm-2 col-form-lable">Email </label>
+        <div class="col-sm-10">
+          <input type="email" name="email"class="form-control" id="exampleInputEmail1" [(ngModel)]="form.email" placeholder="Email" required>
+          <p class=" text-danger" [hidden]="!error.email">
+            {{error.email}}
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="form-group row mb-3">
+        <label for="exampleInput" class="col-sm-2 col-form-lable">UserName </label>
+      <div class="col-sm-10">
+        <input type="text" name="name"class="form-control" id="exampleInput" [(ngModel)]="form.name" placeholder="UserName" required>
+        <div class=" text-danger" [hidden]="!error.name">
+          {{error.name}}
+        </div>
+      </div>
+    </div>
+
+
+  <div class="form-group row mb-3">
+    <label for="age" class="col-sm-2 col-form-lable">gender </label>
+  <div class="col-sm-10">
+    <input type="text" name="gender"class="form-control" id="gender" [(ngModel)]="form.gender" placeholder="Gender" required>
+    <div class=" text-danger" [hidden]="!error.gender">
+      {{error.gender}}
+    </div>
+  </div>
+</div>
+
+
+
+        <div class="form-group row mb-3">
+          <label for="exampleInputPassword1" class="col-sm-2 col-form-lable">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" [(ngModel)]="form.password" placeholder="password" id="exampleInputPassword1" required>
+            <div class="alert text-danger" [hidden]="!error.password">
+              {{error.password}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="exampleInputPassword2" class="col-sm-2 col-form-lable">Confirm Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password_confirmation" class="form-control" [(ngModel)]="form.password_confirmation" placeholder="Confirm password" id="exampleInputPassword2" required>
+            <div class=" text-danger" [hidden]="!error.password_confirmation">
+              {{error.password_confirmation}}
+            </div>
+          </div>
+
+
+        </div><br>
+
+
+        <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+
+
+         <div class="form-group row col-sm-8 mb-3 offset-2 ">
+
+            <button type="submit" class="btn btn-primary" >sign up</button>
+
+         </div>
+
+         <div>
+          <label for="t" class="col-sm-3">Already have account? </label>
+          <a routerLink="/login" class="col-lg" >Sign in</a>
+          <!-- <a href=""><button type="submit" class="btn btn-primary  "  [disabled]="!logiForm.valid">sign up</button></a> -->
+
+         </div>
+      </form>
+
+    </div>
+  </div>
+</div>
