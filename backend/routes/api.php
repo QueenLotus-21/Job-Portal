@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\companyController;
+use App\Http\Controllers\AdminController;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Company;
@@ -26,16 +27,17 @@ use App\Models\Company;
 
 
 
-// Route::group([
+Route::group([
 
-//     'middleware' => 'api',
+    'middleware' => 'api',
 
-// ], function () {
+], function () {
 
 
     Route::post('signup', [AuthController::class,'signup'])->name('signup');
     Route::post('login', [AuthController::class,'login'])->name('login');
-    Route::post('adminSignup', [AuthController::class,'adminSignup'])->name('adminSignup');
+    Route::post('login', [companyController::class,'login'])->name('login');
+    Route::post('adminSignup', [AdminController::class,'adminSignup'])->name('adminSignup');
     Route::post('companySignup', [companyController::class,'companySignup'])->name('companySignup');
 
     // Route::prefix('user')->name('user')->group(function() {
@@ -48,4 +50,4 @@ use App\Models\Company;
 
     //     });
     // });
-//});
+});
