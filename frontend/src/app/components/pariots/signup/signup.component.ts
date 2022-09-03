@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit {
     "password":null,
     'name':null,
     'age':null,
+    'role':null,
     'gender':null,
     'profession':null,
     'level_of_education':null,

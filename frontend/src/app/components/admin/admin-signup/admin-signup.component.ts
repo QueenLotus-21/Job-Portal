@@ -42,6 +42,7 @@ export class AdminSignupComponent implements OnInit {
     'email':null,
     "password":null,
     'name':null,
+    'role':null,
     'gender':null,
     "password_confirmation":null
    }

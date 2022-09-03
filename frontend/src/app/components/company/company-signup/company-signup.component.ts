@@ -44,6 +44,7 @@ export class CompanySignupComponent implements OnInit {
     "password":null,
     'name':null,
     'address':null,
+    'role':null,
     'description':null,
     'contact_info':null,
     'gender':null,
