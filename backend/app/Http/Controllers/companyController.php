@@ -39,8 +39,8 @@ class companyController extends Controller
         $post->email=$request->input('email');
         $post->password=Hash::make($request->string('password'));
         $post->role=$request->input('role');
-       $post->save();
 
+if($request->input('role')=='company'){
        $company=new Company;
        $company->name=$request->input('name');
        $company->role=$request->input('role');
@@ -49,6 +49,7 @@ class companyController extends Controller
        $company->contact_info=$request->input('contact_info');
        $company->email=$request->input('email');
        $company->password=Hash::make($request->string('password'));
+       $post->save();
 
         if($company->save()){
             return ['status'=>true, 'message'=>'user register successfully'];
@@ -56,7 +57,10 @@ class companyController extends Controller
        else{
            return ['status'=>false, 'message'=>'something went wrong'];
        }
-
+    }
+    else{
+        return ['status'=>false, 'message'=>'you are not company'];
+    }
         // $admin= Company::create([
         //   'name'=>$request->name,
         //   'address'=>$request->address,

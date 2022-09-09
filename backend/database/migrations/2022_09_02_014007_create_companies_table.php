@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('contact_info');
             $table->string('photo')->default('photo');
+            $table->boolean('approved')->nullable()->default(false);
             $table->timestamps();
         });
     }

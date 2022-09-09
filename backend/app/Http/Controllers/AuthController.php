@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SignupRequest;
-use App\Http\Requests\AdminSignupRequest;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\User_detail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use JWTAuth;
 use App\Http\Controllers\companyController;
+use App\Http\Controllers\AdminController;
 
 class AuthController extends Controller
 {
@@ -23,7 +22,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','signup','adminSignup']]);
+        $this->middleware('auth:api', ['except' => ['login','signup','adminSignup','registerUser','users','deleteUser',
+        'updateUser','userfind']]);
 
     }
 
@@ -84,6 +84,60 @@ class AuthController extends Controller
          return $this->login($request);
       }
 
+
+      public function users(){
+        return User_detail::all();
+    }
+
+
+    public function userfind($id){
+        return User_detail::findorFail($id);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        if(User_detail::where('id',$id)->exists()){
+            $user = User_detail::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = $request->role;
+            $user->approved = $request->approved;
+
+
+            $user->save();
+            return response()->json([
+                "message"=> "User updated successfully"
+            ], 200);
+
+        }
+        else{
+            return response()->json([
+                "message"=>"user not found"
+            ],404);
+        }
+    }
+    public function deleteUser($id)
+    {
+        if(User_detail::where('id',$id)->exists()){
+            $user = User_detail::find($id);
+            $user->delete();
+
+            return response()->json([
+                "message"=> "User successfully deleted"
+            ],200);
+
+        }
+        else{
+            return response()->json([
+                "message"=>"user not found"
+            ],404);
+        }
+    }
+
+
+
+
+
     /**
      * Get the authenticated User.
      *
@@ -130,7 +184,8 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user'=>auth()->user()->name,
-            'role'=>auth()->user()->role
+            'role'=>auth()->user()->role,
+            'approved'=>auth()->user()->approved
         ]);
     }
 }
