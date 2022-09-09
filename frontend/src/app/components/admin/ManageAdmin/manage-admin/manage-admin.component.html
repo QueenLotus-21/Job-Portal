@@ -1,0 +1,45 @@
+
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-1">User Details</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center">
+
+<div class="container all mt-2">
+  <div class="frm text-center">
+
+    <input type="text" class="form-control" id="myInput" [(ngModel)]="searchText" placeholder="search here...">
+  </div><br>
+  <button class="btn btn-primary add mb-2" routerLink="/admin/registerAdmin">Register Admin </button>
+  <table class="table table-striped" border="1">
+    <thead>
+      <th>ID</th>
+      <th>name</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Action</th>
+    </thead>
+    <tbody *ngIf="admins.length">
+      <tr *ngFor="let admin of admins">
+        <td>{{admin.id}}</td>
+        <td class="search"> {{admin.name}}</td>
+        <td class="search"> {{admin.gender}}</td>
+        <td>{{admin.email}}</td>
+        <td class="search">{{admin.role}}</td>
+        <td><button class="btn btn-info" routerLink="/admin/editAdmin/{{admin.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteAdmin(admin.id)" >Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div *ngIf="users.length">
+ <ul *ngFor="let user of users">
+    <li>{{user.name}}{{user.role}}{{user.email}}</li>
+ </ul>
+</div> -->
+
+    </div>
+  </div>
+
+</div>
+

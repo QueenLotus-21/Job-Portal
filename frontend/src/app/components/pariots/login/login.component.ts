@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SnotifyService } from 'ng-snotify';
 import { AuthserviceService } from 'src/app/services/auth-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
@@ -17,11 +18,17 @@ export class LoginComponent implements OnInit {
 
    public error=null;
 
-  constructor(private users:UserServiceService,private router:Router,private auth:AuthserviceService) {
+  constructor(private users:UserServiceService,
+    private router:Router,
+    private auth:AuthserviceService,
+    private notify:SnotifyService) {
     localStorage.clear();
    }
 
   resposedata:any;
+  currentRole:any;
+  approved:any;
+
   ngOnInit(): void {
   }
 
@@ -32,9 +39,35 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token',this.resposedata.access_token);
         localStorage.setItem('user', this.resposedata.user);
         localStorage.setItem('role', this.resposedata.role);
+        localStorage.setItem('approved', this.resposedata.approved);
         this.users.updateMenu.next();
         console.log('success');
-        this.router.navigate(['']);
+        this.currentRole=this.users.getRole();
+        if(this.currentRole=='user'){
+          this.router.navigate(['user/usernav']);
+        }
+        else if(this.currentRole=='admin'){
+          this.router.navigate(['admin']);
+        }
+        else if(this.currentRole=='superadmin'){
+          this.router.navigate(['admin']);
+        }
+        else if(this.currentRole=='company'){
+          this.approved=this.users.getApproved();
+          if(this.approved=='no'){
+            this.router.navigate(['login']);
+            this.notify.error('your Account Needs Admin Approval');
+          this.form.email='your Account Needs Admin Approval';
+          this.form.password='';
+          }
+          else{
+            this.router.navigate(['company/companynav']);
+          }
+        }
+        else{
+          this.router.navigate(['']);
+        }
+
         this.auth.chageAuthStatus(true);
       }
     },

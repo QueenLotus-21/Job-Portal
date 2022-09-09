@@ -1,2 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
+
+header{
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	background: #333;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: .1rem 5%;
+}
+header .logo{
+	font-size: 2rem;
+	font-weight: bolder;
+	color: #fff;
+	text-transform: uppercase;
+	margin-right: auto;
+}
+header .logo span{
+	color: red;
+
+}
+#luggage{
+  font-size: 4rem;
+  color: white;
+}
+
+header .navbar a{
+	color: #fff;
+	font-size: 1rem;
+	margin:0.8rem;
+}
+header .navbar a:hover{
+	color:orange;
+}
+
+
+/* footer style start  */
+.footer{
+  background: #333;
+  }
+  .footer .box-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:1rem;
+  height: 1rem;
+
+  }
+  .footer .box-container .box{
+    padding: .1rem 0;
+    flex: 1 1 15rem;
+  }
+  .footer .box-container .box h3{
+    font-size: 1.5rem;
+    padding: .3px 0;
+    color: #fff;
+  }
+  .footer .box-container .box p{
+    font-size: 1rem;
+    padding: .1rem 0;
+    color: #eee;
+  }
+  .footer .box-container .box a{
+    display: block;
+    font-size: 1rem;
+    padding: .2px 0;
+    color: #eee;
+    margin-right:1rem;
+  }
+  .footer .box-container .box a:hover{
+    color: orange;
+    text-decoration: underline;
+  }
+  .footer .credit{
+    text-align: center;
+    padding: 1rem .1rem;
+    margin-top: 11rem;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #fff;
+    border-top: .1rem solid rgba(255, 255, 255,.2);
+  }
+  .footer .credit span{
+    color: orange;
+
+  }
+/* footer style end  */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

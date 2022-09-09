@@ -1,10 +1,68 @@
-<nav class="navbar bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">Home</a>
-    <div>
-      <a class="navbar-brand" routerLink="login">Login</a>
-    <a class="navbar-brand" routerLink="Companysignup">profile</a>
+<div class="container" >
+
+  <header class="header" *ngIf="superMenu">
+    <i id="luggage" class="fa-solid fa-person-walking-luggage"></i>
+    <a href="#" class="logo" ><span>J</span>op Portal</a>
+
+    <nav class="navbar" >
+        <div class="container-fluid">
+          <a class="navbar-brand">Home</a>
+          <div>
+            <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn">Login</a>
+          <a class="navbar-brand" routerLink="company/Companysignup">profile</a>
+          <a href="#" class="navbar-brand" (click)="logout($event)" *ngIf="loggedIn">logout</a>
+          </div>
+
+        </div>
+      </nav>
+   </header>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+
+</div>
+
+
+
+<!-- footer section -->
+<section class="footer">
+  <div class="box-container">
+    <div class="box">
+      <h3>about us</h3>
+      <p>I'm software Engineering and i can develop website with any language <i class="fa-solid fa-face-grin-hearts"></i></p>
     </div>
 
+    <div class="box">
+      <h3>quick links</h3>
+      <a href="#">home</a>
+      <a href="#">book</a>
+      <a href="#">package</a>
+      <a href="#">services</a>
+      <a href="#">gallery</a>
+      <a href="#">review</a>
+      <a href="#">contact</a>
+    </div>
+    <div class="box">
+      <h3>follow us</h3>
+      <a href="#"><i class="fab fa-facebook-f"></i>facebook</a>
+      <a href="#"><i class="fab fa-instagram"> </i> instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+      <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
+      <a href="#"><i class="fab fa-github"></i> github</a>
+    </div>
+    <div class="box">
+      <h3>contact us</h3>
+      <a href="#"><i class="fas fa-phone"></i>093456789</a>
+      <a href="#"><i class="fas fa-phone"> </i> 09456789</a>
+      <a href="#"><i class="fas fa-envelope"></i> tigistAmakelew156@gmail.com</a>
+      <a href="#"><i class="fas fa-map"></i> AMU,Ethiopia</a>
+
+    </div>
   </div>
-</nav>
+
+  <h1 class="credit"> created by <span>software engineeer Tigist Amakelew</span> | all rights reserved! </h1>
+</section>
+
+<!--footer end-->
+

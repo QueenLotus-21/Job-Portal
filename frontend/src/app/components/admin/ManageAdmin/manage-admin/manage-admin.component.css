@@ -1,0 +1,16 @@
+
+@import '../../../admin/home/home.component.css';
+.container{
+  margin-left: 2rem;
+}
+#myInput{
+  width: 700px;
+  margin-left: 10rem;
+}
+.add{
+  margin-right: 50rem;
+}
+
+table{
+  width: 60rem;
+}

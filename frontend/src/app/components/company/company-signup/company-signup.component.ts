@@ -20,7 +20,7 @@ export class CompanySignupComponent implements OnInit {
  console.log(this.form);
  this.userService.companySignup(this.form).subscribe(
 
-    data=>this.router.navigateByUrl('/login'),
+    data=>this.handleResponse(data),
     //console.log("sucess"),
     //error=>console.log(error),
     error=>this.handleError(error)
@@ -35,10 +35,17 @@ export class CompanySignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleResponse(data){
+    // console.log(res)
+    this.notify.success(data.message,{timeout:0});
+    this.router.navigateByUrl('/login');
+   }
 
   handleError(error){
-   this.error=error.error.errors;
+    this.notify.error(error.error.errors ||error.error.message);
+    this.router.navigateByUrl('/signup');
   }
+
   public form={
     'email':null,
     "password":null,

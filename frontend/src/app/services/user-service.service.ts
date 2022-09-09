@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +38,59 @@ companySignup(data){
 isLoggedIn(){
   return localStorage.getItem('token')!=null;
 }
+getRole(){
+  return localStorage.getItem('role');
+}
+getApproved(){
+  return localStorage.getItem('approved');
+}
+getToken(){
+  return localStorage.getItem('token')||'';
+}
+
+
+httpOptions={
+  headers: new HttpHeaders({
+    'content-Type':'application/json'
+  })
+};
+
+//users
+ listUsers(){
+  return this.http.get<any>(`${this.baseurl}/user`);
+}
+findUser(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/user/`+id);
+}
+
+updateUser(id:number, user:any): Observable<any>{
+  return this.http.put<any>(`${this.baseurl}/user/`+id ,user, this.httpOptions);
+}
+deleteUser(id:number): Observable<any>{
+  return this.http.delete<any>(`${this.baseurl}/user/`+id , this.httpOptions);
+}
+
+registerUser(data){
+  return this.http.post(`${this.baseurl}/registeruser`,data)
+ }
+
+ //manage Admin
+ listAdmin(){
+  return this.http.get<any>(`${this.baseurl}/admin`);
+}
+findAdmin(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/admin/`+id);
+}
+
+updateAdmin(id:number, admin:any): Observable<any>{
+  return this.http.put<any>(`${this.baseurl}/admin/`+id ,admin, this.httpOptions);
+}
+deleteAdmin(id:number): Observable<any>{
+  return this.http.delete<any>(`${this.baseurl}/admin/`+id , this.httpOptions);
+}
+
+registerAdmin(data){
+  return this.http.post(`${this.baseurl}/adminSignup`,data)
+ }
+
 }
