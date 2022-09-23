@@ -1,5 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.ng-invalid:not(form){
+  border-left: 5px solid red;
+}
+.ng-valid:not(form){
+  border-left: 5px solid green;
+}
+
+:root{
+	--orange:#ffa500;
+}
+*{
+	font-family: sans-serif;
+	margin: 0;padding: 0;
+	box-sizing: border-box;
+	text-transform: capitalize;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	transition: all .2s linear;
+
+}
+*::selection{
+	background: #ff008c;
+}
 
 header{
 	position: fixed;
@@ -34,6 +59,10 @@ header .navbar a{
 }
 header .navbar a:hover{
 	color:orange;
+}
+
+.container{
+  margin-right: 35rem;
 }
 
 
@@ -88,5 +117,4 @@ header .navbar a:hover{
   }
 /* footer style end  */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

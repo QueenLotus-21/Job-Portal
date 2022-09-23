@@ -7,7 +7,7 @@
   margin-right: 20rem;
 }
 
-.login-form{
+.signup-form{
 	position: fixed;
 	top: -120%;left: 0;
 	z-index: 10000;
@@ -19,11 +19,11 @@
 	justify-content: center;
 
 }
-.login-form.active{
+.signup-form.active{
 	top: 0%;
 }
 
-.login-form form{
+.signup-form form{
 	margin: 1rem;
 	padding: 1rem 2rem;
 	border-radius: .5rem;
@@ -31,14 +31,14 @@
 	width: 40rem;
   margin-top: 1rem;
 }
-.login-form form h3{
+.signup-form form h3{
 	font-size: 2rem;
 	color: #444;
 	text-transform: uppercase;
 	text-align: center;
 	padding: 1rem 0;
 }
-.login-form form #box{
+.signup-form form #box{
 	width: 100%;
 	padding: .5rem;
 	color: #333;
@@ -46,39 +46,39 @@
 	border: 0.2rem solid rgba(0, 0, 0,.3);
 	text-transform: none;
 }
-.login-form form #box:focus{
+.signup-form form #box:focus{
 	border-color: rgb(0, 183, 255);
 }
-.login-form form #remember{
+.signup-form form #remember{
 	margin: .1rem 0;
   font-size: .2rem;
 }
-.login-form form label{
+.signup-form form label{
 	font-size: 1rem;
 }
-.login-form form .btn{
+.signup-form form .btn{
 	display: block;
 	width: 100%;
 	font-size: 1.5rem;
   background: orange;
 }
-.login-form form .btn:hover{
+.signup-form form .btn:hover{
 	background: rgba(255, 165, 0, .2);
 	color: orange;;
 }
-.login-form form p{
+.signup-form form p{
 	padding: .5rem;
 	font-size: 1rem;
 	color: #666;
 }
-.login-form form p a{
+.signup-form form p a{
 	color: orange;
 }
-.login-form form p a:hover{
+.signup-form form p a:hover{
 	color: #333;
 	text-decoration: underline;
 }
-.login-form #closer{
+.signup-form #closer{
 	position: absolute;
 	top: 2rem;right: 2rem;
 	font-size: 3rem;

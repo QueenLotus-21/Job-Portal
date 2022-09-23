@@ -1,0 +1,147 @@
+<!-- offset for space horizontal -->
+<br><br><br><br>
+<div class="mt-4 col-8 offset-2 mb-3">
+  <div class="card">
+    <div class="card-header text-center ">Job Post</div>
+    <div class="card-body">
+
+      <form #post=ngForm (ngSubmit)="onSubmit()">
+        <div class="form-group row mb-3">
+          <label for="title" class="col-sm-2 col-form-lable">Job Title</label>
+        <div class="col-sm-10">
+          <input type="text" name="title"class="form-control" id="title" [(ngModel)]="form.title" placeholder="Job Title" required>
+          <p class=" text-danger" [hidden]="!error.title">
+            {{error.title}}
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group row mb-3">
+        <label for="gender" class="col-sm-2 col-form-lable">gender</label>
+        <div class="col-sm-10">
+          <input type="text" name="gender" class="form-control" [(ngModel)]="form.gender" placeholder="gender" id="gender" required>
+          <div class="alert text-danger" [hidden]="!error.gender">
+            {{error.gender}}
+          </div>
+        </div>
+      </div>
+
+    <div class="form-group row mb-3">
+      <label for="person" class="col-sm-2 col-form-lable">person </label>
+    <div class="col-sm-10">
+      <input type="number" name="person"class="form-control" id="person" [(ngModel)]="form.person" placeholder="Number of person" required>
+      <div class="text-danger" [hidden]="!error.person">
+        {{error.person}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="exampleInputPassword2" class="col-sm-2 col-form-lable">Skill</label>
+    <div class="col-sm-10">
+      <input type="text" name="skill" class="form-control" [(ngModel)]="form.skill" placeholder="skill" id="skill" required>
+      <div class=" text-danger" [hidden]="!error.skill">
+        {{error.skill}}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-3">
+    <label for="workhour" class="col-sm-2 col-form-lable">Work Hours</label>
+    <div class="col-sm-10">
+      <input type="text" name="workhour" class="form-control" [(ngModel)]="form.workhour" placeholder="workhour" id="workhour" required>
+      <div class=" text-danger" [hidden]="!error.workhour">
+        {{error.workhour}}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-3">
+    <label for="role" class="col-sm-2 col-form-lable">Role </label>
+  <div class="col-sm-10">
+    <input type="text" name="role"class="form-control" id="role" [(ngModel)]="form.role" placeholder="Role" required>
+    <div class=" text-danger" [hidden]="!error.role">
+      {{error.role}}
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="status" class="col-sm-2 col-form-lable">Hiring Status </label>
+  <div class="col-sm-10">
+    <input type="text" name="status"class="form-control" id="status" [(ngModel)]="form.status" placeholder="Hiring Status" required>
+    <div class=" text-danger" [hidden]="!error.status">
+      {{error.status}}
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="responsibility" class="col-sm-2 col-form-lable">Responsibilities </label>
+  <div class="col-sm-10">
+    <textarea name="responsibility"class="form-control" id="responsibility" rows="3" [(ngModel)]="form.responsibility" placeholder="responsibility" required></textarea>
+    <div class=" text-danger" [hidden]="!error.responsibility">
+      {{error.responsibility}}
+    </div>
+  </div>
+</div>
+
+  <div class="form-group row mb-3">
+    <label for="description" class="col-sm-2 col-form-lable">description </label>
+  <div class="col-sm-10">
+    <textarea name="description"class="form-control" id="description" rows="3" [(ngModel)]="form.description" placeholder="description" required></textarea>
+    <div class=" text-danger" [hidden]="!error.description">
+      {{error.description}}
+    </div>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="location" class="col-sm-2 col-form-lable">Location</label>
+  <div class="col-sm-10">
+    <input type="text" name="workhour" class="form-control" [(ngModel)]="form.location" placeholder="Location" id="location" required>
+    <div class=" text-danger" [hidden]="!error.location">
+      {{error.location}}
+    </div>
+  </div>
+</div><br>
+
+<div class="form-group row mb-3">
+  <label for="age" class="col-sm-2 col-form-lable">Contact information </label>
+<div class="col-sm-10">
+  <input type="text" name="contact_info"class="form-control" id="contact_info" [(ngModel)]="form.contact_info" placeholder="Website" required>
+  <div class=" text-danger" [hidden]="!error.contact_info">
+    {{error.contact_info}}
+  </div>
+</div>
+</div>
+
+<div class="form-group row mb-3">
+  <label for="exampleInput" class="col-sm-2 col-form-lable">Company Name </label>
+<div class="col-sm-10">
+  <input type="text" name="name"class="form-control" id="exampleInput" [(ngModel)]="form.name" placeholder="company name" required>
+  <div class=" text-danger" [hidden]="!error.name">
+    {{error.name}}
+  </div>
+</div>
+</div><br>
+
+         <div class="form-group row col-sm-8 mb-3 offset-2 ">
+
+            <button type="submit" class="btn btn-primary" >Post</button>
+
+         </div>
+
+         <div>
+
+          <a routerLink="/company/companynav" class="col-lg" >back</a>
+          <!-- <a href=""><button type="submit" class="btn btn-primary  "  [disabled]="!logiForm.valid">sign up</button></a> -->
+
+         </div>
+      </form>
+
+    </div>
+  </div>
+</div>

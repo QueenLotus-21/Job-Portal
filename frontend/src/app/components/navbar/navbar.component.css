@@ -33,6 +33,35 @@ header .navbar a:hover{
 	color:orange;
 }
 
+/* drop down profile  */
+.user{
+  font-size: 5rem;
+}
+.user{
+  font-size: 18px;
+  margin-right: 2rem;
+  color: white;
+  background: #333;
+  margin-bottom: 5px;
+}
+#down{
+  margin-left: 4px;
+}
+.user:hover{
+  color:orange;
+  opacity: 2;
+}
+
+
+/* login icon */
+#login{
+  font-size: 2rem;
+  float: right;
+  margin-left: 30rem;
+
+}
+
+
 
 /* footer style start  */
 .footer{

@@ -47,6 +47,15 @@ getApproved(){
 getToken(){
   return localStorage.getItem('token')||'';
 }
+getUserName(){
+  return localStorage.getItem('user');
+}
+getEmail(){
+  return localStorage.getItem('email');
+}
+getName(){
+  return localStorage.getItem('name');
+}
 
 
 httpOptions={
@@ -92,5 +101,26 @@ deleteAdmin(id:number): Observable<any>{
 registerAdmin(data){
   return this.http.post(`${this.baseurl}/adminSignup`,data)
  }
+
+ //manage companies and jobs
+ jobPost(data){
+  return this.http.post(`${this.baseurl}/post`,data);
+ }
+ listJobs(){
+  return this.http.get<any>(`${this.baseurl}/job`);
+}
+findjob(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/job/`+id);
+}
+//manage companies and jobs
+applyAplicant(data:any){
+  return this.http.post(`${this.baseurl}/applicant`,data);
+ }
+ listApplicants(){
+  return this.http.get<any>(`${this.baseurl}/applicant`);
+}
+findApplicants(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/applicant/`+id);
+}
 
 }

@@ -1,0 +1,37 @@
+
+<!-- <div class="container-fluid page " id="all">
+  <div class="page__box p-3 mt-1">Job List</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center"> -->
+
+<div class="container all">
+  <h1>job List</h1>
+  <table class="table table-striped" border="1">
+    <thead>
+      <th>ID</th>
+      <th>title</th>
+      <th>Role</th>
+      <th>Action</th>
+    </thead>
+    <tbody *ngIf="jobs.length">
+      <tr *ngFor="let job of jobs">
+        <td>{{job.id}}</td>
+        <td class="search"> {{job.title}}</td>
+        <td class="search">{{job.role}}</td>
+        <td><button class="btn btn-info" routerLink="/user/viewjob/{{job.id}}" >View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div *ngIf="users.length">
+ <ul *ngFor="let user of users">
+    <li>{{user.name}}{{user.role}}{{user.email}}</li>
+ </ul>
+</div> -->
+
+    <!-- </div>
+  </div>
+
+</div> -->
+

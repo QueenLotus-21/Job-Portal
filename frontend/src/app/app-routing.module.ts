@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddUserComponent } from './components/admin/add-user/add-user.component';
+
+import { LoginComponent } from './components/pariots/login/login.component';
+import { SignupPageComponent } from './components/pariots/signup-page/signup-page.component';
+import { SignupComponent } from './components/pariots/signup/signup.component';
+
+//admin
 import { AdminSignupComponent } from './components/admin/admin-signup/admin-signup.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminavComponent } from './components/admin/adminav/adminav.component';
@@ -13,26 +18,44 @@ import { RegisterAdminComponent } from './components/admin/ManageAdmin/register-
 import { UpdateadminComponent } from './components/admin/ManageAdmin/updateadmin/updateadmin.component';
 import { SidenavComponent } from './components/admin/sidenav/sidenav.component';
 import { UpdateUserComponent } from './components/admin/update-user/update-user.component';
+
+//company
 import { CompanySignupComponent } from './components/company/company-signup/company-signup.component';
 import { CompanyComponent } from './components/company/company.component';
 import { CompanynavComponent } from './components/company/companynav/companynav.component';
-import { LoginComponent } from './components/pariots/login/login.component';
-import { SignupComponent } from './components/pariots/signup/signup.component';
+import { PostJobComponent } from './components/company/post-job/post-job.component';
+
+//user
+import { AddUserComponent } from './components/admin/add-user/add-user.component';
 import {UserNavComponent} from './components/user/user-nav/user-nav.component';
 import { UserComponent } from './components/user/user.component';
-import {UserhomeComponent} from './components/user/userhome/userhome.component'
+import {UserhomeComponent} from './components/user/userhome/userhome.component';
+import { JobListComponent } from './components/user/job-list/job-list.component';
+import { ViewJobComponent } from './components/user/manageJob/view-job/view-job.component';
+import { ApplicantComponent } from './components/user/manageJob/applicant/applicant.component';
+
+//guards
+import { AdminAuthGuard } from './Guard/admin-auth.guard';
+import {CompanyAuthGuard} from './Guard/company-auth.guard';
+import {SuperadminGuard} from './Guard/superadmin.guard';
+import {UserAuthGuard} from './Guard/user-auth.guard';
+
 
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-
+  {path:'signupPage',component:SignupPageComponent},
+  {path:'',component:UserhomeComponent},
 
   {path:'user',component:UserComponent,
   children:[
     {path:'userhome',component:UserhomeComponent},
     {path:'usernav',component:UserNavComponent},
-  ]
+    {path:'joblist',component:JobListComponent},
+    {path:'viewjob/:jobId',component:ViewJobComponent},
+    {path:'applicant/:jobID',component:ApplicantComponent},
+  ],canActivate:[UserAuthGuard],
   },
 
 
@@ -47,7 +70,7 @@ const routes: Routes = [
 
     //manage user
     {path:'adduser',component:AddUserComponent},
-    {path:'editUser/:userId',component:UpdateUserComponent},
+    {path:'editUser/:userId',component:UpdateUserComponent,canActivate:[SuperadminGuard]},
     {path:'manageuser',component:ManageUserComponent},
 
     //manage Admin
@@ -56,15 +79,16 @@ const routes: Routes = [
      {path:'registerAdmin',component:RegisterAdminComponent},
     {path:'manageAdmin',component:ManageAdminComponent},
 
-  ]
+  ],canActivate:[AdminAuthGuard]
   },
 
   {path:'company',component:CompanyComponent,
   children:[
     {path:'companynav',component:CompanynavComponent},
     {path:'Companysignup',component:CompanySignupComponent},
+    {path:'postjob',component:PostJobComponent},
 
-  ]
+  ],canActivate:[CompanyAuthGuard]
   }
 
 ];

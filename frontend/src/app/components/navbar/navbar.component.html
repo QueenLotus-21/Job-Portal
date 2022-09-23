@@ -2,15 +2,48 @@
 
   <header class="header" *ngIf="superMenu">
     <i id="luggage" class="fa-solid fa-person-walking-luggage"></i>
-    <a href="#" class="logo" ><span>J</span>op Portal</a>
+    <a href="#" class="logo" ><span>J</span>ob Portal</a>
 
     <nav class="navbar" >
         <div class="container-fluid">
-          <a class="navbar-brand">Home</a>
+          <a class="navbar-brand" routerLink="/" >Home</a>
+          <a class="navbar-brand" routerLink="company/postjob" *ngIf="displayCompany">Post</a>
+          <a class="navbar-brand" routerLink="company/companynav" *ngIf="displayCompany" >Manage Post</a>
+          <a class="navbar-brand" routerLink="company/companynav" *ngIf="displayCompany">Manage Applicant</a>
+          <a class="navbar-brand" routerLink="user/joblist" >Job List</a>
           <div>
-            <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn">Login</a>
-          <a class="navbar-brand" routerLink="company/Companysignup">profile</a>
-          <a href="#" class="navbar-brand" (click)="logout($event)" *ngIf="loggedIn">logout</a>
+            <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn" (click)=" displayLogin()"><i id="login" class="fa fa-user fa-fw"></i></a>
+          <!-- <a class="navbar-brand" routerLink="company/Companysignup">profile</a>
+          <a href="#" class="navbar-brand" (click)="logout($event)" *ngIf="loggedIn">logout</a> -->
+          <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center" >
+          <div *ngIf="username.length">
+            <i class="fa fa-user fa-fw"></i>{{username}}
+            <!-- <div *ngFor="let user of username">
+              <i class="fa fa-user fa-fw"></i>{{user.name}}
+             </div> -->
+          </div>
+
+             <i id="down" class="fa-solid fa-angle-down"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+
+            <button mat-menu-item>
+              <i class="fa-solid fa-pen-to-square" id="icon"></i>
+              Change Password
+            </button>
+            <button mat-menu-item (click)="logout($event)">
+              <i class="fa-solid fa-right-from-bracket" id="icon"></i>
+              logout
+            </button>
+            <button mat-menu-item>
+               <i class="fa-solid fa-gear "></i>
+              Setting
+            </button>
+            <button mat-menu-item>
+              <i class="fa-solid fa-circle-question" id="icon"></i>
+              Help
+            </button>
+          </mat-menu>
           </div>
 
         </div>

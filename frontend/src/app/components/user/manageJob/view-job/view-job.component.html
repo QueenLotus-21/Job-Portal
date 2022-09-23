@@ -1,0 +1,116 @@
+<!-- package section starts
+<br><br><br><br>
+<div class="container1">
+<section class="packages" id="package">
+  <h1 class="heading">
+    <span>v</span>
+    <span>i</span>
+    <span>e</span>
+    <span>w</span>
+    <span>j</span>
+    <span>o</span>
+    <span>b</span>
+    <span></span>
+  </h1>
+  <div class="box-container" *ngIf="jobs.length">
+    <div class="box" *ngFor="let job of jobs">
+      <img [src]="package.image ? imagePath+package.image :assets/images/j.jpg" alt="images">
+      <div class="content">
+        <h3><i> <a  class="fas fa-map-marker-alt"> </a> </i> {{job.title}} </h3>
+        <p>{{job.role}}</p>
+        <p>{{job.description}}</p>
+        <p>{{job.responsibility}}</p>
+        <p>{{job.person}}</p>
+        <p>{{job.workhour}}</p>
+        <p>{{job.status}}</p>
+        <p>{{job.location}}</p>
+        <p>{{job.name}}</p>
+        <p>{{job.contact_info}}</p>
+        <div class="stars">
+          <i ><mat-icon>star</mat-icon></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="far fa-star"></a></i>
+        </div>
+        <div class="price">$90.00 <span>$120.00</span></div>
+        <a class="btn btn-primary" rouerLink="/user/viewjob" id="bookn">Apply now</a>
+
+        <div>
+          <a routerLink="/user/viewjob" class=" col-lg ">Back</a>
+         </div>
+      </div>
+    </div>
+</div>
+
+</section>
+    </div> -->
+    <br><br><br>
+<div class="container1">
+<section class="packages" id="package">
+  <h1 class="heading">
+    <span>v</span>
+    <span>i</span>
+    <span>e</span>
+    <span>w</span>
+    <span></span>
+    <span>j</span>
+    <span>o</span>
+    <span>b</span>
+
+  </h1>
+  <div class="box-container">
+    <div class="box">
+      <div class="content">
+
+        <form [formGroup]="form">
+        <h3><i> <a class="fas fa-map-marker-alt"> </a></i> Job Title<input type="text" name="title" class="form-control"  id="title" #title  formControlName="title" [(ngModel)]="jobs.title"  ng-disabled="status"> </h3>
+        <p>Role<input type="text" name="role" class="form-control" id="role" #role  formControlName="role" [(ngModel)]="jobs.role"></p>
+        <label for="description">description</label>
+        <textarea #disabled name="description" class="form-control" id="description" rows="3" #description  formControlName="description" [(ngModel)]="jobs.description"></textarea>
+        <label for="responsibility">responsibility</label>
+        <textarea name="responsibility" class="form-control" id="responsibility" rows="3" #responsibility formControlName="responsibility" [(ngModel)]="jobs.responsibility"></textarea>
+       <span>
+        <label for="person"> we want </label>
+       <input type="text" name="person" class="form-control" id="person" #person formControlName="person" [(ngModel)]="jobs.person"> persons
+       </span>
+        <p>work hour <input type="text" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></p>
+        <p>status> <input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></p>
+        <p>location <input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></p>
+       <p>Company <input type="text" name="name" class="form-control" id="name" #name formControlName="name" [(ngModel)]="jobs.name"></p>
+      <p>you can visit us by <input type="text" name="contact_info" class="form-control" id="contact_info" #contact_info  formControlName="contact_info"[(ngModel)]="jobs.contact_info"></p>
+       <p>salary in month </p><div class="price">$90.00 <span>$120.00</span></div>
+        <div class="stars">
+          <i ><mat-icon>star</mat-icon></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="fas fa-star"></a></i>
+          <i ><a  href="#" class="far fa-star"></a></i>
+        </div>
+
+    <!-- <table>
+      <tr>
+        <td>
+          <a>{{jobs.id}}</a>
+        </td>
+        <td><button class="btn btn-info" routerLink="/user/applicant/{{jobs.id}}" >View</button></td>
+        <td>
+          <button class="btn btn-primary"  routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
+
+        </td>
+      </tr>
+    </table> -->
+      <div>
+        <button class="btn btn-primary"  routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
+      </div>
+
+        <div>
+          <a routerLink="/user/joblist" class=" col-lg ">Back</a>
+         </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+</section>
+    </div>

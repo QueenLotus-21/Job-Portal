@@ -14,7 +14,11 @@ export class NavbarComponent implements OnInit,DoCheck {
   displayMenu=false;
   diplayPackege1=false;
   diplayUser=false;
+  displayCompany:any;
   currentRole:any;
+  currentEmail:any
+  currentName:any;
+  public username:any;
   constructor(private auth:AuthserviceService,private router:Router,private user:UserServiceService) { }
 
   public loggedIn:boolean;
@@ -22,14 +26,28 @@ export class NavbarComponent implements OnInit,DoCheck {
     this.auth.authStatus.subscribe(value=> this.loggedIn = value);
     this.user.updateMenu.subscribe(res=>{
       this.superMenuDisplay();
+      this.showUserName();
+     this.menuDisplay();
     })
     this.user.updateMenuAdmin.subscribe(res=>{
       this.superMenuDisplay();
+
     })
 
     this.superMenuDisplay();
+   this.showUserName();
+   this.menuDisplay();
   }
 
+  showUserName(){
+    this.username=this.user.listUsers().subscribe(res=>{
+      this.username=res;
+      this.username=this.user.getUserName();
+      console.log(this.username)
+    })
+   //return this.username=this.user.getUserName();
+
+  }
 
   ngDoCheck(): void{
     if(this.router.url=='/login'){
@@ -48,6 +66,23 @@ export class NavbarComponent implements OnInit,DoCheck {
     }
     }
 
+    //display only by role
+    menuDisplay(){
+      if(this.user.getToken!=null){
+        //this.currentRole=this.user.getRolebyToken(this.user.getToken());
+        this.currentRole=this.user.getRole();
+        this.currentEmail=this.user.getEmail();
+        this.currentEmail=this.user.getEmail();
+        this.currentName=this.user.getName();
+       // this.displayCompany=(this.currentRole=='admin' || this.currentRole=="superadmin")
+      this.displayCompany=(this.currentRole=='company')
+      //this.superdisplay=(this.currentRole=="user"||this.currentRole=="admin")
+       console.log('hello tig'+this.currentRole+this.currentEmail+this.currentName)
+     }
+    }
+
+
+
     superMenuDisplay(){
       if(this.user.getToken!=null){
         this.currentRole=this.user.getRole();
@@ -55,6 +90,11 @@ export class NavbarComponent implements OnInit,DoCheck {
           this.router.navigateByUrl('/admin');
         }
       }
+    }
+
+    displayLogin(){
+      let loginform=document.querySelector('.login-form');
+      loginform.classList.add('active');
     }
 
   logout(event:MouseEvent){

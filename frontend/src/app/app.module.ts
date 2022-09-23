@@ -36,6 +36,11 @@ import { AddUserComponent } from './components/admin/add-user/add-user.component
 import { ManageAdminComponent } from './components/admin/manageAdmin/manage-admin/manage-admin.component';
 import { UpdateadminComponent } from './components/admin/ManageAdmin/updateadmin/updateadmin.component';
 import { RegisterAdminComponent } from './components/admin/ManageAdmin/register-admin/register-admin.component';
+import { SignupPageComponent } from './components/pariots/signup-page/signup-page.component';
+import { PostJobComponent } from './components/company/post-job/post-job.component';
+import { JobListComponent } from './components/user/job-list/job-list.component';
+import { ViewJobComponent } from './components/user/manageJob/view-job/view-job.component';
+import { ApplicantComponent } from './components/user/manageJob/applicant/applicant.component';
 
 
 
@@ -66,6 +71,11 @@ import { RegisterAdminComponent } from './components/admin/ManageAdmin/register-
     ManageAdminComponent,
     UpdateadminComponent,
     RegisterAdminComponent,
+    SignupPageComponent,
+    PostJobComponent,
+    JobListComponent,
+    ViewJobComponent,
+    ApplicantComponent,
 
 
 

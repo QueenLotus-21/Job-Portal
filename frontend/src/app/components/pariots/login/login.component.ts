@@ -40,11 +40,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', this.resposedata.user);
         localStorage.setItem('role', this.resposedata.role);
         localStorage.setItem('approved', this.resposedata.approved);
+        localStorage.setItem('email', this.resposedata.email);
+        localStorage.setItem('name', this.resposedata.name);
         this.users.updateMenu.next();
         console.log('success');
         this.currentRole=this.users.getRole();
+        // console.log(this.currentRole);
         if(this.currentRole=='user'){
-          this.router.navigate(['user/usernav']);
+          this.router.navigate(['user/userhome']);
         }
         else if(this.currentRole=='admin'){
           this.router.navigate(['admin']);
@@ -86,4 +89,9 @@ export class LoginComponent implements OnInit {
     loginForm.classList.remove('active');
    }
 
+
+   displaySignup(){
+    let signupform=document.querySelector('.signup-form');
+    signupform.classList.add('active');
+  }
 }

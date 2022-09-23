@@ -1,0 +1,91 @@
+
+<!-- offset for space horizontal -->
+
+<!-- <div class="container-fluid page">
+  <div class="page__box p-3 mt-1">update Admin</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute"> -->
+
+<br><br>
+<div class=" update mt-4 col-10 offset-2">
+  <div class="card">
+    <div class="card-header text-center ">Apply</div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group row mb-3">
+          <label for="packagename" class="form-lable"> Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="userName" [(ngModel)]="jobs.userName" [ngClass]="{'is-invalid': submitted && f.name.errors}" placeholder="{{username}}" value="{{username}}" >
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">name is required</div>
+           </div>
+          </div>
+        </div>
+
+      <div class="form-group row mb-3">
+        <label for="email" class="form-lable">Email</label>
+        <div class="col-sm-10">
+           <input type="email" class="form-control"  value="{{email}}" name="userEmail"  [(ngModel)]="jobs.userEmail">
+           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">email is required</div>
+           </div>
+          </div>
+      </div>
+
+        <div class="form-group row mb-3">
+          <label for="title" class="form-lable">job Title</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control" name="title" #title [(ngModel)]="jobs.title" formControlName="title" [ngClass]="{'is-invalid': submitted && f.title.errors}">
+               <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">title is required</div>
+             </div>
+           </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <label for="packagedesc" class="form-lable">Role</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control" name="role" #role [(ngModel)]="jobs.role" formControlName="role" [ngClass]="{'is-invalid': submitted && f.role.errors}" >
+               <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                <div *ngIf="f.role.errors.required">role is required</div>
+             </div>
+           </div>
+        </div>
+
+
+        <div class="form-group row mb-3">
+          <label for="packagename" class="form-lable"> Company</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  name="name" #name formControlName="name" [(ngModel)]="jobs.name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">name is required</div>
+           </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <label for="packagename" class="form-lable"> CV</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  name="CV" formControlName="CV" #CV [(ngModel)]="jobs.CV" [ngClass]="{'is-invalid': submitted && f.CV.errors}" placeholder="Enter your CV">
+            <div *ngIf="submitted && f.CV.errors" class="invalid-feedback">
+              <div *ngIf="f.CV.errors.required">CV is required</div>
+           </div>
+          </div>
+        </div>
+
+          <div class="form-group row col-sm-8 mb-3 offset-2 ">
+            <button type="submit"  class="btn btn-success" >Update</button>
+         </div>
+
+         <div>
+          <a routerLink="/user/joblist" class=" col-lg ">Back</a>
+         </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- </div>
+</div>
+</div> -->
