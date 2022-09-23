@@ -46,12 +46,22 @@ Route::group([
     Route::put('user/{id}',[AuthController::class,'updateUser']);
     Route::post('registeruser',[AuthController::class,'registerUser']);
 
-    //manage addmin
+    //manage admin
     Route::get('admin',[AdminController::class,'admins']);
     Route::delete('admin/{id}',[AdminController::class,'deleteAdmin']);
     Route::get('admin/{id}',[AdminController::class,'adminfind']);
     Route::put('admin/{id}',[AdminController::class,'updateAdmin']);
     Route::post('adminSignup',[AdminController::class,'adminSignup']);
+
+    //manage post
+    Route::get('job',[companyController::class,'jobs']);
+    Route::get('job/{id}',[companyController::class,'jobfind']);
+    Route::post('post',[companyController::class,'postJob']);
+    Route::get('applicant',[companyController::class,'applicants']);
+    Route::get('applicant/{id}',[companyController::class,'applicantfind']);
+    Route::post('applicant',[companyController::class,'applyApplicant']);
+
+    //Route::delete('post/{id}',[companyController::class,'jobfind']);
 
 
 

@@ -35,6 +35,9 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
+        // if(request(['approved'])=='no'){
+        //     return response()->json(['error' => 'your email needs admin approval'], 401);
+        // }
         if (! $token = auth()->attempt($credentials)) {
                     return response()->json(['error' => 'email or password does\'t exist'], 401);
                }
@@ -185,7 +188,9 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user'=>auth()->user()->name,
             'role'=>auth()->user()->role,
-            'approved'=>auth()->user()->approved
+            'email'=>auth()->user()->email,
+            'approved'=>auth()->user()->approved,
+            'name'=>auth()->user()->name,
         ]);
     }
 }
