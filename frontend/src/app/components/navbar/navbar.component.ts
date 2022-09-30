@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit,DoCheck {
       this.diplayPackege1=false;
       this.diplayUser=false;
       this.superMenu=true;
+      this.displayCompany=false;
     }
     else if(this.router.url=='/admin'){
       this.diplayUser=false;
@@ -86,7 +87,7 @@ export class NavbarComponent implements OnInit,DoCheck {
     superMenuDisplay(){
       if(this.user.getToken!=null){
         this.currentRole=this.user.getRole();
-        if(this.currentRole=="admin"){
+        if(this.currentRole=="admin"|| this.currentRole=="superadmin"){
           this.router.navigateByUrl('/admin');
         }
       }

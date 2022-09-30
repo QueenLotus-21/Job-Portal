@@ -14,7 +14,7 @@ export class AdminAuthGuard implements CanActivate {
     {
       if(this.user.isLoggedIn()){
         this.currentRole=this.user.getRole()
-        if(this.currentRole=='admin'){
+        if(this.currentRole=='admin' || this.currentRole=='superadmin'){
           return true;
         }
         else{

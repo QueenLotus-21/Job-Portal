@@ -41,6 +41,10 @@ import { PostJobComponent } from './components/company/post-job/post-job.compone
 import { JobListComponent } from './components/user/job-list/job-list.component';
 import { ViewJobComponent } from './components/user/manageJob/view-job/view-job.component';
 import { ApplicantComponent } from './components/user/manageJob/applicant/applicant.component';
+import { UpdateJobComponent } from './components/company/Manage-job/update-job/update-job.component';
+import { ManageJobComponent } from './components/company/manage-job/manage-job.component';
+import { UpdateJobsComponent } from './components/company/ManageJob/update-jobs/update-jobs.component';
+import { ManageApplicantComponent } from './components/company/manage-applicant/manage-applicant.component';
 
 
 
@@ -76,6 +80,11 @@ import { ApplicantComponent } from './components/user/manageJob/applicant/applic
     JobListComponent,
     ViewJobComponent,
     ApplicantComponent,
+    UpdateJobComponent,
+    ManageJobComponent,
+    UpdateJobsComponent,
+    ManageApplicantComponent,
+
 
 
 

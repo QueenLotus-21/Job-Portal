@@ -1,3 +1,6 @@
+@import '../../../admin/home/home.component.css';
+
 .update{
   width: 40rem;
+  margin-bottom: 10rem;
 }

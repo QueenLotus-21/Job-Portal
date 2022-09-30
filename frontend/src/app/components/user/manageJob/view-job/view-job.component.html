@@ -45,7 +45,7 @@
 
 </section>
     </div> -->
-    <br><br><br>
+    <br><br><br><br>
 <div class="container1">
 <section class="packages" id="package">
   <h1 class="heading">
@@ -75,18 +75,12 @@
        <input type="text" name="person" class="form-control" id="person" #person formControlName="person" [(ngModel)]="jobs.person"> persons
        </span>
         <p>work hour <input type="text" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></p>
-        <p>status> <input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></p>
+        <p>Hiring status<input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></p>
         <p>location <input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></p>
        <p>Company <input type="text" name="name" class="form-control" id="name" #name formControlName="name" [(ngModel)]="jobs.name"></p>
       <p>you can visit us by <input type="text" name="contact_info" class="form-control" id="contact_info" #contact_info  formControlName="contact_info"[(ngModel)]="jobs.contact_info"></p>
-       <p>salary in month </p><div class="price">$90.00 <span>$120.00</span></div>
-        <div class="stars">
-          <i ><mat-icon>star</mat-icon></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="far fa-star"></a></i>
-        </div>
+       <p>salary in month </p><div class="price">$90.00 <span>$120.00</span></div><br>
+
 
     <!-- <table>
       <tr>
@@ -101,11 +95,11 @@
       </tr>
     </table> -->
       <div>
-        <button class="btn btn-primary"  routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
+        <button class="btn btn-primary text-center" routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
       </div>
 
         <div>
-          <a routerLink="/user/joblist" class=" col-lg ">Back</a>
+          <a routerLink="/user/joblist" class=" col-lg ">Back</a><br><br>
          </div>
         </form>
       </div>

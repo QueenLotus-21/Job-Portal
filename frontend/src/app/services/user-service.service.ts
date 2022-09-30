@@ -109,10 +109,26 @@ registerAdmin(data){
  listJobs(){
   return this.http.get<any>(`${this.baseurl}/job`);
 }
+listJob(){
+  return this.http.get<any>(`${this.baseurl}/jobList`);
+}
 findjob(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/job/`+id);
+
 }
-//manage companies and jobs
+
+findJobList(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/jobList/`+id);
+}
+updateJobPost(id:number, jobs:any): Observable<any>{
+  // return this.http.put<any>(`${this.baseurl}/job/`+id ,jobs,this.httpOptions);
+  return this.http.put<any>(`${this.baseurl}/job/`+id ,jobs, this.httpOptions);
+}
+deleteJob(id:number): Observable<any>{
+  return this.http.delete<any>(`${this.baseurl}/job/`+id , this.httpOptions);
+}
+
+
 applyAplicant(data:any){
   return this.http.post(`${this.baseurl}/applicant`,data);
  }
@@ -122,5 +138,7 @@ applyAplicant(data:any){
 findApplicants(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/applicant/`+id);
 }
+
+
 
 }

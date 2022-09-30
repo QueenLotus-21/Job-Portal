@@ -22,6 +22,8 @@ export class ApplicantComponent implements OnInit {
   data:any
   err:any
   username:any;
+  files:any
+  url="assets/images/job1.jpeg";
     constructor( private route: ActivatedRoute,
       private router: Router,
       private user: UserServiceService ,
@@ -55,6 +57,7 @@ export class ApplicantComponent implements OnInit {
       // })
 
     }
+
     showApplicant(){
 
       this.username=this.user.getUserName();
@@ -78,9 +81,30 @@ export class ApplicantComponent implements OnInit {
 
     }
 
-    onSubmit(){
+
+   uploadImage(event){
+    if(event.target.files){
+      this.files=event.target.files[0];
+      var reader=new FileReader();
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload=(event1:any)=>{
+       this.url=event1.target.result;
+      }
+    }
+   console.log(this.files);
+  }
+
+    onSubmit(userName:string,userEmail:string,title:string,role:string,name:string,image:string){
       console.log(this.form);
-      this.user.applyAplicant(this.jobs).subscribe((res)=>{
+      const formdata=new FormData();
+
+      formdata.append('name',name)
+      formdata.append('userName',userName)
+       formdata.append('userEmail',userEmail)
+       formdata.append('title',title)
+       formdata.append('role',role)
+      formdata.append('image',this.files,this.files.name)
+    this.user.applyAplicant(formdata).subscribe((res)=>{
         this.data=res
         this.notify.success(this.data.message,{timeout:2000});
         this.router.navigateByUrl('/user/joblist');
@@ -94,16 +118,24 @@ export class ApplicantComponent implements OnInit {
         name:[null,Validators.required],
         userEmail :[null,Validators.required],
         role:[null,Validators.required],
-        CV:[null,Validators.required],
+        image:[null,Validators.required],
         title:[null,Validators.required],
       })
     }
    get f(){
    return this.form.controls;
   }
-    update(userName:string,userEmail:string,title:string,role:string,name:string,CV:string){
+    update(userName:string,userEmail:string,title:string,role:string,name:string,image:string){
 
-  this.user.applyAplicant(this.jobs).subscribe((res)=>{
+      const formdata=new FormData();
+
+    formdata.append('name',name)
+    formdata.append('userName',userName)
+     formdata.append('userEmail',userEmail)
+     formdata.append('title',title)
+     formdata.append('role',role)
+    formdata.append('image',this.files,this.files.name)
+  this.user.applyAplicant(formdata).subscribe((res)=>{
     this.data=res
     this.notify.success( this.data.message,{timeout:2000})
     this.router.navigateByUrl('/user/joblist');
@@ -116,7 +148,7 @@ export class ApplicantComponent implements OnInit {
     'name':null,
     'title':null,
     'role':null,
-    'CV':null,
+    'image':null,
    }
 
 }

@@ -1,0 +1,26 @@
+
+<div class="container all">
+  <h1 class="text-center">Applicant List</h1>
+  <table class="table table-striped" border="1">
+    <thead>
+      <th>ID</th>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Job Title</th>
+      <th>Role</th>
+      <th>CV</th>
+      <th>Action</th>
+    </thead>
+    <tbody *ngIf="applicants.length">
+      <tr *ngFor="let applicant of applicants">
+        <td>{{applicant.id}}</td>
+        <td class="search"> {{applicant.userName}}</td>
+        <td class="search">{{applicant.email}}</td>
+        <td class="search"> {{applicant.jobTitle}}</td>
+        <td class="search">{{applicant.role}}</td>
+        <td class="search"><img [src]="applicant.image ? imagePath+applicant.image :'assets/images/15.jpg'" height="100px"></td>
+        <td><button class="btn btn-info" >View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

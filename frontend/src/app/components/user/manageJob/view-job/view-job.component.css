@@ -18,18 +18,22 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 3rem;
+  width: 50rem;
+  margin-left: 13rem;
+  margin-bottom: 10rem;
 
 }
 .packages .box-container .box{
-	flex: 1 1 20rem;
+	flex: 1 1 10rem;
 	border-radius: .5rem;
 	overflow: hidden;
 	box-shadow: 1rem 2rem rgba(0, 0, 0, .1);
+  border: 1rem solid rgba(0, 0, 0, .1);
 
 }
 .packages .box-container .box:hover {
 	background: #eee;
-	border: 1rem solid rgba(0, 0, 0, .1);
+	border: 3rem solid rgba(247, 244, 244, 0.1);
 
 }
 .packages .box-container .box img{
@@ -39,13 +43,13 @@
 
 }
 .packages .box-container .box .content{
-padding: 2rem;
+padding: .2rem;
 }
 
 .packages .box-container .box .content h3{
 	font-size: 2rem;
 	color: #333;
-	padding: 1rem 0;
+	padding: .1rem 0;
 	}
 .packages .box-container .box .content h3 i{
 	color: orange;
@@ -53,7 +57,7 @@ padding: 2rem;
 .packages .box-container .box .content p{
 	font-size: 1rem;
 	color: #666;
-	padding: 1rem 0;
+	padding: .1rem 0;
 }
 .packages .box-container .box .content .stars i{
 	font-size: 1.7rem;
@@ -62,7 +66,7 @@ padding: 2rem;
 .packages .box-container .box .content .price{
 	font-size:2rem;
 	color: #333;
-	padding-top:1rem;
+	padding-top:.1rem;
 }
 .packages .box-container .box .content .price span{
 color: #666;
@@ -74,4 +78,8 @@ text-decoration: line-through;
  }
  textarea{
   border: none;
+  padding: .1rem;
  }
+.btn{
+  margin-left: 17rem;
+}

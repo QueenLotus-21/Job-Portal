@@ -8,8 +8,8 @@
         <div class="container-fluid">
           <a class="navbar-brand" routerLink="/" >Home</a>
           <a class="navbar-brand" routerLink="company/postjob" *ngIf="displayCompany">Post</a>
-          <a class="navbar-brand" routerLink="company/companynav" *ngIf="displayCompany" >Manage Post</a>
-          <a class="navbar-brand" routerLink="company/companynav" *ngIf="displayCompany">Manage Applicant</a>
+          <a class="navbar-brand" routerLink="company/managePost" *ngIf="displayCompany" >Manage Post</a>
+          <a class="navbar-brand" routerLink="company/applicantdetail" *ngIf="displayCompany">Applicant</a>
           <a class="navbar-brand" routerLink="user/joblist" >Job List</a>
           <div>
             <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn" (click)=" displayLogin()"><i id="login" class="fa fa-user fa-fw"></i></a>

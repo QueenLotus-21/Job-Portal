@@ -1,0 +1,58 @@
+
+<!-- <div class="container-fluid page " id="all">
+  <div class="page__box p-3 mt-1">Job List</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center"> -->
+
+      <div class="container all">
+        <h1>job List</h1>
+        <table class="table table-striped" border="1">
+          <thead>
+            <th>ID</th>
+            <th>title</th>
+            <th>Role</th>
+            <th>gender</th>
+            <th>Status</th>
+            <th>Workhour</th>
+            <th>Skill</th>
+            <th>No_Of_Person</th>
+            <th>Description</th>
+            <th>Responsibility</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>contact_info</th>
+            <th>Action</th>
+          </thead>
+          <tbody *ngIf="jobs.length">
+            <tr *ngFor="let job of jobs">
+              <td>{{job.id}}</td>
+              <td class="search"> {{job.title}}</td>
+              <td class="search">{{job.role}}</td>
+              <td>{{job.gender}}</td>
+              <td class="search"> {{job.status}}</td>
+              <td class="search">{{job.workhour}}</td>
+              <td class="search">{{job.skill}}</td>
+              <td>{{job.person}}</td>
+              <td class="search"> {{job.description}}</td>
+              <td class="search">{{job.responsibility}}</td>
+              <td>{{job.name}}</td>
+              <td class="search"> {{job.location}}</td>
+              <td class="search">{{job.contact_info}}</td>
+              <td><button class="btn btn-info" routerLink="/company/updatejob/{{job.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteJob(job.id)" >Delete</button></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- <div *ngIf="users.length">
+       <ul *ngFor="let user of users">
+          <li>{{user.name}}{{user.role}}{{user.email}}</li>
+       </ul>
+      </div> -->
+
+          <!-- </div>
+        </div>
+
+      </div> -->
+

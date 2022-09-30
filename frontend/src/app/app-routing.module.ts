@@ -24,6 +24,7 @@ import { CompanySignupComponent } from './components/company/company-signup/comp
 import { CompanyComponent } from './components/company/company.component';
 import { CompanynavComponent } from './components/company/companynav/companynav.component';
 import { PostJobComponent } from './components/company/post-job/post-job.component';
+import { ManageApplicantComponent } from './components/company/manage-applicant/manage-applicant.component';
 
 //user
 import { AddUserComponent } from './components/admin/add-user/add-user.component';
@@ -39,6 +40,9 @@ import { AdminAuthGuard } from './Guard/admin-auth.guard';
 import {CompanyAuthGuard} from './Guard/company-auth.guard';
 import {SuperadminGuard} from './Guard/superadmin.guard';
 import {UserAuthGuard} from './Guard/user-auth.guard';
+import { ManageJobComponent } from './components/company/manage-job/manage-job.component';
+import { UpdateJobComponent } from './components/company/Manage-job/update-job/update-job.component';
+import { UpdateJobsComponent } from './components/company/ManageJob/update-jobs/update-jobs.component';
 
 
 
@@ -82,11 +86,16 @@ const routes: Routes = [
   ],canActivate:[AdminAuthGuard]
   },
 
+  //manage company
   {path:'company',component:CompanyComponent,
   children:[
     {path:'companynav',component:CompanynavComponent},
     {path:'Companysignup',component:CompanySignupComponent},
     {path:'postjob',component:PostJobComponent},
+    {path:'managePost',component:ManageJobComponent},
+    {path:'updatejob/:jobID',component:UpdateJobComponent},
+    {path:'editjob/:jobId',component:UpdateJobsComponent},
+    {path:'applicantdetail',component:ManageApplicantComponent},
 
   ],canActivate:[CompanyAuthGuard]
   }

@@ -6,17 +6,17 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-absolute"> -->
 
-<br><br>
-<div class=" update mt-4 col-10 offset-2">
+<br><br><br><br><br><br>
+<div class="update mt-3 col-10 offset-2">
   <div class="card">
     <div class="card-header text-center ">Apply</div>
     <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(userName.value,userEmail.value,title.value,role.value,name.value,image.value)">
 
         <div class="form-group row mb-3">
           <label for="packagename" class="form-lable"> Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="userName" [(ngModel)]="jobs.userName" [ngClass]="{'is-invalid': submitted && f.name.errors}" placeholder="{{username}}" value="{{username}}" >
+            <input type="text" class="form-control" name="userName" formControlName="userName" #userName [(ngModel)]="jobs.userName" [ngClass]="{'is-invalid': submitted && f.name.errors}" placeholder="{{username}}" value="{{username}}" >
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
               <div *ngIf="f.name.errors.required">name is required</div>
            </div>
@@ -26,7 +26,7 @@
       <div class="form-group row mb-3">
         <label for="email" class="form-lable">Email</label>
         <div class="col-sm-10">
-           <input type="email" class="form-control"  value="{{email}}" name="userEmail"  [(ngModel)]="jobs.userEmail">
+           <input type="email" class="form-control" formControlName="userEmail" #userEmail value="{{email}}" name="userEmail"  [(ngModel)]="jobs.userEmail">
            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">email is required</div>
            </div>
@@ -65,11 +65,13 @@
         </div>
 
         <div class="form-group row mb-3">
-          <label for="packagename" class="form-lable"> CV</label>
+          <label for="packagename" class="form-lable">Enter your CV</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control"  name="CV" formControlName="CV" #CV [(ngModel)]="jobs.CV" [ngClass]="{'is-invalid': submitted && f.CV.errors}" placeholder="Enter your CV">
-            <div *ngIf="submitted && f.CV.errors" class="invalid-feedback">
-              <div *ngIf="f.CV.errors.required">CV is required</div>
+            <img class="rounded-circle" [src]="url" alt="" width="250px" height="200px" class="previewImage"><br><br>
+            <input type="file" class="form-control"  name="image" formControlName="image" #image [(ngModel)]="jobs.image" (change)=" uploadImage($event)" [ngClass]="{'is-invalid': submitted && f.image.errors}" placeholder="Enter your CV">
+            <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+              <div *ngIf="f.image.errors.required">CV is required</div>
+              <!-- <input type="file" name="image" class="form-control" #image  formControlName="image" (change)=" uploadImage($event)" [ngClass]="{'is-invalid': submitted && f.image.errors}"> -->
            </div>
           </div>
         </div>
