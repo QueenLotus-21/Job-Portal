@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->string('userName');
-            $table->string('email')->unique();
-            $table->string('jobTitle');
+            $table->string('email');
+            $table->string('jobTitle')->unique();
             $table->string('role');
             $table->string('name');
-            $table->string('CV');
+            $table->mediumText('image')->nullable();
             $table->timestamps();
         });
     }

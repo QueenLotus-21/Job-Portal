@@ -56,6 +56,11 @@ Route::group([
     //manage post
     Route::get('job',[companyController::class,'jobs']);
     Route::get('job/{id}',[companyController::class,'jobfind']);
+    Route::get('jobList',[companyController::class,'jobsList']);
+    // Route::get('jobList/{id}',[companyController::class,'jobfindList']);
+    // Route::get('job/{id}',[companyController::class,'deletePost']);
+    // Route::get('job/{id}',[companyController::class,'updatePost']);
+
     Route::post('post',[companyController::class,'postJob']);
     Route::get('applicant',[companyController::class,'applicants']);
     Route::get('applicant/{id}',[companyController::class,'applicantfind']);

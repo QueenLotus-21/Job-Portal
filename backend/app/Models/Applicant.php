@@ -16,7 +16,7 @@ class Applicant extends Model
         'jobTitle',
         'role',
         'name',
-        'CV',
+        'image',
     ];
 
     protected $table="applicants";

@@ -17,6 +17,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\User_detail;
 use App\Models\Applicant;
+use lists;
 
 class companyController extends Controller
 {
@@ -27,7 +28,7 @@ class companyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['companySignup','postJob','jobs','jobfind','applyApplicant']]);
+        $this->middleware('auth:api', ['except' => ['companySignup','postJob','jobs','jobfind','applyApplicant','applicants','updatePost','deletePost','jobfindList','jobsList']]);
 
     }
 
@@ -106,18 +107,92 @@ if($request->input('role')=='company'){
         return job_detail::all();
     }
 
+      public function jobsList(){
+        return job_detail::all();
+    }
+
     public function jobfind($id){
             return job_detail::findorFail($id);
 
     }
+    public function jobfindList($id){
+        return job_detail::findorFail($id);
+
+}
+
+    public function updatePost(Request $request, $id)
+    {
+    if(job_detail::where('id',$id)->exists()){
+        $job =job_detail::find($id);
+        $job->title = $request->title;
+        $job->role = $request->role;
+        $job->gender = $request->gender;
+        $job->status = $request->status;
+        $job->skill = $request->skill;
+        $job->workhour = $request->workhour;
+        $job->person = $request->person;
+        $job->description = $request->description;
+        $job->responsibility = $request->responsibility;
+        $job->name = $request->name;
+        $job->location = $request->location;
+        $job->contact_info = $request->contact_info;
 
 
-    public function applicants(){
-        return applicants::all();
+        $job->save();
+    return response()->json([
+        "message"=> "Post updated successfully"
+    ], 200);
+
+}
+else{
+    return response()->json([
+        "message"=>"post not found"
+    ],404);
+}
+}
+public function deletePost($id)
+{
+if(job_detail::where('id',$id)->exists()){
+    $post = job_detail::find($id);
+    $post->delete();
+
+    return response()->json([
+        "message"=> "job successfully deleted"
+    ],200);
+
+}
+else{
+    return response()->json([
+        "message"=>"job not found"
+    ],404);
+}
+}
+
+
+    public function applicantList(){
+        return applicant::all();
     }
     public function applicantfind($id){
-        return applicants::findorFail($id);
+        return applicant::findorFail($id);
 
+}
+
+public function applicants(){
+   return $applicant=DB::table('applicants')->select('name','email','image','jobTitle','userName','role','id')->orderBy('id','desc')->get();
+// $user=applicant::all();
+// foreach($user as $u){
+//     $u=$u->name;
+    // dd($u);
+// $applicant=applicant::where('name',$u)->orderBy('id','desc')->get();
+//  dd($applicant);
+// }
+//  $applicant=applicant::where('name',$user->name)->orderBy('id','desc')->get();
+//  dd($applicant);
+// return $applicant=DB::table('applicants')
+//                 ->join('user_details','user_details.name','=','applicants.name')
+//                  ->select('applicants.name','applicants.email','applicants.CV','applicants.jobTitle','applicants.userName','applicants.role')
+//                  ->where('applicants.id',$user->id)
+//                  ->get();
 }
 
     public function applyApplicant(Request $request){
@@ -127,9 +202,17 @@ if($request->input('role')=='company'){
         $applicant->jobTitle=$request->input('title');
         $applicant->role=$request->input('role');
         $applicant->name=$request->input('name');
-        $applicant->CV=$request->input('CV');
 
-
+        if($request->hasFile('image')){
+            $completefilename=$request->file('image')->getClientOriginalName();
+            $fileNameonly=pathinfo( $completefilename,PATHINFO_FILENAME);
+            $extension=$request->file('image')->getClientOriginalExtension();
+            $name=time().'-'.$extension;
+            $completePic=str_replace(' ','_', $fileNameonly).'-'.rand() .'_'.time(). '.'. $extension;
+            $path=$request->file('image')->storeAs('public/applicant',  $completePic);
+            $applicant->image=$completePic;
+        }
+      //  $applicant->image=$request->input('image');
 
          if($applicant->save()){
              return ['status'=>true, 'message'=>'Applied successfully'];
