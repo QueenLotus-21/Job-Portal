@@ -16,7 +16,7 @@
         <div class="form-group row mb-3">
           <label for="title" class="form-lable"> Job Title</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="title" #title formControlName="title" [(ngModel)]="jobs.title" [ngClass]="{'is-invalid': submitted && f.title.errors}">
+            <input type="text" class="form-control" name="title" #title formControlName="title" [(ngModel)]="jobss.title" [ngClass]="{'is-invalid': submitted && f.title.errors}">
             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
               <div *ngIf="f.title.errors.required">title is required</div>
            </div>
@@ -26,7 +26,7 @@
         <div class="form-group row mb-3">
           <label for="packagedesc" class="form-lable">Role</label>
            <div class="col-sm-10">
-               <input type="text" class="form-control" name="role" #role [(ngModel)]="jobs.role" formControlName="role" [ngClass]="{'is-invalid': submitted && f.role.errors}" >
+               <input type="text" class="form-control" name="role" #role [(ngModel)]="jobss.role" formControlName="role" [ngClass]="{'is-invalid': submitted && f.role.errors}" >
                <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
                 <div *ngIf="f.role.errors.required">role is required</div>
              </div>
@@ -36,7 +36,7 @@
         <div class="form-group row mb-3">
           <label for="gender" class="form-lable">Gender</label>
            <div class="col-sm-10">
-               <input type="text" class="form-control" name="gender" #gender [(ngModel)]="jobs.gender" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}" >
+               <input type="text" class="form-control" name="gender" #gender [(ngModel)]="jobss.gender" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}" >
                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">gender is required</div>
              </div>
@@ -46,7 +46,7 @@
       <div class="form-group row mb-3">
         <label for="status" class="form-lable">Status</label>
         <div class="col-sm-10">
-           <input type="text" class="form-control"  name="status" #status formControlName="status" [(ngModel)]="jobs.status" [ngClass]="{'is-invalid': submitted && f.status.errors}">
+           <input type="text" class="form-control"  name="status" #status formControlName="status" [(ngModel)]="jobss.status" [ngClass]="{'is-invalid': submitted && f.status.errors}">
            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
               <div *ngIf="f.status.errors.required">Status is required</div>
            </div>
@@ -56,7 +56,7 @@
       <div class="form-group row mb-3">
         <label for="skill" class="form-lable">Skill</label>
         <div class="col-sm-10">
-           <input type="text" class="form-control"  name="skill" #skill formControlName="skill" [(ngModel)]="jobs.skill" [ngClass]="{'is-invalid': submitted && f.skill.errors}">
+           <input type="text" class="form-control"  name="skill" #skill formControlName="skill" [(ngModel)]="jobss.skill" [ngClass]="{'is-invalid': submitted && f.skill.errors}">
            <div *ngIf="submitted && f.skill.errors" class="invalid-feedback">
               <div *ngIf="f.skill.errors.required">skill is required</div>
            </div>
@@ -66,7 +66,7 @@
       <div class="form-group row mb-3">
         <label for="workhour" class="form-lable">Workhour</label>
          <div class="col-sm-10">
-             <input type="text" class="form-control" name="workhour" #workhour [(ngModel)]="jobs.workhour" formControlName="workhour" [ngClass]="{'is-invalid': submitted && f.workhour.errors}" >
+             <input type="text" class="form-control" name="workhour" #workhour [(ngModel)]="jobss.workhour" formControlName="workhour" [ngClass]="{'is-invalid': submitted && f.workhour.errors}" >
              <div *ngIf="submitted && f.workhour.errors" class="invalid-feedback">
               <div *ngIf="f.workhour.errors.required">workhour is required</div>
            </div>
@@ -76,7 +76,7 @@
     <div class="form-group row mb-3">
       <label for="person" class="form-lable">No_Of_Person</label>
       <div class="col-sm-10">
-         <input type="text" class="form-control"  name="person" #person formControlName="person" [(ngModel)]="jobs.person" [ngClass]="{'is-invalid': submitted && f.person.errors}">
+         <input type="text" class="form-control"  name="person" #person formControlName="person" [(ngModel)]="jobss.person" [ngClass]="{'is-invalid': submitted && f.person.errors}">
          <div *ngIf="submitted && f.person.errors" class="invalid-feedback">
             <div *ngIf="f.person.errors.required">person is required</div>
          </div>
@@ -85,7 +85,7 @@
     <div class="form-group row mb-3">
       <label for="description" class="form-lable">Description</label>
        <div class="col-sm-10">
-           <input type="text" class="form-control" name="description" #description [(ngModel)]="jobs.description" formControlName="description" [ngClass]="{'is-invalid': submitted && f.description.errors}" >
+           <input type="text" class="form-control" name="description" #description [(ngModel)]="jobss.description" formControlName="description" [ngClass]="{'is-invalid': submitted && f.description.errors}" >
            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
             <div *ngIf="f.description.errors.required">description is required</div>
          </div>
@@ -94,7 +94,7 @@
     <div class="form-group row mb-3">
       <label for="responsibility" class="form-lable">Responsibility</label>
        <div class="col-sm-10">
-           <input type="text" class="form-control" name="responsibility" #responsibility [(ngModel)]="jobs.responsibility" formControlName="responsibility" [ngClass]="{'is-invalid': submitted && f.responsibility.errors}" >
+           <input type="text" class="form-control" name="responsibility" #responsibility [(ngModel)]="jobss.responsibility" formControlName="responsibility" [ngClass]="{'is-invalid': submitted && f.responsibility.errors}" >
            <div *ngIf="submitted && f.responsibility.errors" class="invalid-feedback">
             <div *ngIf="f.responsibility.errors.required">responsibility is required</div>
          </div>
@@ -104,7 +104,7 @@
   <div class="form-group row mb-3">
     <label for="name" class="form-lable">Company</label>
     <div class="col-sm-10">
-       <input type="text" class="form-control"  name="name" #name formControlName="name" [(ngModel)]="jobs.name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
+       <input type="text" class="form-control"  name="name" #name formControlName="name" [(ngModel)]="jobss.name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
           <div *ngIf="f.name.errors.required">name is required</div>
        </div>
@@ -113,7 +113,7 @@
   <div class="form-group row mb-3">
     <label for="location" class="form-lable">Location</label>
      <div class="col-sm-10">
-         <input type="text" class="form-control" name="location" #location [(ngModel)]="jobs.location" formControlName="location" [ngClass]="{'is-invalid': submitted && f.location.errors}" >
+         <input type="text" class="form-control" name="location" #location [(ngModel)]="jobss.location" formControlName="location" [ngClass]="{'is-invalid': submitted && f.location.errors}" >
          <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
           <div *ngIf="f.location.errors.required">location is required</div>
        </div>
@@ -123,7 +123,7 @@
 <div class="form-group row mb-3">
   <label for="contact_info" class="form-lable">contact_info</label>
   <div class="col-sm-10">
-     <input type="text" class="form-control"  name="contact_info" #contact_info formControlName="contact_info" [(ngModel)]="jobs.contact_info" [ngClass]="{'is-invalid': submitted && f.contact_info.errors}">
+     <input type="text" class="form-control"  name="contact_info" #contact_info formControlName="contact_info" [(ngModel)]="jobss.contact_info" [ngClass]="{'is-invalid': submitted && f.contact_info.errors}">
      <div *ngIf="submitted && f.contact_info.errors" class="invalid-feedback">
         <div *ngIf="f.contact_info.errors.required">contact_info is required</div>
      </div>

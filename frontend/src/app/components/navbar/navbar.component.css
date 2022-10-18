@@ -7,6 +7,7 @@ header{
 	align-items: center;
 	justify-content: space-between;
 	padding: .1rem 5%;
+
 }
 header .logo{
 	font-size: 2rem;
@@ -111,5 +112,10 @@ header .navbar a:hover{
   .footer .credit span{
     color: orange;
 
+  }
+
+
+  .single-slider{
+   background-image: url('/frontend/src/assets/img/hero/h1_hero.jpg');
   }
 /* footer style end  */

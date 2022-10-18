@@ -8,7 +8,7 @@ import { PariotsComponent } from './components/pariots/pariots.component';
 import { LoginComponent } from './components/pariots/login/login.component';
 import { SignupComponent } from './components/pariots/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { AdminSignupComponent } from './components/admin/admin-signup/admin-signup.component';
 import { CompanySignupComponent } from './components/company/company-signup/company-signup.component';
@@ -43,8 +43,14 @@ import { ViewJobComponent } from './components/user/manageJob/view-job/view-job.
 import { ApplicantComponent } from './components/user/manageJob/applicant/applicant.component';
 import { UpdateJobComponent } from './components/company/Manage-job/update-job/update-job.component';
 import { ManageJobComponent } from './components/company/manage-job/manage-job.component';
-import { UpdateJobsComponent } from './components/company/ManageJob/update-jobs/update-jobs.component';
 import { ManageApplicantComponent } from './components/company/manage-applicant/manage-applicant.component';
+import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { ChangePasswordComponent } from './components/password/change-password/change-password.component';
+import {TokenInterceptorService } from './services/token-interceptor.service';
+import { RegisterCompanyComponent } from './components/admin/ManageCompany/register-company/register-company.component';
+import { ManageCompanyComponent } from './components/admin/ManageCompany/manage-company/manage-company.component';
+import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-company/update-company.component';
 
 
 
@@ -82,8 +88,13 @@ import { ManageApplicantComponent } from './components/company/manage-applicant/
     ApplicantComponent,
     UpdateJobComponent,
     ManageJobComponent,
-    UpdateJobsComponent,
     ManageApplicantComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
+    ChangePasswordComponent,
+    RegisterCompanyComponent,
+    ManageCompanyComponent,
+    UpdateCompanyComponent,
 
 
 
@@ -106,6 +117,7 @@ import { ManageApplicantComponent } from './components/company/manage-applicant/
 
   ],
   providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true},
     {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
     SnotifyService,
   ],

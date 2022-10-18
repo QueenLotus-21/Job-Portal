@@ -86,3 +86,30 @@
 	cursor: pointer;
 
 }
+.card{
+  margin-bottom: 20rem;
+  margin-left: 12rem;
+  margin-top: 4rem;
+  width: 30rem;
+}
+.signup{
+  font-size: 2rem;
+  margin-bottom: 3rem;
+
+}
+.sign-box{
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+.link{
+  font-size: 1.7rem;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+ #user{
+  margin-right: 8rem;
+  bottom: 13rem;
+ }
+ #company{
+  margin-left: 8rem;
+ }

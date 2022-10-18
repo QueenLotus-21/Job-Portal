@@ -2,13 +2,13 @@
 <mat-toolbar>
   <mat-toolbar-row class="justify-content-between">
     <button mat-icon-button (click)="toggleSidebar()">
-      <mat-icon><i class="fa-solid fa-bars color-white"></i></mat-icon>menu</button>
+      <mat-icon><i class="fa-solid fa-bars color-white"></i></mat-icon></button>
     <div class="mr-2 ml-auto">
       <ul>
         <li>
           <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
             <!-- <img src="assets/images/t.jpg" alt="user" class="user-image mr-1 p-2">Profile -->
-            <mat-icon class="user-image mr-1 p-2"><i id="login" class="fa fa-user fa-fw"></i></mat-icon> Profile
+            <mat-icon class="user-image mr-1 p-2"><i id="login" class="fa fa-user fa-fw"></i></mat-icon> {{username}}
             <mat-icon class="user-image-icon ml-1"> <i id="down" class="fa-solid fa-angle-down"></i></mat-icon>
           </button>
           <mat-menu #menu="matMenu">

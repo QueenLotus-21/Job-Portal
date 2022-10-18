@@ -48,8 +48,12 @@
         <div class="form-group row mb-3">
           <label for="approved" class="form-lable">Approved</label>
            <div class="col-sm-10">
-               <input type="text" class="form-control" name="approved" #approved [(ngModel)]="users.approved" formControlName="approved" [ngClass]="{'is-invalid': submitted && f.approved.errors}" >
-               <div *ngIf="submitted && f.approved.errors" class="invalid-feedback">
+               <select type="text" class="form-control" name="approved" #approved [(ngModel)]="users.approved" formControlName="approved" [ngClass]="{'is-invalid': submitted && f.approved.errors}" >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+               </select>
+
+                <div *ngIf="submitted && f.approved.errors" class="invalid-feedback">
                 <div *ngIf="f.approved.errors.required">approved is required</div>
              </div>
            </div>
@@ -61,7 +65,7 @@
          </div>
 
          <div>
-          <a routerLink="/admin/admindashboard/manageUser" class=" col-lg ">Back</a>
+          <a routerLink="/admin/manageuser" class=" col-lg ">Back</a>
          </div>
       </form>
     </div>

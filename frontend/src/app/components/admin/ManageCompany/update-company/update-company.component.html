@@ -1,0 +1,72 @@
+
+<!-- offset for space horizontal -->
+
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-1">update Company</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute">
+
+<br><br>
+<div class=" update mt-4 col-10 offset-2">
+  <div class="card">
+    <div class="card-header text-center">update Company</div>
+    <div class="card-body">
+      <form [formGroup]="form">
+
+        <div class="form-group row mb-3">
+          <label for="companyname" class="form-lable"> Company Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  name="name" #userName formControlName="name" [(ngModel)]="companys.name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">name is required</div>
+           </div>
+          </div>
+        </div>
+
+
+      <div class="form-group row mb-3">
+        <label for="email" class="form-lable">Email</label>
+        <div class="col-sm-10">
+           <input type="email" class="form-control"  name="email" #email formControlName="email" [(ngModel)]="companys.email" [ngClass]="{'is-invalid': submitted && f.email.errors}">
+           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">email is required</div>
+           </div>
+          </div>
+      </div>
+
+
+
+        <div class="form-group row mb-3">
+          <label for="description" class="form-lable">Description</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control" name="description" #description [(ngModel)]="companys.description" formControlName="description" [ngClass]="{'is-invalid': submitted && f.description.errors}" >
+               <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">description is required</div>
+             </div>
+           </div>
+        </div>
+        <div class="form-group row mb-3">
+          <label for="contact_info" class="form-lable">Contact Info</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control" name="contact_info" #contact_info [(ngModel)]="companys.contact_info" formControlName="contact_info" [ngClass]="{'is-invalid': submitted && f.contact_info.errors}" >
+                <div *ngIf="submitted && f.contact_info.errors" class="invalid-feedback">
+                <div *ngIf="f.contact_info.errors.required">contact info is required</div>
+             </div>
+           </div>
+        </div>
+
+          <div class="form-group row col-sm-8 mb-3 offset-2 ">
+            <button type="button"  class="btn btn-success" (click)="update1(userName.value,email.value,description.value,contact_info.value)">Update</button>
+         </div>
+
+         <div>
+          <a routerLink="/admin/manageCompany" class=" col-lg ">Back</a>
+         </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>

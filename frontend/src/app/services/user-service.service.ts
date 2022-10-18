@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserServiceService {
-  private baseurl='http://localhost:8000/api';
+  private baseurl='http://localhost:8000/api/auth';
   constructor(private http:HttpClient) { }
 
 
@@ -21,7 +21,7 @@ export class UserServiceService {
   }
 
   login(data){
-return this.http.post(`${this.baseurl}/login`,data)
+return this.http.post(`${this.baseurl}/login`,data,);
   }
 
   signup(data){
@@ -68,6 +68,9 @@ httpOptions={
  listUsers(){
   return this.http.get<any>(`${this.baseurl}/user`);
 }
+ public myListUser(){
+  return this.http.get<any>(`${this.baseurl}/userList`);
+}
 findUser(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/user/`+id);
 }
@@ -109,25 +112,30 @@ registerAdmin(data){
  listJobs(){
   return this.http.get<any>(`${this.baseurl}/job`);
 }
-listJob(){
-  return this.http.get<any>(`${this.baseurl}/jobList`);
-}
 findjob(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/job/`+id);
-
-}
-
-findJobList(id:number): Observable<any>{
-  return this.http.get(`${this.baseurl}/jobList/`+id);
 }
 updateJobPost(id:number, jobs:any): Observable<any>{
-  // return this.http.put<any>(`${this.baseurl}/job/`+id ,jobs,this.httpOptions);
   return this.http.put<any>(`${this.baseurl}/job/`+id ,jobs, this.httpOptions);
 }
 deleteJob(id:number): Observable<any>{
   return this.http.delete<any>(`${this.baseurl}/job/`+id , this.httpOptions);
 }
 
+
+listCompany(){
+  return this.http.get<any>(`${this.baseurl}/company`);
+}
+findCompany(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/company/`+id);
+}
+
+updateCompany(id:number, user:any): Observable<any>{
+  return this.http.put<any>(`${this.baseurl}/company/`+id ,user, this.httpOptions);
+}
+deleteCompany(id:number): Observable<any>{
+  return this.http.delete<any>(`${this.baseurl}/company/`+id , this.httpOptions);
+}
 
 applyAplicant(data:any){
   return this.http.post(`${this.baseurl}/applicant`,data);
@@ -139,6 +147,18 @@ findApplicants(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/applicant/`+id);
 }
 
+//password
+
+sendPasswordResetEmail(data){
+  return this.http.post(`${this.baseurl}/sendEmail`,data)
+ }
+
+ changePassword(data){
+   return this.http.post(`${this.baseurl}/resetPassword`,data)
+  }
+  changeUserPassword(data){
+    return this.http.post(`${this.baseurl}/changeUserPassword`,data)
+  }
 
 
 }

@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', this.resposedata.email);
         localStorage.setItem('name', this.resposedata.name);
         this.users.updateMenu.next();
-        console.log('success');
+        console.log(' success');
         this.currentRole=this.users.getRole();
-        // console.log(this.currentRole);
+        console.log(this.currentRole);
         if(this.currentRole=='user'){
           this.router.navigate(['user/userhome']);
         }
@@ -57,9 +57,10 @@ export class LoginComponent implements OnInit {
         }
         else if(this.currentRole=='company'){
           this.approved=this.users.getApproved();
-          if(this.approved=='no'){
-            this.router.navigate(['login']);
+          if(this.approved=='approved'){
             this.notify.error('your Account Needs Admin Approval');
+            this.router.navigate(['login']);
+
           this.form.email='your Account Needs Admin Approval';
           this.form.password='';
           }

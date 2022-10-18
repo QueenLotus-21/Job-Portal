@@ -11,9 +11,14 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class PostJobComponent implements OnInit {
 
   public error:any=[];
+  public users:any=[];
+  public user:any=[]
+
   constructor(private userService:UserServiceService ,private router:Router,private notify:SnotifyService) { }
 
-
+  ngOnInit(): void {
+    this.showJob();
+  }
   onSubmit(){
  console.log(this.form);
  this.userService.jobPost(this.form).subscribe(
@@ -27,9 +32,14 @@ export class PostJobComponent implements OnInit {
   //   this.token.handle(data.access_token);
   //   this.router.navigateByUrl('/login');
   //  }
-
-  ngOnInit(): void {
+  showJob(){
+    this.users=this.user.myListUser().subscribe((res:any)=>{
+      //this.users=res
+      Object.assign(this.users, res);
+      //console.log(this.jobs)
+    })
   }
+
 
   handleResponse(data){
     // console.log(res)
@@ -65,6 +75,7 @@ export class PostJobComponent implements OnInit {
     "skill":null,
     "title":null,
     "person":null,
-    "status":null
+    "status":null,
+    "user_id":null
    }
 }

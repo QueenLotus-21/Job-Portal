@@ -5,6 +5,14 @@ import { LoginComponent } from './components/pariots/login/login.component';
 import { SignupPageComponent } from './components/pariots/signup-page/signup-page.component';
 import { SignupComponent } from './components/pariots/signup/signup.component';
 
+
+//guards
+import { AdminAuthGuard } from './Guard/admin-auth.guard';
+import {CompanyAuthGuard} from './Guard/company-auth.guard';
+import {SuperadminGuard} from './Guard/superadmin.guard';
+import {UserAuthGuard} from './Guard/user-auth.guard';
+import {AuthGuard} from './Guard/auth.guard';
+
 //admin
 import { AdminSignupComponent } from './components/admin/admin-signup/admin-signup.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -35,21 +43,30 @@ import { JobListComponent } from './components/user/job-list/job-list.component'
 import { ViewJobComponent } from './components/user/manageJob/view-job/view-job.component';
 import { ApplicantComponent } from './components/user/manageJob/applicant/applicant.component';
 
-//guards
-import { AdminAuthGuard } from './Guard/admin-auth.guard';
-import {CompanyAuthGuard} from './Guard/company-auth.guard';
-import {SuperadminGuard} from './Guard/superadmin.guard';
-import {UserAuthGuard} from './Guard/user-auth.guard';
+
+
 import { ManageJobComponent } from './components/company/manage-job/manage-job.component';
 import { UpdateJobComponent } from './components/company/Manage-job/update-job/update-job.component';
-import { UpdateJobsComponent } from './components/company/ManageJob/update-jobs/update-jobs.component';
+
+//password
+import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { ChangePasswordComponent } from './components/password/change-password/change-password.component';
+import { RegisterCompanyComponent } from './components/admin/ManageCompany/register-company/register-company.component';
+import { ManageCompanyComponent } from './components/admin/ManageCompany/manage-company/manage-company.component';
+import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-company/update-company.component';
 
 
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
+  {path:'Adminsignup',component:AdminSignupComponent},
+  {path:'Companysignup',component:CompanySignupComponent},
   {path:'signupPage',component:SignupPageComponent},
+  {path:'request-reset',component:RequestResetComponent},
+  {path:'responseReset',component:ResponseResetComponent},
+  {path:'changePassword',component:ChangePasswordComponent,canActivate:[AuthGuard]},
   {path:'',component:UserhomeComponent},
 
   {path:'user',component:UserComponent,
@@ -77,8 +94,12 @@ const routes: Routes = [
     {path:'editUser/:userId',component:UpdateUserComponent,canActivate:[SuperadminGuard]},
     {path:'manageuser',component:ManageUserComponent},
 
+    //manage company
+    {path:'registercompany',component:RegisterCompanyComponent},
+    {path:'manageCompany',component:ManageCompanyComponent},
+    {path:'editCompany/:companyId',component:UpdateCompanyComponent},
     //manage Admin
-    {path:'Adminsignup',component:AdminSignupComponent},
+
     {path:'editAdmin/:adminId',component:UpdateadminComponent},
      {path:'registerAdmin',component:RegisterAdminComponent},
     {path:'manageAdmin',component:ManageAdminComponent},
@@ -90,11 +111,9 @@ const routes: Routes = [
   {path:'company',component:CompanyComponent,
   children:[
     {path:'companynav',component:CompanynavComponent},
-    {path:'Companysignup',component:CompanySignupComponent},
     {path:'postjob',component:PostJobComponent},
     {path:'managePost',component:ManageJobComponent},
-    {path:'updatejob/:jobID',component:UpdateJobComponent},
-    {path:'editjob/:jobId',component:UpdateJobsComponent},
+    {path:'updatejob/:jobsId',component:UpdateJobComponent},
     {path:'applicantdetail',component:ManageApplicantComponent},
 
   ],canActivate:[CompanyAuthGuard]

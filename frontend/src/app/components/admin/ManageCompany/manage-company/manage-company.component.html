@@ -1,0 +1,45 @@
+
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-1">Company Details</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute">
+
+<div class="container all mt-2 mb-3">
+  <div class="frm text-center">
+
+    <input type="text" class="form-control" id="myInput" [(ngModel)]="searchText" placeholder="search here...">
+  </div><br>
+  <button class="btn btn-primary add mb-2" routerLink="/admin/registercompany">Register Company</button>
+  <table class="table table-striped" border="1">
+    <thead>
+      <th>ID</th>
+      <th>name</th>
+      <th>Email</th>
+      <th>Description</th>
+      <th>Contact Info</th>
+      <th>Action</th>
+    </thead>
+    <tbody *ngIf="companys.length">
+      <tr *ngFor="let company of companys">
+        <td>{{company.id}}</td>
+        <td class="search"> {{company.name}}</td>
+        <td>{{company.email}}</td>
+        <td class="search">{{company.description}}</td>
+        <td>{{company.contact_info}}</td>
+        <td><button class="btn btn-info" routerLink="/admin/editCompany/{{company.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteCompany(company.id)" >Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div *ngIf="users.length">
+ <ul *ngFor="let user of users">
+    <li>{{user.name}}{{user.role}}{{user.email}}</li>
+ </ul>
+</div> -->
+
+    </div>
+  </div>
+
+</div>
+

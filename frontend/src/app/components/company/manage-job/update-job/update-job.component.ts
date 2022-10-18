@@ -10,8 +10,8 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./update-job.component.css']
 })
 export class UpdateJobComponent implements OnInit {
-  jobID:any;
-  jobs:any;
+  jobsId:any;
+  jobss:any;
   submitted=false;
   form:FormGroup;
   data:any
@@ -26,10 +26,10 @@ export class UpdateJobComponent implements OnInit {
     ngOnInit(): void {
     this.createForm();
     const routeParams=this.route.snapshot.paramMap;
-    this.jobID=Number(routeParams.get('jobID'));
+    this.jobsId=Number(routeParams.get('jobsId'));
    // console.log(this.adminId);
-    this.user.findjob(this.jobID).subscribe((data:any)=>{
-      this.jobs=data;
+    this.user.findjob(this.jobsId).subscribe((data:any)=>{
+      this.jobss=data;
       //console.log(this.admins);
     })
     }
@@ -55,7 +55,7 @@ export class UpdateJobComponent implements OnInit {
   }
     update1(title:string,role:string,gender:string,status:string,skill:string,workhour:string,person:string,description:string,responsibility:string,name:string,location:string,contact_info:string){
 
-  this.user.updateJobPost(this.jobID,this.jobs).subscribe((res)=>{
+  this.user.updateJobPost(this.jobsId,this.jobss).subscribe((res)=>{
     this.data=res
     this.notify.success( this.data.message,{timeout:2000})
     this.router.navigateByUrl('/company/managePost');

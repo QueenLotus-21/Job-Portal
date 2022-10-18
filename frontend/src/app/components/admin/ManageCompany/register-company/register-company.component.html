@@ -1,16 +1,16 @@
 <!-- offset for space horizontal -->
-<br><br><br><br><br>
+<br><br><br><br><br><br>
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-1">Register Company</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center">
+
 <div class="mt-4 col-8 offset-2">
   <div class="card">
-    <div class="card-header text-center ">Sign Up</div>
+    <div class="card-header">Company Register</div>
     <div class="card-body">
 
       <form #signupForm=ngForm (ngSubmit)="onSubmit()">
-
-
-            <!-- <div class="alert alert-danger" [hidden]="!error">
-              {{error}}
-            </div> -->
 
         <div class="form-group row mb-3">
           <label for="exampleInputEmail1" class="col-sm-2 col-form-lable">Email </label>
@@ -25,7 +25,7 @@
 
 
       <div class="form-group row mb-3">
-        <label for="exampleInput" class="col-sm-2 col-form-lable">UserName </label>
+        <label for="exampleInput" class="col-sm-2 col-form-lable">Company Name </label>
       <div class="col-sm-10">
         <input type="text" name="name"class="form-control" id="exampleInput" [(ngModel)]="form.name" placeholder="UserName" required>
         <div class=" text-danger" [hidden]="!error.name">
@@ -35,50 +35,32 @@
     </div>
 
     <div class="form-group row mb-3">
-      <label for="age" class="col-sm-2 col-form-lable">Age </label>
+      <label for="age" class="col-sm-2 col-form-lable">Address </label>
     <div class="col-sm-10">
-      <input type="number" name="age"class="form-control" id="age" [(ngModel)]="form.age" placeholder="Age" required>
-      <div class="text-danger" [hidden]="!error.age">
-        {{error.age}}
+      <input type="text" name="address"class="form-control" id="address" [(ngModel)]="form.address" placeholder="address" required>
+      <div class="text-danger" [hidden]="!error.address">
+        {{error.address}}
       </div>
     </div>
   </div>
 
   <div class="form-group row mb-3">
-    <label for="age" class="col-sm-2 col-form-lable">gender </label>
+    <label for="description" class="col-sm-2 col-form-lable">description </label>
   <div class="col-sm-10">
-    <select type="text" name="gender"class="form-control" id="gender" [(ngModel)]="form.gender" placeholder="Gender" required>
-       <option value="female">female</option>
-       <option value="male">male</option>
-    </select>
-      <div class=" text-danger" [hidden]="!error.gender">
-      {{error.gender}}
+    <textarea name="description"class="form-control" id="description" rows="3" [(ngModel)]="form.description" placeholder="description" required></textarea>
+    <div class=" text-danger" [hidden]="!error.description">
+      {{error.description}}
     </div>
   </div>
 </div>
 
-<div class="form-group row mb-3">
-  <label for="age" class="col-sm-2 col-form-lable">Level of Education </label>
-<div class="col-sm-10">
-  <select type="text" name="level_of_education"class="form-control" id="level" [(ngModel)]="form.level_of_education" placeholder="Level of Education" required>
-      <option value="Degree">Degree</option>
-      <option value="Masters">Masters</option>
-      <option value="PHD">PHD</option>
-      <option value="Doctoret">Doctoret</option>
-      <option value="Other">Other</option>
-  </select>
-    <div class=" text-danger" [hidden]="!error.level_of_education">
-    {{error.level_of_education}}
-  </div>
-</div>
-</div>
 
 <div class="form-group row mb-3">
-  <label for="age" class="col-sm-2 col-form-lable">Profession </label>
+  <label for="age" class="col-sm-2 col-form-lable">Contact information </label>
 <div class="col-sm-10">
-  <input type="text" name="level_of_education"class="form-control" id="level" [(ngModel)]="form.profession" placeholder="Profession" required>
-  <div class=" text-danger" [hidden]="!error.profession">
-    {{error.profession}}
+  <input type="text" name="contact_info"class="form-control" id="contact_info" [(ngModel)]="form.contact_info" placeholder="Website" required>
+  <div class=" text-danger" [hidden]="!error.contact_info">
+    {{error.contact_info}}
   </div>
 </div>
 </div>
@@ -87,8 +69,8 @@
   <label for="role" class="col-sm-2 col-form-lable">User type </label>
 <div class="col-sm-10">
   <select type="text" name="role"class="form-control" id="role" [(ngModel)]="form.role" placeholder="User type" required>
-    <option value="user">User</option>
-    <option value="company">Company</option>
+     <option value="user">user</option>
+     <option value="company">company</option>
   </select>
     <div class=" text-danger" [hidden]="!error.role">
     {{error.role}}
@@ -115,31 +97,18 @@
               {{error.password_confirmation}}
             </div>
           </div>
-
-
         </div><br>
 
-
-        <!-- <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
-
-
          <div class="form-group row col-sm-8 mb-3 offset-2 ">
-
-            <button type="submit" class="btn btn-primary" >sign up</button>
-
+            <button type="submit" class="btn btn-primary">Register</button>
          </div>
-
-         <div>
-          <label for="t" class="col-sm-3">Already have account? </label>
-          <a routerLink="/login" class="col-lg" >Sign in</a>
-          <!-- <a href=""><button type="submit" class="btn btn-primary  "  [disabled]="!logiForm.valid">sign up</button></a> -->
-
-         </div>
+         <a routerLink="/admin/manageCompany" class=" col-lg ">Back</a>
       </form>
 
     </div>
   </div>
+</div>
+
+</div>
+</div>
 </div>
