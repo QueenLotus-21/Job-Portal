@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'api',
-        'passwords' => 'user_details',
+        'passwords' => 'users',
 
     ],
 
@@ -43,20 +43,23 @@ return [
             'provider' => 'users',
         ],
 
-        'admin' => [
-            'driver' => 'jwt',
-            'provider' => 'admin',
-        ],
-
-        'company' => [
-            'driver' => 'jwt',
-            'provider' => 'companies',
-        ],
-
         'api' => [
             'driver' => 'jwt',
-            'provider' => 'user_details',
+            'provider' => 'users',
+           // 'hash' => false,
         ],
+
+        // 'admin' => [
+        //     'driver' => 'jwt',
+        //     'provider' => 'admin',
+        // ],
+
+        // 'company' => [
+        //     'driver' => 'jwt',
+        //     'provider' => 'companies',
+        // ],
+
+
     ],
 
     /*
@@ -77,18 +80,18 @@ return [
     */
 
     'providers' => [
-        'user_details' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User_detail::class,
+            'model' => App\Models\User::class,
         ],
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-        'companies' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Company::class,
-        ],
+        // 'admin' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Admin::class,
+        // ],
+        // 'companies' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Company::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -118,12 +121,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'admin' => [
-            'provider' => 'admin',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+        // 'admin' => [
+        //     'provider' => 'admin',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\companyController;
 use App\Http\Controllers\AdminController;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -22,8 +23,14 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','signup','adminSignup','registerUser','users','deleteUser',
-        'updateUser','userfind']]);
+         $this->middleware('auth:api', ['except' => ['login','signup','adminSignup','registerUser']]);
+        // $this->middleware(function ($request, $next) {
+
+        //     $this->user = Auth::user();
+
+        //     return $next($request);
+        // });
+
 
     }
 
@@ -35,41 +42,47 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
-        // if(request(['approved'])=='no'){
-        //     return response()->json(['error' => 'your email needs admin approval'], 401);
-        // }
         if (! $token = auth()->attempt($credentials)) {
                     return response()->json(['error' => 'email or password does\'t exist'], 401);
                }
-        //    elseif(Auth::guard('company')->attempt($credentials)){
-            // return redirect()->route('signup');
 
-        //     return response()->json(['success' => 'wellcome']);
-        //     }
+           $user=Auth::user();
+           // $token=$user->createToken('API TOKEN')->plainTextToken;
+            //$cookie=Cookie('jwt',$token,minutes:60*24);
+            // return  response([
+            //     'message'=> $token,
+            // ])->withCookie($cookie);
+           //return response(['user'=>$user, $this->respondWithToken($token)]);
+           return $this->respondWithToken($token);
 
-            return $this->respondWithToken($token);
     }
+
+    public function currentUser()
+      {
+        return Auth::user();
+      }
 
     public function signup(SignupRequest $request){
 
-        $post=new User_detail;
+        $post=new User;
         $post->name=$request->input('name');
         $post->email=$request->input('email');
         $post->password=Hash::make($request->string('password'));
         $post->role=$request->input('role');
        $post->save();
 
-       $user=new User;
+       $user=new User_detail;
        $user->name=$request->input('name');
-       $user->role=$request->input('role');
+    //    $user->role=$request->input('role');
        $user->age=$request->input('age');
        $user->gender=$request->input('gender');
        $user->level_of_education=$request->input('level_of_education');
-       $user->profession=$request->input('profession');
+       $user->proffession=$request->input('profession');
        $user->email=$request->input('email');
        $user->password=Hash::make($request->string('password'));
 
         if($user->save()){
+           // $token= $this->respondWithToken($token);
             return ['status'=>true, 'message'=>'user register successfully'];
        }
        else{
@@ -89,18 +102,18 @@ class AuthController extends Controller
 
 
       public function users(){
-        return User_detail::all();
+        return User::all();
     }
 
 
     public function userfind($id){
-        return User_detail::findorFail($id);
+        return User::findorFail($id);
     }
 
     public function updateUser(Request $request, $id)
     {
-        if(User_detail::where('id',$id)->exists()){
-            $user = User_detail::find($id);
+        if(User::where('id',$id)->exists()){
+            $user = User::find($id);
             $user->name = $request->name;
             $user->email = $request->email;
             $user->role = $request->role;
@@ -121,8 +134,8 @@ class AuthController extends Controller
     }
     public function deleteUser($id)
     {
-        if(User_detail::where('id',$id)->exists()){
-            $user = User_detail::find($id);
+        if(User::where('id',$id)->exists()){
+            $user = User::find($id);
             $user->delete();
 
             return response()->json([
@@ -138,6 +151,22 @@ class AuthController extends Controller
     }
 
 
+//     public function  changeUserPassword(Request $request){
+//         validation
+//       $request->validate([
+//           'oldpassword'=>'required',
+//           'password'=>'required|confirmed'
+//       ]);
+
+
+//       match old password
+//       if(!Hash::check($request->oldpassword,auth()->user()?->password)){
+//           return 'old password does\'t match';
+//       }
+//       return ($request->all());
+//       update new password
+//   }
+
 
 
 
@@ -148,7 +177,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return $this->guard()->user();
     }
 
     /**
@@ -191,6 +220,7 @@ class AuthController extends Controller
             'email'=>auth()->user()->email,
             'approved'=>auth()->user()->approved,
             'name'=>auth()->user()->name,
+            'Authorization'=>$token,
         ]);
     }
 }

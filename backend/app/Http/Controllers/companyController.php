@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use App\Models\User_detail;
+use App\Models\User;
 use App\Models\Applicant;
 use lists;
 
@@ -39,7 +39,7 @@ class companyController extends Controller
      */
 
     public function companySignup(companySignupRequest $request){
-        $post=new User_detail;
+        $post=new User;
         $post->name=$request->input('name');
         $post->email=$request->input('email');
         $post->password=Hash::make($request->string('password'));
@@ -48,7 +48,7 @@ class companyController extends Controller
 if($request->input('role')=='company'){
        $company=new Company;
        $company->name=$request->input('name');
-       $company->role=$request->input('role');
+       //$company->role=$request->input('role');
        $company->address=$request->input('address');
        $company->description=$request->input('description');
        $company->contact_info=$request->input('contact_info');
@@ -64,7 +64,7 @@ if($request->input('role')=='company'){
        }
     }
     else{
-        return ['status'=>false, 'message'=>'you are not company'];
+        return ['status'=>false, 'message'=>'you are not company',401];
     }
         // $admin= Company::create([
         //   'name'=>$request->name,
@@ -107,18 +107,10 @@ if($request->input('role')=='company'){
         return job_detail::all();
     }
 
-      public function jobsList(){
-        return job_detail::all();
-    }
-
     public function jobfind($id){
             return job_detail::findorFail($id);
 
     }
-    public function jobfindList($id){
-        return job_detail::findorFail($id);
-
-}
 
     public function updatePost(Request $request, $id)
     {
@@ -150,6 +142,8 @@ else{
     ],404);
 }
 }
+
+
 public function deletePost($id)
 {
 if(job_detail::where('id',$id)->exists()){
@@ -178,13 +172,20 @@ else{
 }
 
 public function applicants(){
-   return $applicant=DB::table('applicants')->select('name','email','image','jobTitle','userName','role','id')->orderBy('id','desc')->get();
+   //return $applicant=DB::table('applicants')->select('name','email','image','jobTitle','userName','role','id')->orderBy('id','desc')->get();
 // $user=applicant::all();
 // foreach($user as $u){
 //     $u=$u->name;
     // dd($u);
-// $applicant=applicant::where('name',$u)->orderBy('id','desc')->get();
-//  dd($applicant);
+
+
+ $user=auth()->user()->name;
+// $user=User_detail::all();
+ //$user=User_detail::with('posts')->get();
+ //$user=user_detail::find(2)->posts;
+ //$user=Auth::user()->name;
+ //$applicant=applicant::where('name',$user->name)->orderBy('id','desc')->get();
+ return $user;
 // }
 //  $applicant=applicant::where('name',$user->name)->orderBy('id','desc')->get();
 //  dd($applicant);

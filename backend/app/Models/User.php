@@ -20,14 +20,13 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
-        'age',
-        'gender',
-        'level_of_education',
-        'profession',
+        'role',
         'email',
         'password',
+        'approved',
     ];
 
+    protected $table ="users";
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -77,4 +76,8 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userDetail(){
+        return $this->belongsTo(user_detail::class,'user_id');
+    }
 }

@@ -18,6 +18,7 @@ class job_detail extends Model
      */
 
     protected $fillable = [
+        'user_id',
         'name',
        'location',
        'description',
@@ -33,5 +34,13 @@ class job_detail extends Model
     ];
     protected $table ="job_details";
 
+
+    public function users(){
+        return $this->belongsTo(user_detail::class,'user_id');
+    }
+
+    public function applicantDetail(){
+        return $this->belongsTo(Applicant::class,'applicant_id');
+    }
 
 }

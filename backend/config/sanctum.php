@@ -33,6 +33,7 @@ return [
     |
     */
 
+    'guard' => ['api'],
     'guard' => ['web'],
 
     /*

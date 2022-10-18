@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use JWTAuth;
 
-class CORS
+class JWT
 {
     /**
      * Handle an incoming request.
@@ -14,11 +15,11 @@ class CORS
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+
+
+    public function handle($request, Closure $next)
     {
-        //header('Access-Control-Allow-Origin: PUT,DELETE,POST,GET,PATCH,OPTIONS');
-       // header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers:Content-type,X-Auth-Token,Authorization,Origin');
+        JWTAuth::parseToken()->authenticate();
         return $next($request);
     }
 }

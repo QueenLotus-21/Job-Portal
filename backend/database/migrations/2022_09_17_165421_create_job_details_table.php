@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('job_details', function (Blueprint $table) {
-            $table->id();
-
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            //$table->unsignedInteger('applicant_id');
+            //$table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('gender');
             $table->string('person');
@@ -28,6 +30,14 @@ return new class extends Migration
             $table->string('responsibility');
             $table->string('location');
             $table->string('contact_info');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+            // $table->foreign('applicant_id')
+            //         ->references('id')
+            //         ->on('applicants')
+            //         ->onDelete('cascade');
             $table->timestamps();
         });
 
