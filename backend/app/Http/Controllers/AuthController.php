@@ -16,6 +16,7 @@ use JWTAuth;
 
 class AuthController extends Controller
 {
+    protected $user, $user_detail;
     /**
      * Create a new AuthController instance.
      *
@@ -23,11 +24,12 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+
          $this->middleware('auth:api', ['except' => ['login','signup','adminSignup','registerUser']]);
+            $this->user=new User();
+            $this->user_detail=new User_detail();
         // $this->middleware(function ($request, $next) {
-
         //     $this->user = Auth::user();
-
         //     return $next($request);
         // });
 
@@ -63,42 +65,46 @@ class AuthController extends Controller
       }
 
     public function signup(SignupRequest $request){
+      DB::beginTransaction();
+      try{
+        $user=$this->user->create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->string('password')),
+            'role'=>$request->role,
+        ]);
 
-        $post=new User;
-        $post->name=$request->input('name');
-        $post->email=$request->input('email');
-        $post->password=Hash::make($request->string('password'));
-        $post->role=$request->input('role');
-       $post->save();
+        $user_detail=$this->user_detail->create([
+            'user_id'=>$user->id,
+            'name'=>$user->name,
+            'age'=>$request->age,
+            'gender'=>$request->gender,
+            'level_of_education'=>$request->level_of_education,
+            'proffession'=>$request->profession,
+            'email'=>$user->email,
+            'password'=>$user->password,
+        ]);
 
-       $user=new User_detail;
-       $user->name=$request->input('name');
-    //    $user->role=$request->input('role');
-       $user->age=$request->input('age');
-       $user->gender=$request->input('gender');
-       $user->level_of_education=$request->input('level_of_education');
-       $user->proffession=$request->input('profession');
-       $user->email=$request->input('email');
-       $user->password=Hash::make($request->string('password'));
 
-        if($user->save()){
-           // $token= $this->respondWithToken($token);
+        if($user && $user_detail){
+            DB::commit();
             return ['status'=>true, 'message'=>'user register successfully'];
-       }
-       else{
-           return ['status'=>false, 'message'=>'something went wrong'];
-       }
-    //     $user= User::create([
-    //       'name'=>$request->name,
-    //       'age'=>$request->age,
-    //       'gender'=>$request->gender,
-    //       'level_of_education'=>$request->level_of_education,
-    //       'profession'=>$request->profession,
-    //       'email'=>$request->email,
-    //       'password'=>Hash::make($request->password)
-    //     ]);
-         return $this->login($request);
+        }
+        else{
+            return ['status'=>false, 'message'=>'something went wrong'];
+        }
+        return $this->login($request);
+
       }
+      catch(Exception $ex){
+        DB::rollback();
+        return ['status'=>false, 'message'=>'something went wrong'];
+    }
+
+      }
+
+
+
 
 
       public function users(){

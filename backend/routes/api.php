@@ -84,6 +84,7 @@ Route::group([
     //     Route::get('applicant',[AdminController::class,'applicants']);
     // });
 
+
     //manage company
     Route::get('company',[AdminController::class,'companys']);
     Route::get('company/{id}',[AdminController::class,'companyfind']);

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('job_id');
             $table->string('userName');
             $table->string('email');
             $table->string('jobTitle')->unique();
@@ -25,6 +26,12 @@ return new class extends Migration
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreign('job_id')
+                    ->references('id')
+                    ->on('job_details')
+                    ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->timestamps();
         });

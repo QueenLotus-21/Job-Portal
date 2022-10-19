@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('name');
             $table->string('address');
             $table->string('description');
@@ -23,6 +24,11 @@ return new class extends Migration
             $table->string('contact_info');
             $table->string('photo')->default('photo');
             $table->boolean('approved')->nullable()->default(false);
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

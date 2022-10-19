@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_details', function (Blueprint $table) {
 
             $table->increments('id');
-           // $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id');
             $table->string('name');
             $table->integer('age');
             $table->string('gender');
@@ -26,10 +26,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo')->default('photo');
-            // $table->foreign('user_id')
-            //         ->references('id')
-            //         ->on('user_details')
-            //         ->onDelete('cascade');
+            $table->string('CV')->default('Cv');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
             $table->rememberToken();
             $table->timestamps();

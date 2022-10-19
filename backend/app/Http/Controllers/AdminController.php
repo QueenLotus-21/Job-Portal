@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use JWTAuth;
+use DB;
 
 class AdminController extends Controller
 {
@@ -22,9 +23,13 @@ class AdminController extends Controller
      *
      * @return void
      */
+    protected $user,$admin;
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['adminSignup','deleteAdmin','admins','adminfind','updateAdmin','applicants','companys','companyfind','deleteCompany','updateCompany']]);
+
+            $this->user=new User();
+            $this->admin=new Admin();
     }
 
     /**
@@ -34,33 +39,47 @@ class AdminController extends Controller
      */
 
   public function adminSignup(AdminSignupRequest $request){
-    $post=new User;
-    $post->name=$request->input('name');
-    $post->email=$request->input('email');
-    $post->password=Hash::make($request->string('password'));
-    $post->role=$request->input('role');
-   $post->save();
+    DB::beginTransaction();
+    try{
+      $user=$this->user->create([
+          'name'=>$request->name,
+          'email'=>$request->email,
+          'password'=>Hash::make($request->string('password')),
+          'role'=>$request->role,
+      ]);
 
-   $admin=new Admin;
-   $admin->name=$request->input('name');
-   //$admin->role=$request->input('role');
-   $admin->gender=$request->input('gender');
-   $admin->email=$request->input('email');
-   $admin->password=Hash::make($request->string('password'));
+      $admin=$this->admin->create([
+          'user_id'=>$user->id,
+          'name'=>$user->name,
+          'gender'=>$request->gender,
+          'email'=>$user->email,
+          'password'=>$user->password,
+      ]);
 
-    if($admin->save()){
-        return ['status'=>true, 'message'=>'Admin register successfully'];
-   }
-   else{
-       return ['status'=>false, 'message'=>'something went wrong'];
-   }
 
-        // $admin= Admin::create([
-        //   'name'=>$request->name,
-        //   'gender'=>$request->gender,
-        //   'email'=>$request->email,
-        //   'password'=>Hash::make($request->password)
-        // ]);
+      if($user && $admin){
+          DB::commit();
+          return ['status'=>true, 'message'=>'Admin register successfully'];
+      }
+      else{
+          return ['status'=>false, 'message'=>'something went wrong'];
+      }
+
+    }
+    catch(Exception $ex){
+      DB::rollback();
+      return ['status'=>false, 'message'=>'something went wrong'];
+  }
+
+
+//     $post=new User;
+//     $post->name=$request->input('name');
+//     $post->email=$request->input('email');
+//     $post->password=Hash::make($request->string('password'));
+//     $post->role=$request->input('role');
+//    $post->save();
+
+
 
       }
 
@@ -189,7 +208,8 @@ public function applicants(){
     // $user = Auth::guard('api')->user()->name;
     //$user=Auth::id();
     $user=auth()->user();
-    return $user;
+    $applicant=applicant::where('name',$user->name)->orderBy('id','desc')->get();
+    return $applicant;
 
     //$user=User_detail::all();
 //$user=User_detail::with('posts')->get();
@@ -199,7 +219,7 @@ public function applicants(){
 //   foreach($users->posts as $user){
 //     return $user->name;
 //   }
-// $applicant=applicant::where('name','yahoo')->orderBy('id','desc')->get();
+//
 // return $applicant;
 // return $users->posts->role;
     //$user = Auth::user()->name;

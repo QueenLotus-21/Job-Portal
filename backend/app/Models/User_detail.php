@@ -24,9 +24,10 @@ class User_detail extends  Authenticatable implements JWTSubject
         'age',
         'gender',
         'level_of_education',
-        'profession',
+        'proffession',
         'email',
         'password',
+        'user_id'
     ];
 
     protected $table ="user_details";

@@ -24,7 +24,8 @@ class Company extends  Authenticatable implements JWTSubject
        'description',
         'email',
         'password',
-        'contact_info'
+        'contact_info',
+        'user_id'
     ];
     protected $table ="companies";
 

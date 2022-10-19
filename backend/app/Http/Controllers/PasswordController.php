@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\User_detail;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use App\Http\Requests\changePasswordRequest;
@@ -93,6 +93,7 @@ class PasswordController extends Controller
         public function  changeUserPassword(Request $request){
               //validation
             $request->validate([
+                'email'=>'email|required',
                 'oldpassword'=>'required',
                 'password'=>'required|confirmed'
             ]);
@@ -102,10 +103,15 @@ class PasswordController extends Controller
           // $user=$request->user();
             $user=auth()->user();
             if(!Hash::check($request->oldpassword,$request->user()->password)){
-                return 'old password does\'t match';
+               // return back()->with("error","old password does\'t match");
+                return response()->json(['error'=>'old password does\'t match'],401);
             }
-            return ($request->all());
 
-            //update new password
+        //update new password
+            User::whereId(auth()->user()->id)->update([
+                'password'=>Hash::make($request->password),
+            ]);
+        // return ($request->all());
+        return response()->json(['data'=>'password successfullychanged'],Response::HTTP_CREATED);
         }
 }

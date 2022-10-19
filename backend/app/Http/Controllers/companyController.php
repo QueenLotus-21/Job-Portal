@@ -26,10 +26,14 @@ class companyController extends Controller
      *
      * @return void
      */
+    protected $user,$company,$applicant;
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['companySignup','postJob','jobs','jobfind','applyApplicant','applicants','updatePost','deletePost','jobfindList','jobsList']]);
+        $this->middleware('auth:api', ['except' => ['companySignup']]);
 
+        $this->user=new User();
+        $this->company=new Company();
+        $this->applicant=new Applicant();
     }
 
     /**
@@ -39,43 +43,46 @@ class companyController extends Controller
      */
 
     public function companySignup(companySignupRequest $request){
-        $post=new User;
-        $post->name=$request->input('name');
-        $post->email=$request->input('email');
-        $post->password=Hash::make($request->string('password'));
-        $post->role=$request->input('role');
+        DB::beginTransaction();
+        try{
+          $user=$this->user->create([
+              'name'=>$request->name,
+              'email'=>$request->email,
+              'password'=>Hash::make($request->string('password')),
+              'role'=>$request->role,
+          ]);
 
-if($request->input('role')=='company'){
-       $company=new Company;
-       $company->name=$request->input('name');
-       //$company->role=$request->input('role');
-       $company->address=$request->input('address');
-       $company->description=$request->input('description');
-       $company->contact_info=$request->input('contact_info');
-       $company->email=$request->input('email');
-       $company->password=Hash::make($request->string('password'));
-       $post->save();
+          if($request->input('role')=='company'){
+          $company=$this->company->create([
+              'user_id'=>$user->id,
+              'name'=>$user->name,
+              'address'=>$request->address,
+              'description'=>$request->description,
+              'contact_info'=>$request->contact_info,
+              'email'=>$user->email,
+              'password'=>$user->password,
+          ]);
+          }
+          else{
+            return ['status'=>false, 'message'=>'you are not company',401];
+        }
 
-        if($company->save()){
-            return ['status'=>true, 'message'=>'user register successfully'];
-       }
-       else{
-           return ['status'=>false, 'message'=>'something went wrong'];
-       }
-    }
-    else{
-        return ['status'=>false, 'message'=>'you are not company',401];
-    }
-        // $admin= Company::create([
-        //   'name'=>$request->name,
-        //   'address'=>$request->address,
-        //   'description'=>$request->description,
-        //   'contact_info'=>$request->contact_info,
-        //   'email'=>$request->email,
-        //   'password'=>Hash::make($request->password)
-        // ]);
+          if($user && $company){
+              DB::commit();
+             return ['status'=>true, 'message'=>'company register successfully'];
+          }
+          else{
+              return ['status'=>false, 'message'=>'something went wrong'];
+          }
 
+
+        }
+        catch(Exception $ex){
+          DB::rollback();
+          return ['status'=>false, 'message'=>'something went wrong'];
       }
+
+    }
 
 
       public function postJob(PostRequest $request){
@@ -197,30 +204,60 @@ public function applicants(){
 }
 
     public function applyApplicant(Request $request){
-        $applicant=new applicant;
-        $applicant->userName=$request->input('userName');
-        $applicant->email=$request->input('userEmail');
-        $applicant->jobTitle=$request->input('title');
-        $applicant->role=$request->input('role');
-        $applicant->name=$request->input('name');
+        $user=Auth::user();
+        DB::beginTransaction();
+        try{
+          $applicant=$this->applicant->create([
+              'user_id'=>$user->id,
+              'job_id'=>$request->job_id,
+              'userName'=>$user->name,
+              'email'=>$user->email,
+              'password'=>$user->password,
+              'jobTitle'=>$request->title,
+              'role'=>$request->role,
+              'name'=>$request->name,
+          ]);
 
-        if($request->hasFile('image')){
-            $completefilename=$request->file('image')->getClientOriginalName();
-            $fileNameonly=pathinfo( $completefilename,PATHINFO_FILENAME);
-            $extension=$request->file('image')->getClientOriginalExtension();
-            $name=time().'-'.$extension;
-            $completePic=str_replace(' ','_', $fileNameonly).'-'.rand() .'_'.time(). '.'. $extension;
-            $path=$request->file('image')->storeAs('public/applicant',  $completePic);
-            $applicant->image=$completePic;
-        }
-      //  $applicant->image=$request->input('image');
 
-         if($applicant->save()){
-             return ['status'=>true, 'message'=>'Applied successfully'];
-        }
-        else{
-            return ['status'=>false, 'message'=>'something went wrong'];
+          if($applicant){
+              DB::commit();
+             return ['status'=>true, 'message'=>'you are apply successfully'];
+          }
+          else{
+              return ['status'=>false, 'message'=>'something went wrong'];
         }
     }
-
+     catch(Exception $ex){
+          DB::rollback();
+          return ['status'=>false, 'message'=>'something went wrong'];
+      }
+    }
 }
+
+    //     $applicant=new applicant;
+    //     $applicant->userName=$request->input('userName');
+    //     $applicant->email=$request->input('userEmail');
+    //     $applicant->jobTitle=$request->input('title');
+    //     $applicant->role=$request->input('role');
+    //     $applicant->name=$request->input('name');
+
+    //     if($request->hasFile('image')){
+    //         $completefilename=$request->file('image')->getClientOriginalName();
+    //         $fileNameonly=pathinfo( $completefilename,PATHINFO_FILENAME);
+    //         $extension=$request->file('image')->getClientOriginalExtension();
+    //         $name=time().'-'.$extension;
+    //         $completePic=str_replace(' ','_', $fileNameonly).'-'.rand() .'_'.time(). '.'. $extension;
+    //         $path=$request->file('image')->storeAs('public/applicant',  $completePic);
+    //         $applicant->image=$completePic;
+    //     }
+    //    $applicant->image=$request->input('image');
+
+    //      if($applicant->save()){
+    //          return ['status'=>true, 'message'=>'Applied successfully'];
+    //     }
+    //     else{
+    //         return ['status'=>false, 'message'=>'something went wrong'];
+    //     }
+
+
+
