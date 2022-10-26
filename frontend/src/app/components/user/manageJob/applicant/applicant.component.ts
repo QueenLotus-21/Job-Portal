@@ -14,6 +14,7 @@ export class ApplicantComponent implements OnInit {
 
   jobID:any;
   jobs:any=[]
+  users:any
   email:any;
   applicantId:any;
   applicant:any;
@@ -23,7 +24,8 @@ export class ApplicantComponent implements OnInit {
   err:any
   username:any;
   files:any
-  url="assets/images/job1.jpeg";
+  url="assets/images/default-img.png";
+  imagePath:any='http://127.0.0.1:8000/storage/applicant/';
     constructor( private route: ActivatedRoute,
       private router: Router,
       private user: UserServiceService ,
@@ -41,7 +43,7 @@ export class ApplicantComponent implements OnInit {
       this.user.findjob(this.jobID).subscribe((data:any)=>{
         this.jobs=data;
         this.jobs.userName=this.username
-        this.jobs.userEmail=this.email
+        this.jobs.email=this.email
 
         //console.log(this.admins);
       })
@@ -59,7 +61,11 @@ export class ApplicantComponent implements OnInit {
     }
 
     showApplicant(){
-
+      this.users=this.user.getUserProfile().subscribe(res=>{
+        this.users=res;
+        // this.username=this.user.getUserName();
+       // console.log(this.username)
+      })
       this.username=this.user.getUserName();
       this.email=this.user.getEmail();
       console.log(this.username)
@@ -94,16 +100,17 @@ export class ApplicantComponent implements OnInit {
    console.log(this.files);
   }
 
-    onSubmit(userName:string,userEmail:string,title:string,role:string,name:string,image:string){
+    onSubmit(userName:string,email:string,title:string,JobRole:string,CompanyName:string,CV:string,id:string){
       console.log(this.form);
       const formdata=new FormData();
 
-      formdata.append('name',name)
+      formdata.append('CompanyName',CompanyName)
       formdata.append('userName',userName)
-       formdata.append('userEmail',userEmail)
+       formdata.append('email',email)
        formdata.append('title',title)
-       formdata.append('role',role)
-      formdata.append('image',this.files,this.files.name)
+       formdata.append('id',id)
+       formdata.append('JobRole',JobRole)
+      formdata.append('CV',this.files,this.files.name)
     this.user.applyAplicant(formdata).subscribe((res)=>{
         this.data=res
         this.notify.success(this.data.message,{timeout:2000});
@@ -115,40 +122,16 @@ export class ApplicantComponent implements OnInit {
     createForm(){
       this.form=this.formBuilder.group({
         userName:[null,Validators.required],
-        name:[null,Validators.required],
-        userEmail :[null,Validators.required],
-        role:[null,Validators.required],
-        image:[null,Validators.required],
+        CompanyName:[null,Validators.required],
+        email :[null,Validators.required],
+        JobRole:[null,Validators.required],
+        CV:[null,Validators.required],
         title:[null,Validators.required],
+        id:[null,Validators.required],
       })
     }
    get f(){
    return this.form.controls;
   }
-    update(userName:string,userEmail:string,title:string,role:string,name:string,image:string){
-
-      const formdata=new FormData();
-
-    formdata.append('name',name)
-    formdata.append('userName',userName)
-     formdata.append('userEmail',userEmail)
-     formdata.append('title',title)
-     formdata.append('role',role)
-    formdata.append('image',this.files,this.files.name)
-  this.user.applyAplicant(formdata).subscribe((res)=>{
-    this.data=res
-    this.notify.success( this.data.message,{timeout:2000})
-    this.router.navigateByUrl('/user/joblist');
-  })
-  }
-
-  public form1={
-    'userName':null,
-    "userEmail":null,
-    'name':null,
-    'title':null,
-    'role':null,
-    'image':null,
-   }
 
 }

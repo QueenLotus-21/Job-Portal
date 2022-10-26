@@ -147,6 +147,23 @@ findApplicants(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/applicant/`+id);
 }
 
+//profile
+getUserProfile(){
+  return this.http.get<any>(`${this.baseurl}/profile`);
+}
+findUserProfile(id:number): Observable<any>{
+  return this.http.get(`${this.baseurl}/profile/`+id);
+}
+
+updateProfile(id:number, user:any): Observable<any>{
+  return this.http.put<any>(`${this.baseurl}/profile/`+id ,user, this.httpOptions);
+}
+
+showApllicant(){
+  return this.http.get<any>(`${this.baseurl}/showApllicant`);
+}
+
+
 //password
 
 sendPasswordResetEmail(data){

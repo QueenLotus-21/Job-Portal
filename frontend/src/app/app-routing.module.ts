@@ -55,6 +55,9 @@ import { ChangePasswordComponent } from './components/password/change-password/c
 import { RegisterCompanyComponent } from './components/admin/ManageCompany/register-company/register-company.component';
 import { ManageCompanyComponent } from './components/admin/ManageCompany/manage-company/manage-company.component';
 import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-company/update-company.component';
+import { ProfileComponent } from './components/pariots/profile/profile.component';
+import { EditProfileComponent } from './components/pariots/edit-profile/edit-profile.component';
+import { ShowApplicantComponent } from './components/company/show-applicant/show-applicant.component';
 
 
 
@@ -67,6 +70,8 @@ const routes: Routes = [
   {path:'request-reset',component:RequestResetComponent},
   {path:'responseReset',component:ResponseResetComponent},
   {path:'changePassword',component:ChangePasswordComponent,canActivate:[AuthGuard]},
+  {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
+  {path:'editProfile/:userId',component:EditProfileComponent,canActivate:[AuthGuard]},
   {path:'',component:UserhomeComponent},
 
   {path:'user',component:UserComponent,
@@ -115,6 +120,7 @@ const routes: Routes = [
     {path:'managePost',component:ManageJobComponent},
     {path:'updatejob/:jobsId',component:UpdateJobComponent},
     {path:'applicantdetail',component:ManageApplicantComponent},
+    {path:'showApplicant/:jobsId',component:ShowApplicantComponent},
 
   ],canActivate:[CompanyAuthGuard]
   }

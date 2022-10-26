@@ -38,7 +38,7 @@
               <td>{{job.name}}</td>
               <td class="search"> {{job.location}}</td>
               <td class="search">{{job.contact_info}}</td>
-              <td><button class="btn btn-info" routerLink="/company/updatejob/{{job.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteJob(job.id)" >Delete</button></td>
+              <td><button class="btn btn-info" routerLink="/company/updatejob/{{job.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteJob(job.id)" >Delete</button>&nbsp;<button class="btn btn-info" routerLink="/company/showApplicant/{{job.id}}">Applicants</button></td>
 
             </tr>
           </tbody>

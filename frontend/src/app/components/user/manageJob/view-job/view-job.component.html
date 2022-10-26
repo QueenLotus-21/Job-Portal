@@ -65,21 +65,22 @@
 
         <form [formGroup]="form">
         <h3><i> <a class="fas fa-map-marker-alt"> </a></i> Job Title<input type="text" name="title" class="form-control"  id="title" #title  formControlName="title" [(ngModel)]="jobs.title"  ng-disabled="status"> </h3>
-        <p>Role<input type="text" name="role" class="form-control" id="role" #role  formControlName="role" [(ngModel)]="jobs.role"></p>
+        <p>Role<input type="text" name="JobRole" class="form-control" id="JobRole" #JobRole  formControlName="JobRole" [(ngModel)]="jobs.JobRole"></p>
+        <p>Job Id<input type="text" name="id" class="form-control" id="id" #id  formControlName="id" [(ngModel)]="jobs.id"></p>
         <label for="description">description</label>
         <textarea #disabled name="description" class="form-control" id="description" rows="3" #description  formControlName="description" [(ngModel)]="jobs.description"></textarea>
         <label for="responsibility">responsibility</label>
-        <textarea name="responsibility" class="form-control" id="responsibility" rows="3" #responsibility formControlName="responsibility" [(ngModel)]="jobs.responsibility"></textarea>
+        <textarea [disabled]="true" name="responsibility" class="form-control" id="responsibility" rows="3" #responsibility formControlName="responsibility" [(ngModel)]="jobs.responsibility"></textarea>
        <span>
         <label for="person"> we want </label>
        <input type="text" name="person" class="form-control" id="person" #person formControlName="person" [(ngModel)]="jobs.person"> persons
        </span>
-        <p>work hour <input type="text" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></p>
+        <p>work hour <input type="text" [disabled]="true" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></p>
         <p>Hiring status<input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></p>
         <p>location <input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></p>
-       <p>Company <input type="text" name="name" class="form-control" id="name" #name formControlName="name" [(ngModel)]="jobs.name"></p>
+       <p>Company <input type="text" name="CompanyName" class="form-control" id="CompanyName" #CompanyName formControlName="CompanyName" [(ngModel)]="jobs.CompanyName"></p>
       <p>you can visit us by <input type="text" name="contact_info" class="form-control" id="contact_info" #contact_info  formControlName="contact_info"[(ngModel)]="jobs.contact_info"></p>
-       <p>salary in month </p><div class="price">$90.00 <span>$120.00</span></div><br>
+       <p>salary in month <input type="text" name="salary" class="form-control" id="salary" #salary formControlName="salary" [(ngModel)]="jobs.salary"> </p><br>
 
 
     <!-- <table>

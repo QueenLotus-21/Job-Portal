@@ -34,8 +34,8 @@ export class PostJobComponent implements OnInit {
   //  }
   showJob(){
     this.users=this.user.myListUser().subscribe((res:any)=>{
-      //this.users=res
-      Object.assign(this.users, res);
+      this.users=res
+     // Object.assign(this.users, res);
       //console.log(this.jobs)
     })
   }
@@ -44,8 +44,8 @@ export class PostJobComponent implements OnInit {
   handleResponse(data){
     // console.log(res)
     this.notify.success(data.message,{timeout:0});
-    this.form.name='';
-    this.form.role='';
+    this.form.CompanyName='';
+    this.form.JobRole='';
     this.form.skill='';
     this.form.person='';
     this.form.workhour='';
@@ -56,6 +56,7 @@ export class PostJobComponent implements OnInit {
     this.form.title='';
     this.form.location='';
     this.form.gender='';
+    this.form.salary='';
    }
 
   handleError(error){
@@ -65,9 +66,9 @@ export class PostJobComponent implements OnInit {
 
   public form={
     "responsibility":null,
-    'name':null,
+    'CompanyName':null,
     'location':null,
-    'role':null,
+    'JobRole':null,
     'description':null,
     'contact_info':null,
     'gender':null,
@@ -76,6 +77,6 @@ export class PostJobComponent implements OnInit {
     "title":null,
     "person":null,
     "status":null,
-    "user_id":null
+    "salary":null,
    }
 }

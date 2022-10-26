@@ -40,9 +40,9 @@ export class ViewJobComponent implements OnInit {
 
       createForm(){
         this.form=this.formBuilder.group({
-          name:[null,Validators.required],
+          CompanyName:[null,Validators.required],
           location :[null,Validators.required],
-          role:[null,Validators.required],
+          JobRole:[null,Validators.required],
           gender:[null,Validators.required],
           description:[null,Validators.required],
           responsibility :[null,Validators.required],
@@ -52,6 +52,8 @@ export class ViewJobComponent implements OnInit {
           workhour :[null,Validators.required],
           person:[null,Validators.required],
           title:[null,Validators.required],
+          salary:[null,Validators.required],
+          id:[null,Validators.required],
         })
       }
      get f(){

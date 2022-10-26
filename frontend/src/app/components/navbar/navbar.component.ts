@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit,DoCheck {
   currentEmail:any
   currentName:any;
   public username:any;
+  imagePath:any='http://127.0.0.1:8000/storage/applicant/';
   constructor(private auth:AuthserviceService,private router:Router,private user:UserServiceService) { }
 
   public loggedIn:boolean;
@@ -40,9 +41,9 @@ export class NavbarComponent implements OnInit,DoCheck {
   }
 
   showUserName(){
-    this.username=this.user.listUsers().subscribe(res=>{
+    this.username=this.user.getUserProfile().subscribe(res=>{
       this.username=res;
-      this.username=this.user.getUserName();
+      // this.username=this.user.getUserName();
       console.log(this.username)
     })
    //return this.username=this.user.getUserName();

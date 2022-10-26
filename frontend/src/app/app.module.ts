@@ -51,6 +51,9 @@ import {TokenInterceptorService } from './services/token-interceptor.service';
 import { RegisterCompanyComponent } from './components/admin/ManageCompany/register-company/register-company.component';
 import { ManageCompanyComponent } from './components/admin/ManageCompany/manage-company/manage-company.component';
 import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-company/update-company.component';
+import { ProfileComponent } from './components/pariots/profile/profile.component';
+import { EditProfileComponent } from './components/pariots/edit-profile/edit-profile.component';
+import { ShowApplicantComponent } from './components/company/show-applicant/show-applicant.component';
 
 
 
@@ -95,6 +98,9 @@ import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-
     RegisterCompanyComponent,
     ManageCompanyComponent,
     UpdateCompanyComponent,
+    ProfileComponent,
+    EditProfileComponent,
+    ShowApplicantComponent,
 
 
 

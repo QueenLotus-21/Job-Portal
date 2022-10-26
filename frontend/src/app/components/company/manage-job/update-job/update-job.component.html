@@ -24,11 +24,11 @@
         </div>
 
         <div class="form-group row mb-3">
-          <label for="packagedesc" class="form-lable">Role</label>
+          <label for="JobRole" class="form-lable">Role</label>
            <div class="col-sm-10">
-               <input type="text" class="form-control" name="role" #role [(ngModel)]="jobss.role" formControlName="role" [ngClass]="{'is-invalid': submitted && f.role.errors}" >
-               <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                <div *ngIf="f.role.errors.required">role is required</div>
+               <input type="text" class="form-control" id="JobRole" name="JobRole" #JobRole [(ngModel)]="jobss.JobRole" formControlName="JobRole" [ngClass]="{'is-invalid': submitted && f.JobRole.errors}" >
+               <div *ngIf="submitted && f.JobRole.errors" class="invalid-feedback">
+                <div *ngIf="f.JobRole.errors.required">job role is required</div>
              </div>
            </div>
         </div>
@@ -36,7 +36,12 @@
         <div class="form-group row mb-3">
           <label for="gender" class="form-lable">Gender</label>
            <div class="col-sm-10">
-               <input type="text" class="form-control" name="gender" #gender [(ngModel)]="jobss.gender" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}" >
+            <select class="form-control" name="gender" #gender [(ngModel)]="jobss.gender" formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}" >
+              <option [ngValue]="null" [disabled]="true" >select gender</option>
+              <option value="Male">Male</option>
+              <option value="female">Female</option>
+              <option value="female/female">Male/Female</option>
+           </select>
                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">gender is required</div>
              </div>
@@ -46,7 +51,12 @@
       <div class="form-group row mb-3">
         <label for="status" class="form-lable">Status</label>
         <div class="col-sm-10">
-           <input type="text" class="form-control"  name="status" #status formControlName="status" [(ngModel)]="jobss.status" [ngClass]="{'is-invalid': submitted && f.status.errors}">
+          <select type="text" class="form-control"  name="status" #status formControlName="status" [(ngModel)]="jobss.status" [ngClass]="{'is-invalid': submitted && f.status.errors}">
+            <option [ngValue]="null" [disabled]="true" >select Hiring Status</option>
+            <option value="permanent">Permanent</option>
+            <option value="contrat">Contrat</option>
+            <option value="other">other</option>
+          </select >
            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
               <div *ngIf="f.status.errors.required">Status is required</div>
            </div>
@@ -54,9 +64,17 @@
       </div>
 
       <div class="form-group row mb-3">
-        <label for="skill" class="form-lable">Skill</label>
+        <label for="skill" class="form-lable">Level of education</label>
         <div class="col-sm-10">
-           <input type="text" class="form-control"  name="skill" #skill formControlName="skill" [(ngModel)]="jobss.skill" [ngClass]="{'is-invalid': submitted && f.skill.errors}">
+          <select class="form-control"  name="skill" #skill formControlName="skill" [(ngModel)]="jobss.skill" [ngClass]="{'is-invalid': submitted && f.skill.errors}">
+            <option [ngValue]="null" [disabled]="true" >All</option>
+            <option value="degree">Degree</option>
+            <option value="master">Master</option>
+            <option value="phd">phd</option>
+            <option value="doctoret">doctopret</option>
+            <option value="deploma">deploma</option>
+            <option value="other">other</option>
+         </select>
            <div *ngIf="submitted && f.skill.errors" class="invalid-feedback">
               <div *ngIf="f.skill.errors.required">skill is required</div>
            </div>
@@ -66,7 +84,11 @@
       <div class="form-group row mb-3">
         <label for="workhour" class="form-lable">Workhour</label>
          <div class="col-sm-10">
-             <input type="text" class="form-control" name="workhour" #workhour [(ngModel)]="jobss.workhour" formControlName="workhour" [ngClass]="{'is-invalid': submitted && f.workhour.errors}" >
+          <select class="form-control" name="workhour" #workhour [(ngModel)]="jobss.workhour" formControlName="workhour" [ngClass]="{'is-invalid': submitted && f.workhour.errors}">
+              <option [ngValue]="null" [disabled]="true" >select workhour</option>
+              <option value="FullTime">FullTime</option>
+              <option value="Partime">Partime</option>
+           </select>
              <div *ngIf="submitted && f.workhour.errors" class="invalid-feedback">
               <div *ngIf="f.workhour.errors.required">workhour is required</div>
            </div>
@@ -101,12 +123,22 @@
        </div>
     </div>
 
+    <div class="form-group row mb-3">
+      <label for="salary" class="form-lable">Salary</label>
+      <div class="col-sm-10">
+         <input type="text" class="form-control" name="salary" #salary formControlName="salary" [(ngModel)]="jobss.salary" [ngClass]="{'is-invalid': submitted && f.salary.errors}">
+         <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
+            <div *ngIf="f.salary.errors.required">salary is required</div>
+         </div>
+        </div>
+    </div>
+
   <div class="form-group row mb-3">
     <label for="name" class="form-lable">Company</label>
     <div class="col-sm-10">
-       <input type="text" class="form-control"  name="name" #name formControlName="name" [(ngModel)]="jobss.name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
-       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">name is required</div>
+       <input type="text" class="form-control"  name="CompanyName" #CompanyName formControlName="CompanyName" [(ngModel)]="jobss.CompanyName" [ngClass]="{'is-invalid': submitted && f.CompanyName.errors}">
+       <div *ngIf="submitted && f.CompanyName.errors" class="invalid-feedback">
+          <div *ngIf="f.CompanyName.errors.required">name is required</div>
        </div>
       </div>
   </div>
@@ -132,7 +164,7 @@
 
 
           <div class="form-group row col-sm-8 mb-3 offset-2 ">
-            <button type="button"  class="btn btn-success" (click)="update1(title.value,role.value,gender.value,status.value,skill.value,workhour.value,person.value,description.value,responsibility.value,name.value,location.value,contact_info.value)">Update</button>
+            <button type="button"  class="btn btn-success" (click)="update1(title.value,JobRole.value,gender.value,status.value,skill.value,workhour.value,person.value,description.value,salary.value,responsibility.value,CompanyName.value,location.value,contact_info.value)">Update</button>
          </div>
 
          <div>

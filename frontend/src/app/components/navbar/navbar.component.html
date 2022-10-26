@@ -16,17 +16,23 @@
           <!-- <a class="navbar-brand" routerLink="company/Companysignup">profile</a>
           <a href="#" class="navbar-brand" (click)="logout($event)" *ngIf="loggedIn">logout</a> -->
           <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center" >
-          <div *ngIf="username.length">
-            <i class="fa fa-user fa-fw"></i>{{username}}
-            <!-- <div *ngFor="let user of username">
-              <i class="fa fa-user fa-fw"></i>{{user.name}}
-             </div> -->
+         <form action="" method="post">
+            <div *ngIf="username.length">
+            <!-- <i class="fa fa-user fa-fw" ><img [src]="username.photo ? imagePath+users.image :'assets/images/job1.jpeg'"></i>{{username}} -->
+            <div *ngFor="let user of username">
+              <img class="rounded-circle" width="40px" [src]="user.image ? imagePath+user.image :'assets/images/default-img.png'">{{user.name}}
+              <!-- <i class="fa fa-user fa-fw">{{user.name}}</i> -->
+             </div>
           </div>
-
+         </form>
              <i id="down" class="fa-solid fa-angle-down"></i>
           </button>
           <mat-menu #menu="matMenu">
 
+            <button mat-menu-item routerLink="/profile">
+              <i class="fa-solid fa-pen-to-square" id="icon"></i>
+             Profile
+            </button>
             <button mat-menu-item routerLink="/changePassword">
               <i class="fa-solid fa-pen-to-square" id="icon"></i>
               Change Password

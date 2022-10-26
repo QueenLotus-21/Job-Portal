@@ -20,7 +20,12 @@
       <div class="form-group row mb-3">
         <label for="gender" class="col-sm-2 col-form-lable">gender</label>
         <div class="col-sm-10">
-          <input type="text" name="gender" class="form-control" [(ngModel)]="form.gender" placeholder="gender" id="gender" required>
+          <select name="gender" class="form-control" [(ngModel)]="form.gender" placeholder="gender" id="gender"  required >
+            <option [ngValue]="null" [disabled]="true" >select gender</option>
+            <option value="Male">Male</option>
+            <option value="female">Female</option>
+            <option value="female/female">Male/Female</option>
+         </select>
           <div class="alert text-danger" [hidden]="!error.gender">
             {{error.gender}}
           </div>
@@ -38,9 +43,17 @@
   </div>
 
   <div class="form-group row mb-3">
-    <label for="exampleInputPassword2" class="col-sm-2 col-form-lable">Skill</label>
+    <label for="exampleInputPassword2" class="col-sm-2 col-form-lable">level of education</label>
     <div class="col-sm-10">
-      <input type="text" name="skill" class="form-control" [(ngModel)]="form.skill" placeholder="skill" id="skill" required>
+      <select name="skill" class="form-control" [(ngModel)]="form.skill" placeholder="skill" id="skill" required >
+        <option [ngValue]="null" [disabled]="true" >All</option>
+        <option value="degree">Degree</option>
+        <option value="master">Master</option>
+        <option value="phd">phd</option>
+        <option value="doctoret">doctopret</option>
+        <option value="deploma">deploma</option>
+        <option value="other">other</option>
+     </select>
       <div class=" text-danger" [hidden]="!error.skill">
         {{error.skill}}
       </div>
@@ -51,7 +64,12 @@
   <div class="form-group row mb-3">
     <label for="workhour" class="col-sm-2 col-form-lable">Work Hours</label>
     <div class="col-sm-10">
-      <input type="text" name="workhour" class="form-control" [(ngModel)]="form.workhour" placeholder="workhour" id="workhour" required>
+      <select name="workhour" class="form-control" [(ngModel)]="form.workhour" placeholder="workhour" id="workhour" required >
+        <option [ngValue]="null" [disabled]="true" >select workhour</option>
+        <option value="FullTime">FullTime</option>
+        <option value="Partime">Partime</option>
+
+     </select>
       <div class=" text-danger" [hidden]="!error.workhour">
         {{error.workhour}}
       </div>
@@ -60,11 +78,11 @@
 
 
   <div class="form-group row mb-3">
-    <label for="role" class="col-sm-2 col-form-lable">Role </label>
+    <label for="JobRole" class="col-sm-2 col-form-lable">Role </label>
   <div class="col-sm-10">
-    <input type="text" name="role"class="form-control" id="role" [(ngModel)]="form.role" placeholder="Role" required>
-    <div class=" text-danger" [hidden]="!error.role">
-      {{error.role}}
+    <input type="text" name="JobRole"class="form-control" id="JobRole" [(ngModel)]="form.JobRole" placeholder="JobRole" required>
+    <div class=" text-danger" [hidden]="!error.JobRole">
+      {{error.JobRole}}
     </div>
   </div>
   </div>
@@ -72,7 +90,12 @@
   <div class="form-group row mb-3">
     <label for="status" class="col-sm-2 col-form-lable">Hiring Status </label>
   <div class="col-sm-10">
-    <input type="text" name="status"class="form-control" id="status" [(ngModel)]="form.status" placeholder="Hiring Status" required>
+    <select name="status"class="form-control" id="status" [(ngModel)]="form.status" placeholder="Hiring Status" required >
+      <option [ngValue]="null" [disabled]="true" >select Hiring Status</option>
+      <option value="permanent">Permanent</option>
+      <option value="contrat">Contrat</option>
+      <option value="other">other</option>
+   </select>
     <div class=" text-danger" [hidden]="!error.status">
       {{error.status}}
     </div>
@@ -99,6 +122,16 @@
   </div>
 </div>
 
+<div class="form-group row mb-3">
+  <label for="salary" class="col-sm-2 col-form-lable">Salary </label>
+<div class="col-sm-10">
+  <input type="number" name="salary"class="form-control" id="salary" [(ngModel)]="form.salary" placeholder="salary" required>
+  <div class=" text-danger" [hidden]="!error.salary">
+    {{error.salary}}
+  </div>
+</div>
+</div>
+
 <div class="form-group row">
   <label for="location" class="col-sm-2 col-form-lable">Location</label>
   <div class="col-sm-10">
@@ -120,11 +153,11 @@
 </div>
 
 <div class="form-group row mb-3">
-  <label for="exampleInput" class="col-sm-2 col-form-lable">Company Name </label>
+  <label for="CompanyName" class="col-sm-2 col-form-lable">Company Name </label>
 <div class="col-sm-10">
-  <input type="text" name="name"class="form-control" id="exampleInput" [(ngModel)]="form.name" placeholder="company name" required>
-  <div class=" text-danger" [hidden]="!error.name">
-    {{error.name}}
+  <input type="text" name="CompanyName"class="form-control" id="CompanyName" [(ngModel)]="form.CompanyName" placeholder="company name" required>
+  <div class=" text-danger" [hidden]="!error.CompanyName">
+    {{error.CompanyName}}
   </div>
 </div>
 </div><br>
