@@ -18,21 +18,26 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
+            $table->string('email')->unique();
             $table->integer('age');
             $table->string('gender');
             $table->string('level_of_education');
-            $table->string('proffession');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('employement_status');
+            $table->string('profession');
+            $table->integer('phone');
+            $table->string('country');
+            $table->string('city');
+            $table->string('univercity')->default('univercity');
+            $table->string('department')->default('depatment');
             $table->string('password');
-            $table->string('photo')->default('photo');
+            $table->string('photo')->nullable();
             $table->string('CV')->default('Cv');
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

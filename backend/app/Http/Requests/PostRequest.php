@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'CompanyName'=>'required',
             'location'=>'required',
             'contact_info'=>'required',
             'description'=>'required',
@@ -34,8 +34,8 @@ class PostRequest extends FormRequest
             'workhour'=>'required',
             'status'=>'required',
             'person'=>'required',
-            'role'=>'required',
-            'skill'=>'required',
+            'JobRole'=>'required',
+            'salary'=>'required',
         ];
     }
 }

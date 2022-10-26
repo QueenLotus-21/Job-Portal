@@ -26,7 +26,7 @@ class AdminController extends Controller
     protected $user,$admin;
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['adminSignup','deleteAdmin','admins','adminfind','updateAdmin','applicants','companys','companyfind','deleteCompany','updateCompany']]);
+        $this->middleware('auth:api', ['except' => ['adminSignup']]);
 
             $this->user=new User();
             $this->admin=new Admin();
@@ -208,7 +208,7 @@ public function applicants(){
     // $user = Auth::guard('api')->user()->name;
     //$user=Auth::id();
     $user=auth()->user();
-    $applicant=applicant::where('name',$user->name)->orderBy('id','desc')->get();
+    $applicant=applicant::where('CompanyName',$user->name)->orderBy('id','desc')->get();
     return $applicant;
 
     //$user=User_detail::all();

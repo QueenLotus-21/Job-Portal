@@ -24,7 +24,11 @@ class User_detail extends  Authenticatable implements JWTSubject
         'age',
         'gender',
         'level_of_education',
-        'proffession',
+        'employement_status',
+        'phone',
+        'country',
+        'city',
+        'profession',
         'email',
         'password',
         'user_id'
@@ -82,6 +86,10 @@ class User_detail extends  Authenticatable implements JWTSubject
     ];
 
     public function userDetail(){
-        return $this->belongsTo(user_detail::class,'user_id');
+        return $this->belongsTo(user::class,'user_id');
+    }
+
+    public function applicant(){
+        return $this->hasOne(Applicant::class,'user_id');
     }
 }

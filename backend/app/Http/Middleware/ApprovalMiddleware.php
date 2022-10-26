@@ -19,6 +19,7 @@ class ApprovalMiddleware
        if(auth()->check()){
          if(!auth()->user()->approved){
             auth()->logout();
+            return [ 'message'=>'your Account Needs Admin Approval'];
             return redirect()->route('login')->with('message',trans('global.your Account Needs Admin Approval'));
              return redirect()->route('login')->with('message','your Account Needs Admin Approval');
          }

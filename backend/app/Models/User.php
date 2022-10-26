@@ -77,7 +77,7 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function userDetail(){
-        return $this->belongsTo(user_detail::class,'user_id');
+    public function users(){
+        return $this->hasOne(User_detail::class,'user_id');
     }
 }

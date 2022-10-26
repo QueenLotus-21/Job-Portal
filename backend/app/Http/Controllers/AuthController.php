@@ -79,8 +79,12 @@ class AuthController extends Controller
             'name'=>$user->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
+            'phone'=>$request->phone,
+            'country'=>$request->country,
+            'city'=>$request->city,
+            'employement_status'=>$request->employement_status,
             'level_of_education'=>$request->level_of_education,
-            'proffession'=>$request->profession,
+            'profession'=>$request->profession,
             'email'=>$user->email,
             'password'=>$user->password,
         ]);
@@ -104,11 +108,65 @@ class AuthController extends Controller
       }
 
 
+      //profile
+   public function profile(){
+
+        $user= Auth::user();
+        $users=User_detail::where('email',$user->email)->get();
+        return $users;
+     }
+
+     public function userfindProfile($id){
+        return User_detail::findorFail($id);
+    }
 
 
+    public function updateProfile(Request $request,$id){
+
+        if(User_detail::where('id',$id)->exists()){
+            $user = User_detail::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->age = $request->age;
+            $user->gender = $request->gender;
+            $user->employement_status = $request->employement_status;
+            $user->profession = $request->profession;
+            $user->level_of_education = $request->level_of_education;
+            $user->phone = $request->phone;
+            $user->department = $request->department;
+            $user->country = $request->country;
+            $user->city = $request->city;
+            $user->CV = $request->CV;
+            $user->photo = $request->photo;
+
+            if($request->hasFile('photo')){
+                $completefilename=$request->file('photo')->getClientOriginalName();
+                $fileNameonly=pathinfo( $completefilename,PATHINFO_FILENAME);
+                $extension=$request->file('photo')->getClientOriginalExtension();
+                $name=time().'-'.$extension;
+                $completePic=str_replace(' ','_', $fileNameonly).'-'.rand() .'_'.time(). '.'. $extension;
+                $path=$request->file('photo')->storeAs('public/user',  $completePic);
+                $user->photo=$completePic;
+            }
+
+            $user ->save();
+            return response()->json([
+                "message"=> "profile updated successfully"
+            ], 200);
+
+        }
+        else{
+            return response()->json([
+                "message"=>"user not found"
+            ],404);
+        }
+
+    }
 
       public function users(){
-        return User::all();
+       return User::all();
+       // $user=User::with('users')->get();
+        //return $user->users->age;
     }
 
 
@@ -116,8 +174,54 @@ class AuthController extends Controller
         return User::findorFail($id);
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(Request $request,$id)
     {
+
+    //     DB::beginTransaction();
+
+    //         try{
+    //         if(User::where('id',$id)->exists()){
+    //            $updateUser = User::find($id);
+    //           $updateUser_detail= User_detail::find($id)
+
+    //       $updateUser=[
+    //           'id'=>$request->id,
+    //           'name'=>$request->name,
+    //           'email'=>$request->email,
+    //           'password'=>Hash::make($request->string('password')),
+    //           'role'=>$request->role,
+    //       ];
+
+    //       $updateUser_detail=[
+    //           'user_id'=>$request->id,
+    //           'name'=>$request->name,
+    //           'age'=>$request->age,
+    //           'gender'=>$request->gender,
+    //           'level_of_education'=>$request->level_of_education,
+    //           'proffession'=>$request->profession,
+    //           'email'=>$request->email,
+    //           'password'=>$request->password,
+    //       ];
+
+    //       $user= User::where('email', $request->email,)->update($updateUser);
+    //       $user_detail= User_detail::where('email',$request->email)->update($updateUser_detail);
+    //       if($user && $user_detail){
+    //           DB::commit();
+    //           return ['status'=>true, 'message'=>'user register successfully'];
+    //       }
+    //       else{
+    //           return ['status'=>false, 'message'=>'user not found'];
+    //       }
+
+
+    // }
+    //     catch(Exception $ex){
+    //       DB::rollback();
+    //       return ['status'=>false, 'message'=>'something went wrong'];
+    //   }
+
+    //     }
+
         if(User::where('id',$id)->exists()){
             $user = User::find($id);
             $user->name = $request->name;
@@ -125,8 +229,17 @@ class AuthController extends Controller
             $user->role = $request->role;
             $user->approved = $request->approved;
 
+            // $user_detail =  $user->users()->name = $user->name;
+            // $user_detail =  $user->users()->email = $user->email;
+            // $user->users()->role = $user->role;
+            // $user_detail =  $user->users()->age = $request->age;
+            // $user_detail =  $user->users()->gender = $request->gender;
+            // $user_detail =  $user->users()->level_of_education = $request->level_of_education;
+            // $user_detail =  $user->users()->proffession = $request->profession;
 
-            $user->save();
+
+
+            $user ->save();
             return response()->json([
                 "message"=> "User updated successfully"
             ], 200);

@@ -13,18 +13,18 @@ class Applicant extends Model
         'user_id',
         'job_id',
         'userName',
-        'userEmail',
+        'email',
         'jobTitle',
-        'role',
-        'name',
-        'image',
+        'JobRole',
+        'CompanyName',
+        'CV',
     ];
 
     protected $table="applicants";
 
 
     public function applicantJob(){
-        return $this->hasMany(job_detail::class,'applicant_id');
+        return $this->hasMany(job_detail::class,'job_id');
     }
     public function applicantUser(){
         return $this->belongsTo(user_detail::class,'user_id');

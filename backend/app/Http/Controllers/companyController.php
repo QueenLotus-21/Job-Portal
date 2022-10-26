@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\job_detail;
+use App\Models\User_detail;
 use App\Http\Requests\companySignupRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\ApplicantRequest;
@@ -87,8 +88,8 @@ class companyController extends Controller
 
       public function postJob(PostRequest $request){
         $job_detail=new job_detail;
-        $job_detail->name=$request->input('name');
-        $job_detail->role=$request->input('role');
+        $job_detail->CompanyName=$request->input('CompanyName');
+        $job_detail->JobRole=$request->input('JobRole');
         $job_detail->location=$request->input('location');
         $job_detail->description=$request->input('description');
         $job_detail->contact_info=$request->input('contact_info');
@@ -99,6 +100,8 @@ class companyController extends Controller
         $job_detail->person=$request->string('person');
         $job_detail->title=$request->string('title');
         $job_detail->status=$request->string('status');
+        $job_detail->salary=$request->string('salary');
+
 
 
          if($job_detail->save()){
@@ -124,7 +127,7 @@ class companyController extends Controller
     if(job_detail::where('id',$id)->exists()){
         $job =job_detail::find($id);
         $job->title = $request->title;
-        $job->role = $request->role;
+        $job->JobRole = $request->JobRole;
         $job->gender = $request->gender;
         $job->status = $request->status;
         $job->skill = $request->skill;
@@ -132,9 +135,10 @@ class companyController extends Controller
         $job->person = $request->person;
         $job->description = $request->description;
         $job->responsibility = $request->responsibility;
-        $job->name = $request->name;
+        $job->CompanyName = $request->CompanyName;
         $job->location = $request->location;
         $job->contact_info = $request->contact_info;
+        $job->salary = $request->salary;
 
 
         $job->save();
@@ -203,19 +207,41 @@ public function applicants(){
 //                  ->get();
 }
 
+//apllicants
+
+
+public function showApllicant(){
+    // if(job_detail::where('id',$id)->exists()){
+    //     $post = job_detail::find($id);
+    // $job=job_detail::all();
+    // $applicant=applicant::where('job_id',$post->id)->orderBy('id','desc')->get();
+    // return $applicant;
+    $job=DB::table('applicants')
+                ->join('job_details','job_details.id','=','applicants.job_id')
+                ->where('applicants.job_id','=','job_details.id')
+                 ->select('applicants.userName','applicants.email','applicants.CV','job_details.id','applicants.job_id')
+                 ->get()->toArray();
+ return $job;
+}
+
+
+
+
+
     public function applyApplicant(Request $request){
-        $user=Auth::user();
+        $user= Auth::user();
+       // $user=User_detail::where('email',$users->email)->get();
         DB::beginTransaction();
         try{
           $applicant=$this->applicant->create([
-              'user_id'=>$user->id,
-              'job_id'=>$request->job_id,
+              'user_id'=>$user->users->id,
+              'job_id'=>$request->id,
               'userName'=>$user->name,
               'email'=>$user->email,
-              'password'=>$user->password,
+              'CV'=>$user->users->CV,
               'jobTitle'=>$request->title,
-              'role'=>$request->role,
-              'name'=>$request->name,
+              'JobRole'=>$request->JobRole,
+              'CompanyName'=>$request->CompanyName,
           ]);
 
 

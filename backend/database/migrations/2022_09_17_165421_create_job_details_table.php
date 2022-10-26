@@ -22,14 +22,15 @@ return new class extends Migration
             $table->string('gender');
             $table->string('person');
             $table->string('skill');
-            $table->string('role');
+            $table->string('JobRole');
             $table->string('workhour');
             $table->string('status');
-            $table->string('name');
+            $table->string('CompanyName');
             $table->string('description');
             $table->string('responsibility');
             $table->string('location');
             $table->string('contact_info');
+            $table->string('salary');
             // $table->foreign('user_id')
             //         ->references('id')
             //         ->on('users')

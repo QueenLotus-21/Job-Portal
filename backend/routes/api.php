@@ -55,7 +55,10 @@ Route::group([
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
   //  Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
-
+ Route::get('profile',[AuthController::class,'profile'])->name('profile');
+ Route::get('profile/{id}',[AuthController::class,'userfindProfile'])->name('userfindProfile');
+ Route::put('profile/{id}',[AuthController::class,'updateProfile']);
+ Route::get('showApllicant',[companyController::class,'showApllicant'])->name('showApllicant');
 
 
     //manage admin
