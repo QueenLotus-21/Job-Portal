@@ -30,7 +30,7 @@ class companyController extends Controller
     protected $user,$company,$applicant;
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['companySignup']]);
+        $this->middleware('auth:api', ['except' => ['companySignup','jobs','jobfind']]);
 
         $this->user=new User();
         $this->company=new Company();
@@ -218,7 +218,7 @@ public function showApllicant(){
     // return $applicant;
     $job=DB::table('applicants')
                 ->join('job_details','job_details.id','=','applicants.job_id')
-                ->where('applicants.job_id','=','job_details.id')
+                ->where('applicants.job_id','=','2')
                  ->select('applicants.userName','applicants.email','applicants.CV','job_details.id','applicants.job_id')
                  ->get()->toArray();
  return $job;
@@ -226,19 +226,34 @@ public function showApllicant(){
 
 
 
+public function appliedJob(){
+// $posts = Applicant::whereUserId(Auth::id())->get();
+// return $posts;
 
+ $user=auth()->user();
+    //$applicant=applicant::where('user_id',$user->users->id)->orderBy('id','desc')->get();
+    $applicant=job_detail::where('id',$user->users->applicant->job_id)->orderBy('id','desc')->get();
+    return  $applicant;
+}
 
     public function applyApplicant(Request $request){
         $user= Auth::user();
        // $user=User_detail::where('email',$users->email)->get();
         DB::beginTransaction();
         try{
+        if(Applicant::where('user_id',$user->users->id)->where('job_id',$request->id)->exists()){
+           // return ['status'=>false, 'message'=>'You are already Apllied for this job',401];
+            return response()->json([
+                "message"=>"You are already Apllied for this job"
+            ],404);
+        }
+        else{
           $applicant=$this->applicant->create([
               'user_id'=>$user->users->id,
               'job_id'=>$request->id,
               'userName'=>$user->name,
               'email'=>$user->email,
-              'CV'=>$user->users->CV,
+              'CV'=>$request->CV,
               'jobTitle'=>$request->title,
               'JobRole'=>$request->JobRole,
               'CompanyName'=>$request->CompanyName,
@@ -250,8 +265,9 @@ public function showApllicant(){
              return ['status'=>true, 'message'=>'you are apply successfully'];
           }
           else{
-              return ['status'=>false, 'message'=>'something went wrong'];
+              return ['status'=>false, 'message'=>'something went wrong',401];
         }
+    }
     }
      catch(Exception $ex){
           DB::rollback();

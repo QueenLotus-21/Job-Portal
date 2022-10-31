@@ -17,13 +17,16 @@ class ApprovalMiddleware
     public function handle(Request $request, Closure $next)
     {
        if(auth()->check()){
-         if(!auth()->user()->approved){
-            auth()->logout();
-            return [ 'message'=>'your Account Needs Admin Approval'];
-            return redirect()->route('login')->with('message',trans('global.your Account Needs Admin Approval'));
-             return redirect()->route('login')->with('message','your Account Needs Admin Approval');
-         }
-       }
+        if(auth()->user()->role=='company'){
+            if(!auth()->user()->approved){
+                auth()->logout();
+                return [ 'message'=>'your Account Needs Admin Approval'];
+                return redirect()->route('login')->with('message',trans('global.your Account Needs Admin Approval'));
+                 return redirect()->route('login')->with('message','your Account Needs Admin Approval');
+             }
+
+        }
+      }
 
         return $next($request);
     }

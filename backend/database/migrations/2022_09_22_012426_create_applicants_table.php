@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('job_id');
             $table->string('userName');
             $table->string('email');
-            $table->string('jobTitle')->unique();
+            $table->string('jobTitle');
             $table->string('JobRole');
             $table->string('CompanyName');
             $table->mediumText('CV')->nullable();

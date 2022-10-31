@@ -50,7 +50,7 @@ class PasswordController extends Controller
       }
 
        public function validateEmail($email){
-        return !!User_detail::where('email',$email)->first();
+        return !!User::where('email',$email)->first();
        }
        public function failedResponse(){
         return response()->json([

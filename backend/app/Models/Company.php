@@ -63,6 +63,11 @@ class Company extends  Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function companyDetail(){
+        return $this->belongsTo(user::class,'user_id');
+    }
 }
+
 
 

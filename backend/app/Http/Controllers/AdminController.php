@@ -145,6 +145,7 @@ public function deleteAdmin($id)
 public function companys(){
     return Company::all();
 }
+
 public function companyfind($id){
     return Company::findorFail($id);
 
@@ -196,6 +197,15 @@ public function updateCompany(Request $request, $id)
         ],404);
     }
 }
+
+//approved company
+public function approvedCompany(){
+
+    return Company::all();
+    //$companys=Company::where('role','')->orderBy('id','desc')->get();
+
+}
+
 
 public function applicants(){
     //return $applicant=DB::table('applicants')->select('name','email','image','jobTitle','userName','role','id')->orderBy('id','desc')->get();

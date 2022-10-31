@@ -113,6 +113,9 @@ class AuthController extends Controller
 
         $user= Auth::user();
         $users=User_detail::where('email',$user->email)->get();
+       // $user->users->get();
+        //$user->companys->get();
+        //$user->Admins->get();
         return $users;
      }
 
@@ -137,7 +140,7 @@ class AuthController extends Controller
             $user->country = $request->country;
             $user->city = $request->city;
             $user->CV = $request->CV;
-            $user->photo = $request->photo;
+
 
             if($request->hasFile('photo')){
                 $completefilename=$request->file('photo')->getClientOriginalName();
@@ -228,6 +231,7 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->role = $request->role;
             $user->approved = $request->approved;
+            $user->disable = $request->disable;
 
             // $user_detail =  $user->users()->name = $user->name;
             // $user_detail =  $user->users()->email = $user->email;
@@ -338,6 +342,7 @@ class AuthController extends Controller
             'role'=>auth()->user()->role,
             'email'=>auth()->user()->email,
             'approved'=>auth()->user()->approved,
+            'disable'=>auth()->user()->disable,
             'name'=>auth()->user()->name,
             'Authorization'=>$token,
         ]);

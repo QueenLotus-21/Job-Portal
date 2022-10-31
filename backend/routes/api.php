@@ -60,6 +60,9 @@ Route::group([
  Route::put('profile/{id}',[AuthController::class,'updateProfile']);
  Route::get('showApllicant',[companyController::class,'showApllicant'])->name('showApllicant');
 
+ Route::get('appliedJob',[companyController::class,'appliedJob'])->name('appliedJob');
+
+
 
     //manage admin
     Route::get('admin',[AdminController::class,'admins']);
@@ -67,6 +70,9 @@ Route::group([
     Route::get('admin/{id}',[AdminController::class,'adminfind']);
     Route::put('admin/{id}',[AdminController::class,'updateAdmin']);
     Route::post('adminSignup',[AdminController::class,'adminSignup']);
+
+    Route::get('approvedCompany',[AdminController::class,' approvedCompanys']);
+
 
     //manage post
     Route::delete('job/{id}',[companyController::class,'deletePost']);
