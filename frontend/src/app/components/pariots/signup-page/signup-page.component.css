@@ -107,9 +107,10 @@
   text-decoration: none;
 }
  #user{
+  color: black;
   margin-right: 8rem;
-  bottom: 13rem;
  }
  #company{
   margin-left: 8rem;
+  color: black;
  }

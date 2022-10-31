@@ -42,6 +42,7 @@ export class UpdateUserComponent implements OnInit {
         email :[null,Validators.required],
         role:[null,Validators.required],
         approved:[null,Validators.required],
+        disable:[null,Validators.required],
       })
     }
    get f(){

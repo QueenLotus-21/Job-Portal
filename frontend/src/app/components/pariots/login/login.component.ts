@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   resposedata:any;
   currentRole:any;
   approved:any;
+  disable:any;
 
   ngOnInit(): void {
   }
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('approved', this.resposedata.approved);
         localStorage.setItem('email', this.resposedata.email);
         localStorage.setItem('name', this.resposedata.name);
+        localStorage.setItem('disable', this.resposedata.disable);
         this.users.updateMenu.next();
         console.log(' success');
         this.currentRole=this.users.getRole();
@@ -57,16 +59,28 @@ export class LoginComponent implements OnInit {
         }
         else if(this.currentRole=='company'){
           this.approved=this.users.getApproved();
-          if(this.approved=='approved'){
+          if(this.approved=='0'){
             this.notify.error('your Account Needs Admin Approval');
-            this.router.navigate(['login']);
+            this.auth.chageAuthStatus(true);
+            localStorage.removeItem('');
+            this.router.navigateByUrl('/login');
 
-          this.form.email='your Account Needs Admin Approval';
-          this.form.password='';
+          // this.form.email='your Account Needs Admin Approval';
+          // this.form.password='';
           }
+
           else{
             this.router.navigate(['company/companynav']);
           }
+
+          this.disable=this.users.getDisable();
+          if(this.disable=='1'){
+            //this.notify.error('your are disabled.please contact Admins');
+            //this.auth.chageAuthStatus(true);
+            //localStorage.removeItem('');
+            this.router.navigateByUrl('/company/disabledCompany');
+          }
+
         }
         else{
           this.router.navigate(['']);

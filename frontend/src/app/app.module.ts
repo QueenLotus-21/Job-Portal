@@ -54,6 +54,11 @@ import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-
 import { ProfileComponent } from './components/pariots/profile/profile.component';
 import { EditProfileComponent } from './components/pariots/edit-profile/edit-profile.component';
 import { ShowApplicantComponent } from './components/company/show-applicant/show-applicant.component';
+import { JobListingComponent } from './components/pariots/job-listing/job-listing.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
+import { ApplyedJobComponent } from './components/user/applyed-job/applyed-job.component';
+import { DisabledCompanyComponent } from './components/pariots/disabled-company/disabled-company.component';
 
 
 
@@ -101,6 +106,11 @@ import { ShowApplicantComponent } from './components/company/show-applicant/show
     ProfileComponent,
     EditProfileComponent,
     ShowApplicantComponent,
+    JobListingComponent,
+    AdminDashboardComponent,
+    AdminProfileComponent,
+    ApplyedJobComponent,
+    DisabledCompanyComponent,
 
 
 

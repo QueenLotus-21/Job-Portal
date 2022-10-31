@@ -166,10 +166,12 @@
                 <div class="row" >
                     <div class="col-md-4">
                         <div class="profile-img">
-                          <img [src]="users.photo ? imagePath+users.photo :[url]" >
-                            <div class="file btn btn-lg btn-primary">
+                          <!-- <img [src]="users.photo ? imagePath+users.photo:[url]" > -->
+                          <img [src]="[url]">
+                            <div class="file btn btn-lg">
                                 Change Photo
-                                <input type="file" name="photo" #photo formControlName="photo" [ngClass]="{'is-invalid': submitted && f.photo.errors}" (change)=" uploadImage($event)"/>
+
+                                <input type="file" class="form-control" name="photo" #photo formControlName="photo" [(ngModel)]="users.photo" (change)=" uploadImage($event)" [ngClass]="{'is-invalid': submitted && f.photo.errors}"/>
                             </div>
                         </div>
                     </div>
@@ -339,7 +341,7 @@
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="text-right text-center">
-            <button type="button"  class="btn btn-success text-center" (click)="update(name.value,email.value,CV.value,age.value,gender.value,photo.value,phone.value,profession.value,country.value,city.value,level_of_education.value,univercity.value,department.value,employement_status.value)">Save Profile</button>
+            <button type="button"  class="btn text-center" (click)="update(name.value,email.value,CV.value,age.value,gender.value,photo.value,phone.value,profession.value,country.value,city.value,level_of_education.value,univercity.value,department.value,employement_status.value)">Save Profile</button>
           </div><br>
           <div>
             <a routerLink="/profile" class=" col-lg ">Back</a>

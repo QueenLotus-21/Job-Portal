@@ -1,107 +1,250 @@
-<div class="container" >
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+         <title>Job Portal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-  <header class="header" *ngIf="superMenu">
-    <i id="luggage" class="fa-solid fa-person-walking-luggage"></i>
-    <a href="#" class="logo" ><span>J</span>ob Portal</a>
+   </head>
 
-    <nav class="navbar" >
-        <div class="container-fluid">
-          <a class="navbar-brand" routerLink="/" >Home</a>
-          <a class="navbar-brand" routerLink="company/postjob" *ngIf="displayCompany">Post</a>
-          <a class="navbar-brand" routerLink="company/managePost" *ngIf="displayCompany" >Manage Post</a>
-          <a class="navbar-brand" routerLink="company/applicantdetail" *ngIf="displayCompany">Applicant</a>
-          <a class="navbar-brand" routerLink="user/joblist" >Job List</a>
-          <div>
-            <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn" (click)=" displayLogin()"><i id="login" class="fa fa-user fa-fw"></i></a>
-          <!-- <a class="navbar-brand" routerLink="company/Companysignup">profile</a>
-          <a href="#" class="navbar-brand" (click)="logout($event)" *ngIf="loggedIn">logout</a> -->
-          <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center" >
-         <form action="" method="post">
-            <div *ngIf="username.length">
-            <!-- <i class="fa fa-user fa-fw" ><img [src]="username.photo ? imagePath+users.image :'assets/images/job1.jpeg'"></i>{{username}} -->
-            <div *ngFor="let user of username">
-              <img class="rounded-circle" width="40px" [src]="user.image ? imagePath+user.image :'assets/images/default-img.png'">{{user.name}}
-              <!-- <i class="fa fa-user fa-fw">{{user.name}}</i> -->
+   <body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/logo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header *ngIf="superMenu">
+        <!-- Header Start -->
+       <div class="header-area header-transparrent">
+           <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a routerLink="JobListing" *ngIf="displayAll" >Find a Jobs </a></li>
+                                            <li>
+                                              <a class="navbar-brand" routerLink="company/postjob" *ngIf="displayCompany">Post</a>
+                                            </li>
+                                            <li>
+                                              <a class="navbar-brand" routerLink="company/managePost" *ngIf="displayCompany" >Manage Post</a>
+                                            </li>
+                                            <li>
+                                              <a class="navbar-brand" routerLink="company/applicantdetail" *ngIf="displayCompany">Applicant</a>
+                                            </li>
+                                            <li><a href="#">Page</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.html">Blog</a></li>
+                                                    <li><a href="single-blog.html">Blog Details</a></li>
+                                                    <li><a href="elements.html">Elements</a></li>
+                                                    <li><a href="job_details.html">job Details</a></li>
+                                                </ul>
+                                            </li>
+
+
+                                            <li><a href="#" *ngIf="loggedIn">Profile</a>
+                                              <ul class="submenu">
+                                                  <li><a routerLink="/profile"><i class="fa fa-user fa-fw"></i>&nbsp;Profile</a></li>
+                                                  <li><a routerLink="/changePassword"><i class="fa-solid fa-pen-to-square" id="icon"></i> &nbsp; Change Password</a></li>
+                                                  <li><a routerLink="user/applyedJob"><i class="fa-solid fa-pen">&nbsp;</i>applied Job</a></li>
+                                                  <li><a href="#"><i class="fa-solid fa-gear ">&nbsp;</i>Setting</a></li>
+                                              </ul>
+                                          </li>
+                                          <li><a href="contact.html">Contact</a></li>
+                                          <li><a href="about.html" *ngIf="displayAll">About</a></li>
+
+                                            <li><a href="#">
+                                              <form action="" method="post" *ngIf="displayUsername">
+                                                <div *ngIf="username.length">
+                                                <!-- <i class="fa fa-user fa-fw" ><img [src]="username.photo ? imagePath+users.image :'assets/images/job1.jpeg'"></i>{{username}} -->
+                                                <div *ngFor="let user of username">
+                                                  <img class="rounded-circle" width="40px" [src]="user.image ? imagePath+user.image :'assets/images/default-img.png'">{{user.name}}
+                                                  <!-- <i class="fa fa-user fa-fw">{{user.name}}</i> -->
+                                                 </div>
+                                              </div>
+                                             </form>
+                                            </a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header-btn -->
+                                <div class="header-btn d-none f-right d-lg-block">
+                                  <a href="#" *ngIf="!loggedIn" class="btn head-btn1" routerLink="/signupPage">Register</a>
+                                    <a href="#" class="btn head-btn2" routerLink="login" *ngIf="!loggedIn" (click)=" displayLogin()">Login</a>
+                                     <a href="#" class="btn head-btn2" *ngIf="loggedIn" (click)="logout($event)">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+       </div>
+        <!-- Header End -->
+    </header>
+
+    <div class="container">
+      <router-outlet></router-outlet>
+
+    </div>
+
+
+    <footer>
+      <!-- Footer Start-->
+      <div class="footer-area footer-bg footer-padding">
+          <div class="container">
+              <div class="row d-flex justify-content-between">
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                     <div class="single-footer-caption mb-50">
+                       <div class="single-footer-caption mb-30">
+                           <div class="footer-tittle">
+                               <h4>About Us</h4>
+                               <div class="footer-pera">
+                                   <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                              </div>
+                           </div>
+                       </div>
+
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>Contact Info</h4>
+                              <ul>
+                                  <li>
+                                  <p>Address :Your address goes
+                                      here, your demo address.</p>
+                                  </li>
+                                  <li><a href="#">Phone : +8880 44338899</a></li>
+                                  <li><a href="#">Email : info@colorlib.com</a></li>
+                              </ul>
+                          </div>
+
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>Important Link</h4>
+                              <ul>
+                                  <li><a href="#"> View Project</a></li>
+                                  <li><a href="#">Contact Us</a></li>
+                                  <li><a href="#">Testimonial</a></li>
+                                  <li><a href="#">Proparties</a></li>
+                                  <li><a href="#">Support</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>Newsletter</h4>
+                              <div class="footer-pera footer-pera2">
+                               <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
+                           </div>
+                           <!-- Form -->
+                           <div class="footer-form" >
+                               <div id="mc_embed_signup">
+                                   <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                   method="get" class="subscribe_form relative mail_part">
+                                       <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                       class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = ' Email Address '">
+                                       <div class="form-icon">
+                                           <button type="submit" name="submit" id="newsletter-submit"
+                                           class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
+                                       </div>
+                                       <div class="mt-10 info"></div>
+                                   </form>
+                               </div>
+                           </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             <!--  -->
+             <div class="row footer-wejed justify-content-between">
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                      <!-- logo -->
+                      <div class="footer-logo mb-20">
+                      <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                  <div class="footer-tittle-bottom">
+                      <span>5000+</span>
+                      <p>Talented Hunter</p>
+                  </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                      <div class="footer-tittle-bottom">
+                          <span>451</span>
+                          <p>Talented Hunter</p>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                      <!-- Footer Bottom Tittle -->
+                      <div class="footer-tittle-bottom">
+                          <span>568</span>
+                          <p>Talented Hunter</p>
+                      </div>
+                  </div>
              </div>
           </div>
-         </form>
-             <i id="down" class="fa-solid fa-angle-down"></i>
-          </button>
-          <mat-menu #menu="matMenu">
-
-            <button mat-menu-item routerLink="/profile">
-              <i class="fa-solid fa-pen-to-square" id="icon"></i>
-             Profile
-            </button>
-            <button mat-menu-item routerLink="/changePassword">
-              <i class="fa-solid fa-pen-to-square" id="icon"></i>
-              Change Password
-            </button>
-            <button mat-menu-item (click)="logout($event)">
-              <i class="fa-solid fa-right-from-bracket" id="icon"></i>
-              logout
-            </button>
-            <button mat-menu-item>
-               <i class="fa-solid fa-gear "></i>
-              Setting
-            </button>
-            <button mat-menu-item>
-              <i class="fa-solid fa-circle-question" id="icon"></i>
-              Help
-            </button>
-          </mat-menu>
+      </div>
+      <!-- footer-bottom area -->
+      <div class="footer-bottom-area footer-bg">
+          <div class="container">
+              <div class="footer-border">
+                   <div class="row d-flex justify-content-between align-items-center">
+                       <div class="col-xl-10 col-lg-10 ">
+                           <div class="footer-copy-right">
+                               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                           </div>
+                       </div>
+                       <div class="col-xl-2 col-lg-2">
+                           <div class="footer-social f-right">
+                               <a href="#"><i class="fab fa-facebook-f"></i></a>
+                               <a href="#"><i class="fab fa-twitter"></i></a>
+                               <a href="#"><i class="fas fa-globe"></i></a>
+                               <a href="#"><i class="fab fa-behance"></i></a>
+                           </div>
+                       </div>
+                   </div>
+              </div>
           </div>
-
-        </div>
-      </nav>
-   </header>
-</div>
-
-<div class="container">
-  <router-outlet></router-outlet>
-
-</div>
+      </div>
+      <!-- Footer End-->
+  </footer>
 
 
-
-<!--footer section-->
-<section class="footer">
-  <div class="box-container">
-    <div class="box">
-      <h3>about us</h3>
-      <p>I'm software Engineering and i can develop website with any language <i class="fa-solid fa-face-grin-hearts"></i></p>
-    </div>
-
-    <div class="box">
-      <h3>quick links</h3>
-      <a href="#">home</a>
-      <a href="#">book</a>
-      <a href="#">package</a>
-      <a href="#">services</a>
-      <a href="#">gallery</a>
-      <a href="#">review</a>
-      <a href="#">contact</a>
-    </div>
-    <div class="box">
-      <h3>follow us</h3>
-      <a href="#"><i class="fab fa-facebook-f"></i>facebook</a>
-      <a href="#"><i class="fab fa-instagram"> </i> instagram</a>
-      <a href="#"><i class="fab fa-twitter"></i> twitter</a>
-      <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
-      <a href="#"><i class="fab fa-github"></i> github</a>
-    </div>
-    <div class="box">
-      <h3>contact us</h3>
-      <a href="#"><i class="fas fa-phone"></i>093456789</a>
-      <a href="#"><i class="fas fa-phone"> </i> 09456789</a>
-      <a href="#"><i class="fas fa-envelope"></i> tigistAmakelew156@gmail.com</a>
-      <a href="#"><i class="fas fa-map"></i> AMU,Ethiopia</a>
-
-    </div>
-  </div>
-
-  <h1 class="credit"> created by <span>software engineeer Tigist Amakelew</span> | all rights reserved! </h1>
-</section>
-
-<!--footer section-->
-
+</body>
+</html>

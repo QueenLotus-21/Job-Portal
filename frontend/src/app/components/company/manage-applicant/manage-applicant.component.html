@@ -1,4 +1,88 @@
 
+<main>
+
+  <!-- Hero Area Start-->
+  <div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('assets/img/hero/about.jpg')">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="hero-cap text-center">
+                          <h2>Applicants</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Hero Area End -->
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase mb-0">Manage Applicants</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap user-table mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">Full Name</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">phone</th>
+
+                          <th scope="col" class="border-0 text-uppercase font-medium">Job Title</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">CV</th>
+                          <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="applicants.length">
+                        <tr *ngFor="let applicant of applicants">
+                          <td class="pl-4">1</td>
+                          <td>
+                              <h5 class="font-medium mb-0">{{applicant.userName}}</h5>
+                              <span class="text-muted">Texas, Unitedd states</span>
+                          </td>
+                          <td>
+                              <span class="text-muted">{{applicant.email}}</span><br>
+                              <span class="text-muted">Past : teacher</span>
+                          </td>
+                           <td>
+                              <span class="text-muted">0956723523</span><br>
+                              <span class="text-muted">999 - 444 - 555</span>
+                          </td>
+                          <td>
+                              <span class="text-muted">{{applicant.jobTitle}}</span><br>
+                              <span class="text-muted">10: 55 AM</span>
+                          </td>
+                          <td>
+                            <span class="text-muted">{{applicant.JobRole}}</span><br>
+                            <span class="text-muted">10: 55 AM</span>
+                        </td>
+
+                          <td class="search"><img [src]="applicant.image ? imagePath+applicant.image :'assets/images/15.jpg'" height="100px">
+                          <span class="text-muted">10: 55 AM</span>
+                      </td>
+                          <td>
+                            <button type="button" class="btn  btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                            <button type="button" class="btn  btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </main><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<!--
 <div class="container all">
   <h1 class="text-center">Applicant List</h1>
   <table class="table table-striped" border="1">
@@ -24,3 +108,4 @@
     </tbody>
   </table>
 </div>
+</main> -->

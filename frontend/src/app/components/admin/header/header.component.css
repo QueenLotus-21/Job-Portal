@@ -16,6 +16,7 @@ button{
 .user{
   font-size: 14px;
   margin-right: 5rem;
+  color: black;
 }
 .user-image{
   border-radius: 50%;
@@ -32,6 +33,7 @@ margin-top: 1rem;
 
 ::ng-deep .mat-menu{
   margin:40rem;
+  color: black;
 
 }
 ::ng-deep .mat-menu-content{

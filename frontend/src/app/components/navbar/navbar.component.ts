@@ -10,6 +10,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class NavbarComponent implements OnInit,DoCheck {
   superMenu=true
+  displayAll=true
   superdisplay=false;
   displayMenu=false;
   diplayPackege1=false;
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit,DoCheck {
   currentRole:any;
   currentEmail:any
   currentName:any;
+  displayUsername=true;
   public username:any;
   imagePath:any='http://127.0.0.1:8000/storage/applicant/';
   constructor(private auth:AuthserviceService,private router:Router,private user:UserServiceService) { }
@@ -56,15 +58,19 @@ export class NavbarComponent implements OnInit,DoCheck {
       this.diplayUser=false;
       this.superMenu=true;
       this.displayCompany=false;
+      this.displayUsername=false;
     }
     else if(this.router.url=='/admin'){
       this.diplayUser=false;
       this.superMenu=false;
     }
+    else if(this.router.url=='/company/companynav'){
+      this.displayAll=false;
+    }
 
     else{
       this.displayMenu=true;
-
+      this.displayUsername=true;
     }
     }
 
@@ -74,12 +80,12 @@ export class NavbarComponent implements OnInit,DoCheck {
         //this.currentRole=this.user.getRolebyToken(this.user.getToken());
         this.currentRole=this.user.getRole();
         this.currentEmail=this.user.getEmail();
-        this.currentEmail=this.user.getEmail();
+        // this.currentEmail=this.user.getEmail();
         this.currentName=this.user.getName();
        // this.displayCompany=(this.currentRole=='admin' || this.currentRole=="superadmin")
       this.displayCompany=(this.currentRole=='company')
       //this.superdisplay=(this.currentRole=="user"||this.currentRole=="admin")
-       console.log('hello tig'+this.currentRole+this.currentEmail+this.currentName)
+      // console.log('hello tig'+this.currentRole+this.currentEmail+this.currentName)
      }
     }
 

@@ -22,6 +22,7 @@ export class ApplicantComponent implements OnInit {
   form:FormGroup;
   data:any
   err:any
+  public error:any=[];
   username:any;
   files:any
   url="assets/images/default-img.png";
@@ -111,14 +112,22 @@ export class ApplicantComponent implements OnInit {
        formdata.append('id',id)
        formdata.append('JobRole',JobRole)
       formdata.append('CV',this.files,this.files.name)
-    this.user.applyAplicant(formdata).subscribe((res)=>{
-        this.data=res
-        this.notify.success(this.data.message,{timeout:2000});
-        this.router.navigateByUrl('/user/joblist');
-      })
+    this.user.applyAplicant(formdata).subscribe(
+      data=>this.handleResponse(data),
+      error=>this.handleError(error)
+        // this.data=res
+        // this.notify.success(this.data.message,{timeout:2000});
+        // this.router.navigateByUrl('/user/joblist');
+      )
 
        }
-
+       handleResponse(data){
+        this.notify.success(data.message,{timeout:2000});
+       this.router.navigateByUrl('/JobListing');
+       }
+       handleError(error){
+        this.notify.error(error.error.error ||error.error.message);
+       }
     createForm(){
       this.form=this.formBuilder.group({
         userName:[null,Validators.required],

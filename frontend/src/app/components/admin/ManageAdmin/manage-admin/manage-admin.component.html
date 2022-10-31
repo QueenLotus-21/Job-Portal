@@ -1,45 +1,77 @@
 
-<div class="container-fluid page">
-  <div class="page__box p-3 mt-1">Admin Details</div>
-  <div class="page__content shadow p-3 position-relative">
-    <div class="page__content-data position-absolute text-center">
 
-<div class="container all mt-2">
-  <div class="frm text-center">
+<div class="app-wrapper">
 
-    <input type="text" class="form-control" id="myInput" [(ngModel)]="searchText" placeholder="search here...">
-  </div><br>
-  <button class="btn btn-primary add mb-2" routerLink="/admin/registerAdmin">Register Admin </button>
-  <table class="table table-striped" border="1">
-    <thead>
-      <th>ID</th>
-      <th>name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Action</th>
-    </thead>
-    <tbody *ngIf="admins.length">
-      <tr *ngFor="let admin of admins">
-        <td>{{admin.id}}</td>
-        <td class="search"> {{admin.name}}</td>
-        <td class="search"> {{admin.gender}}</td>
-        <td>{{admin.email}}</td>
-        <td class="search">{{admin.role}}</td>
-        <td><button class="btn btn-info" routerLink="/admin/editAdmin/{{admin.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteAdmin(admin.id)" >Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
 
-<!-- <div *ngIf="users.length">
- <ul *ngFor="let user of users">
-    <li>{{user.name}}{{user.role}}{{user.email}}</li>
- </ul>
-</div> -->
+      <div class="row g-3 mb-4 align-items-center justify-content-between">
+        <div class="col-auto">
+              <h1 class="app-page-title mb-0">manage Admin</h1>
+        </div>
+        <div class="col-auto">
+           <div class="page-utilities">
+            <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+              <div class="col-auto">
+                <form class="table-search-form row gx-1 align-items-center">
+                          <div class="col-auto">
+                              <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
+                          </div>
+                          <div class="col-auto">
+                              <button type="submit" class="btn app-btn-secondary">Search</button>
+                          </div>
+                      </form>
+
+              </div><!--//col-->
+
+            </div><!--//row-->
+          </div><!--//table-utilities-->
+        </div><!--//col-auto-->
+      </div><!--//row-->
+
+
+
+
+    <div class="tab-content" id="orders-table-tab-content">
+          <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+          <div class="app-card app-card-orders-table shadow-sm mb-5">
+            <div class="app-card-body">
+              <div class="table-responsive">
+                  <table class="table app-table-hover mb-0 text-left">
+                <thead>
+                  <tr>
+                  <th class="cell">order</th>
+                  <th class="cell">Full Name</th>
+                  <th class="cell">Gender</th>
+                  <th class="cell">Email</th>
+                  <th class="cell">Role</th>
+                  <th class="cell">Action</th>
+                  </tr>
+
+                </thead>
+                <tbody *ngIf="admins.length">
+                  <tr *ngFor="let admin of admins">
+                    <td>{{admin.id}}</td>
+                    <td class="search"> {{admin.name}}</td>
+                    <td class="search"> {{admin.gender}}</td>
+                    <td>{{admin.email}}</td>
+                    <td class="search">{{admin.role}}</td>
+                    <td><button class="btn btn-info" routerLink="/admin/editAdmin/{{admin.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteAdmin(admin.id)" >Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+                </div><!--//table-responsive-->
+
+            </div><!--//app-card-body-->
+        </div><!--//app-card-->
+
+    </div>
+
+
 
     </div>
   </div>
+</div>
 
 </div>
 

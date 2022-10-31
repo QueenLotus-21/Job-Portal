@@ -54,6 +54,7 @@ export class ViewJobComponent implements OnInit {
           title:[null,Validators.required],
           salary:[null,Validators.required],
           id:[null,Validators.required],
+          created_at:[null,Validators.required],
         })
       }
      get f(){

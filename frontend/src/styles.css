@@ -26,7 +26,7 @@
 	background: #ff008c;
 }
 
-header{
+/* header{
 	position: fixed;
 	top: 0; left: 0; right: 0;
 	background: #333;
@@ -35,7 +35,7 @@ header{
 	align-items: center;
 	justify-content: space-between;
 	padding: .1rem 5%;
-}
+} */
 header .logo{
 	font-size: 2rem;
 	font-weight: bolder;
@@ -62,10 +62,18 @@ header .navbar a:hover{
 }
 
 .container{
-  margin-right: 35rem;
+  margin-right: 300rem;
+  margin-left: -300rem;
+}
+.single-slider{
+  margin-right: -10rem;
+  margin-left: -11rem;
 }
 
-
+.apply-process-area,.online-cv{
+  margin-right: -10rem;
+  margin-left: -11rem;
+}
 /* footer style start  */
 .footer{
   background: #333;

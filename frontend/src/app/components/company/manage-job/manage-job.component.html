@@ -1,8 +1,91 @@
 
-<!-- <div class="container-fluid page " id="all">
-  <div class="page__box p-3 mt-1">Job List</div>
-  <div class="page__content shadow p-3 position-relative">
-    <div class="page__content-data position-absolute text-center"> -->
+
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+<main>
+
+  <!-- Hero Area Start-->
+  <div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('assets/img/hero/about.jpg')">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="hero-cap text-center">
+                          <h2>Manage jobs </h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Hero Area End -->
+
+<!--
+<div class="container">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-uppercase mb-0">Manage jobs</h5>
+            </div>
+            <div class="table-responsive">
+                <table class="table no-wrap user-table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Title</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Gender</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Status</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">Workhour</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Skill</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">No_Of_Person</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Description</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Company</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Location</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="jobs.length">
+                    <tr *ngFor="let job of jobs">
+                      <td class="pl-4">1</td>
+                      <td>
+                          <h5 class="font-medium mb-0">{{job.title}}</h5>
+                          <span class="text-muted">{{job.location}}</span>
+                      </td>
+                      <td>
+                          <span class="text-muted">{{job.JobRole}}</span><br>
+                          <span class="text-muted">{{job.workhour}}</span>
+                      </td>
+                       <td>
+                          <span class="text-muted">{{job.skill}}</span><br>
+                          <span class="text-muted"> we want {{job.Person}} persons</span>
+                      </td>
+                      <td>
+                          <span class="text-muted">{{job.description}}</span><br>
+                          <span class="text-muted">{{job.description}}</span>
+                      </td>
+                      <td>
+                        <span class="text-muted">{{job.gender}}</span><br>
+                        <span class="text-muted"></span>
+                    </td>
+                      <td>
+                        <span class="text-muted">{{job.CompanyName}}</span><br>
+                        <span class="text-muted">{{job.contact_info}}</span>
+                    </td>
+                    <td><button routerLink="/company/updatejob/{{job.id}}"class="btn  btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i></button>&nbsp;<button class="btn  btn-circle btn-lg btn-circle ml-2" (click) ="deleteJob(job.id)" ><i class="fa fa-trash"></i></button>&nbsp;<button class="btn" routerLink="/company/showApplicant/{{job.id}}">Applicants</button></td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</main><br><br><br><br><br><br><br><br><br><br><br><br> -->
+
 
       <div class="container all">
         <h1>job List</h1>
@@ -15,9 +98,9 @@
             <th>Status</th>
             <th>Workhour</th>
             <th>Skill</th>
-            <th>No_Of_Person</th>
+            <!-- <th>No_Of_Person</th> -->
             <th>Description</th>
-            <th>Responsibility</th>
+            <!-- <th>Responsibility</th> -->
             <th>Company</th>
             <th>Location</th>
             <th>contact_info</th>
@@ -32,19 +115,19 @@
               <td class="search"> {{job.status}}</td>
               <td class="search">{{job.workhour}}</td>
               <td class="search">{{job.skill}}</td>
-              <td>{{job.person}}</td>
+              <!-- <td>{{job.person}}</td> -->
               <td class="search"> {{job.description}}</td>
-              <td class="search">{{job.responsibility}}</td>
+              <!-- <td class="search">{{job.responsibility}}</td> -->
               <td>{{job.name}}</td>
               <td class="search"> {{job.location}}</td>
               <td class="search">{{job.contact_info}}</td>
-              <td><button class="btn btn-info" routerLink="/company/updatejob/{{job.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteJob(job.id)" >Delete</button>&nbsp;<button class="btn btn-info" routerLink="/company/showApplicant/{{job.id}}">Applicants</button></td>
-
+              <!-- <td><button class="btn btn-info" routerLink="/company/updatejob/{{job.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteJob(job.id)" >Delete</button>&nbsp;<button class="btn btn-info" routerLink="/company/showApplicant/{{job.id}}">Applicants</button></td> -->
+              <td><button routerLink="/company/updatejob/{{job.id}}"class="btn  btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i></button>&nbsp;<button class="btn  btn-circle btn-lg btn-circle ml-2" (click) ="deleteJob(job.id)" ><i class="fa fa-trash"></i></button>&nbsp;<button class="btn" routerLink="/company/showApplicant/{{job.id}}">Applicants</button></td>
             </tr>
           </tbody>
         </table>
       </div>
-
+    </main><br><br><br><br><br><br><br><br><br><br><br><br>
       <!-- <div *ngIf="users.length">
        <ul *ngFor="let user of users">
           <li>{{user.name}}{{user.role}}{{user.email}}</li>

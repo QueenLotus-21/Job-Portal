@@ -44,6 +44,9 @@ getRole(){
 getApproved(){
   return localStorage.getItem('approved');
 }
+getDisable(){
+  return localStorage.getItem('disable');
+}
 getToken(){
   return localStorage.getItem('token')||'';
 }
@@ -146,6 +149,15 @@ applyAplicant(data:any){
 findApplicants(id:number): Observable<any>{
   return this.http.get(`${this.baseurl}/applicant/`+id);
 }
+
+approvedCompany(){
+  return this.http.get<any>(`${this.baseurl}/approvedCompany`);
+}
+appliedJob(){
+  return this.http.get<any>(`${this.baseurl}/appliedJob`);
+}
+
+
 
 //profile
 getUserProfile(){

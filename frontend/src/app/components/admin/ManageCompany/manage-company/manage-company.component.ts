@@ -11,12 +11,14 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class ManageCompanyComponent implements OnInit {
   public error:any=[]
   public companys:any=[]
+  public approvedCompanys:any=[]
   searchText:any
   data:any
     constructor(private user:UserServiceService,private notify:SnotifyService,private router:Router) { }
 
     ngOnInit(): void {
-      this.showJobs()
+      this.showJobs();
+      this.showApprovedCompany();
     }
 
   showJobs(){
@@ -25,6 +27,14 @@ export class ManageCompanyComponent implements OnInit {
       //console.log(this.jobs)
     })
   }
+
+  showApprovedCompany(){
+    this.approvedCompanys=this.user.approvedCompany().subscribe(res=>{
+      this.approvedCompanys=res
+      console.log(this.approvedCompanys);
+    })
+  }
+
 
 
   deleteCompany(id:any){

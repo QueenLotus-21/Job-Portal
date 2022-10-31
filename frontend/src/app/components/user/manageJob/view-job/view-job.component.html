@@ -1,111 +1,124 @@
-<!-- package section starts
-<br><br><br><br>
-<div class="container1">
-<section class="packages" id="package">
-  <h1 class="heading">
-    <span>v</span>
-    <span>i</span>
-    <span>e</span>
-    <span>w</span>
-    <span>j</span>
-    <span>o</span>
-    <span>b</span>
-    <span></span>
-  </h1>
-  <div class="box-container" *ngIf="jobs.length">
-    <div class="box" *ngFor="let job of jobs">
-      <img [src]="package.image ? imagePath+package.image :assets/images/j.jpg" alt="images">
-      <div class="content">
-        <h3><i> <a  class="fas fa-map-marker-alt"> </a> </i> {{job.title}} </h3>
-        <p>{{job.role}}</p>
-        <p>{{job.description}}</p>
-        <p>{{job.responsibility}}</p>
-        <p>{{job.person}}</p>
-        <p>{{job.workhour}}</p>
-        <p>{{job.status}}</p>
-        <p>{{job.location}}</p>
-        <p>{{job.name}}</p>
-        <p>{{job.contact_info}}</p>
-        <div class="stars">
-          <i ><mat-icon>star</mat-icon></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="fas fa-star"></a></i>
-          <i ><a  href="#" class="far fa-star"></a></i>
-        </div>
-        <div class="price">$90.00 <span>$120.00</span></div>
-        <a class="btn btn-primary" rouerLink="/user/viewjob" id="bookn">Apply now</a>
 
-        <div>
-          <a routerLink="/user/viewjob" class=" col-lg ">Back</a>
-         </div>
+<main>
+
+  <!-- Hero Area Start-->
+  <div class="slider-area ">
+  <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('assets/img/hero/about.jpg')">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="hero-cap text-center">
+                      <h2>Job details</h2>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-</div>
+  </div>
+  </div>
+  <!-- Hero Area End -->
+  <!-- job post company Start -->
+  <div class="job-post-company pt-120 pb-120">
+    <form [formGroup]="form">
+      <div class="container">
+          <div class="row justify-content-between">
 
-</section>
-    </div> -->
-    <br><br><br><br>
-<div class="container1">
-<section class="packages" id="package">
-  <h1 class="heading">
-    <span>v</span>
-    <span>i</span>
-    <span>e</span>
-    <span>w</span>
-    <span></span>
-    <span>j</span>
-    <span>o</span>
-    <span>b</span>
+              <!-- Left Content -->
+              <div class="col-xl-7 col-lg-8">
+                  <!-- job single -->
 
-  </h1>
-  <div class="box-container">
-    <div class="box">
-      <div class="content">
-
-        <form [formGroup]="form">
-        <h3><i> <a class="fas fa-map-marker-alt"> </a></i> Job Title<input type="text" name="title" class="form-control"  id="title" #title  formControlName="title" [(ngModel)]="jobs.title"  ng-disabled="status"> </h3>
-        <p>Role<input type="text" name="JobRole" class="form-control" id="JobRole" #JobRole  formControlName="JobRole" [(ngModel)]="jobs.JobRole"></p>
-        <p>Job Id<input type="text" name="id" class="form-control" id="id" #id  formControlName="id" [(ngModel)]="jobs.id"></p>
-        <label for="description">description</label>
-        <textarea #disabled name="description" class="form-control" id="description" rows="3" #description  formControlName="description" [(ngModel)]="jobs.description"></textarea>
-        <label for="responsibility">responsibility</label>
-        <textarea [disabled]="true" name="responsibility" class="form-control" id="responsibility" rows="3" #responsibility formControlName="responsibility" [(ngModel)]="jobs.responsibility"></textarea>
-       <span>
-        <label for="person"> we want </label>
-       <input type="text" name="person" class="form-control" id="person" #person formControlName="person" [(ngModel)]="jobs.person"> persons
-       </span>
-        <p>work hour <input type="text" [disabled]="true" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></p>
-        <p>Hiring status<input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></p>
-        <p>location <input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></p>
-       <p>Company <input type="text" name="CompanyName" class="form-control" id="CompanyName" #CompanyName formControlName="CompanyName" [(ngModel)]="jobs.CompanyName"></p>
-      <p>you can visit us by <input type="text" name="contact_info" class="form-control" id="contact_info" #contact_info  formControlName="contact_info"[(ngModel)]="jobs.contact_info"></p>
-       <p>salary in month <input type="text" name="salary" class="form-control" id="salary" #salary formControlName="salary" [(ngModel)]="jobs.salary"> </p><br>
+                          <div class="post-details4  mb-50">
+                               <h1>Job</h1><br>
+                             <ul>
+                                 <li>Name: <span><input type="text" name="title" class="form-control"  id="title" #title  formControlName="title" [(ngModel)]="jobs.title"></span></li>
+                                 <li>Role : <span> <input type="text" name="JobRole" class="form-control" id="JobRole" #JobRole  formControlName="JobRole" [(ngModel)]="jobs.JobRole"></span></li>
+                                 <li>Email: <span><input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></span></li>
+                             </ul>
 
 
-    <!-- <table>
-      <tr>
-        <td>
-          <a>{{jobs.id}}</a>
-        </td>
-        <td><button class="btn btn-info" routerLink="/user/applicant/{{jobs.id}}" >View</button></td>
-        <td>
-          <button class="btn btn-primary"  routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
+                          </div>
 
-        </td>
-      </tr>
-    </table> -->
-      <div>
-        <button class="btn btn-primary text-center" routerLink="/user/applicant/{{jobs.id}}" >Apply now </button>
+
+                    <!-- job single End -->
+
+                  <div class="job-post-details">
+                      <div class="post-details1 mb-50">
+                          <!-- Small Section Tittle -->
+                          <div class="small-section-tittle">
+                              <h4>Job Description</h4>
+                          </div>
+                          <p><textarea #disabled name="description" class="form-control" id="description" rows="1" #description  formControlName="description" [(ngModel)]="jobs.description"></textarea></p>
+                      </div>
+                      <div class="post-details2  mb-50">
+                           <!-- Small Section Tittle -->
+                          <div class="small-section-tittle">
+                              <h4>Required Knowledge, Skills, and Abilities</h4>
+                          </div>
+                         <ul>
+                             <li><textarea [disabled]="true" name="responsibility" class="form-control" id="responsibility" rows="1" #responsibility formControlName="responsibility" [(ngModel)]="jobs.responsibility"></textarea></li>
+                             <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
+                             <li>Research and code , libraries, APIs and frameworks</li>
+                             <li>Strong knowledge on software development life cycle</li>
+                             <li>Strong problem solving and debugging skills</li>
+                         </ul>
+                      </div>
+                      <div class="post-details2  mb-50">
+                           <!-- Small Section Tittle -->
+                          <div class="small-section-tittle">
+                              <h4>Education + Experience</h4>
+                          </div>
+                         <ul>
+                             <li>3 or more years of professional design experience</li>
+                             <li><input type="text" name="skill" class="form-control" id="skill" #skill formControlName="skill" [(ngModel)]="jobs.skill"></li>
+                             <li>Ecommerce website design experience</li>
+                             <li>Familiarity with mobile and web apps preferred</li>
+                             <li>Experience using Invision a plus</li>
+                         </ul>
+                      </div>
+                      <a routerLink="/JobListing" class=" col-lg ">Back</a><br><br>
+                  </div>
+
+              </div>
+              <!-- Right Content -->
+              <div class="col-xl-4 col-lg-4">
+                  <div class="post-details3  mb-50">
+                      <!-- Small Section Tittle -->
+                     <div class="small-section-tittle">
+                         <h4>Job Overview</h4>
+                     </div>
+                    <ul>
+                        <li>Posted date :&nbsp; <span><input type="text" name="created_at" class="form-control" formControlName="created_at" [(ngModel)]="jobs.created_at" ></span></li>
+                        <li>Location : <span><input type="text" name="location" class="form-control" id="location" #location formControlName="location" [(ngModel)]="jobs.location"></span></li>
+                        <li>Hiring status : &nbsp;<span><input type="text" name="status" class="form-control" id="status" #status formControlName="status" [(ngModel)]="jobs.status" [disabled]="title.valid"></span></li>
+                        <li>Job nature : &nbsp;<span><input type="text" [disabled]="true" name="workhour" class="form-control" id="workhour" #workhour formControlName="workhour" [(ngModel)]="jobs.workhour"></span></li>
+                        <li>Salary in month : &nbsp;&nbsp; &nbsp; <span><input type="text" name="salary" class="form-control" id="salary" #salary formControlName="salary" [(ngModel)]="jobs.salary"></span></li>
+                        <li>Application date : <span>12 Sep 2020</span></li>
+                        <li>No_of person:&nbsp; <span><input type="text" name="person" class="form-control" id="person" #person formControlName="person" [(ngModel)]="jobs.person"></span></li>
+
+                    </ul>
+                   <div class="apply-btn2">
+                      <a routerLink="/user/applicant/{{jobs.id}}"  class="btn" >Apply Now</a>
+                   </div>
+                 </div>
+                  <div class="post-details4  mb-50">
+                      <!-- Small Section Tittle -->
+                     <div class="small-section-tittle">
+                         <h4>Company Information</h4>
+                     </div>
+                        <span>Colorlib</span>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                      <ul>
+                          <li>Name: <span><input type="text" name="CompanyName" class="form-control" id="CompanyName" #CompanyName formControlName="CompanyName" [(ngModel)]="jobs.CompanyName"> </span></li>
+                          <li>Web : <span> colorlib.com</span></li>
+                          <li>Email: <span><input type="text" name="contact_info" class="form-control" id="contact_info" #contact_info  formControlName="contact_info"[(ngModel)]="jobs.contact_info"></span></li>
+                      </ul>
+                 </div>
+              </div>
+
+          </div>
       </div>
+    </form>
+  </div>
+  <!-- job post company End -->
 
-        <div>
-          <a routerLink="/user/joblist" class=" col-lg ">Back</a><br><br>
-         </div>
-        </form>
-      </div>
-    </div>
-</div>
+</main>
 
-</section>
-    </div>

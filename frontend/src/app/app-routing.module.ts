@@ -58,6 +58,11 @@ import { UpdateCompanyComponent } from './components/admin/ManageCompany/update-
 import { ProfileComponent } from './components/pariots/profile/profile.component';
 import { EditProfileComponent } from './components/pariots/edit-profile/edit-profile.component';
 import { ShowApplicantComponent } from './components/company/show-applicant/show-applicant.component';
+import { JobListingComponent } from './components/pariots/job-listing/job-listing.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
+import { ApplyedJobComponent } from './components/user/applyed-job/applyed-job.component';
+import { DisabledCompanyComponent } from './components/pariots/disabled-company/disabled-company.component';
 
 
 
@@ -72,15 +77,19 @@ const routes: Routes = [
   {path:'changePassword',component:ChangePasswordComponent,canActivate:[AuthGuard]},
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'editProfile/:userId',component:EditProfileComponent,canActivate:[AuthGuard]},
+  {path:'JobListing',component:JobListingComponent},
+  {path:'viewjob/:jobId',component:ViewJobComponent},
   {path:'',component:UserhomeComponent},
+  {path:'adminDashboard',component:AdminDashboardComponent},
+
 
   {path:'user',component:UserComponent,
   children:[
     {path:'userhome',component:UserhomeComponent},
     {path:'usernav',component:UserNavComponent},
     {path:'joblist',component:JobListComponent},
-    {path:'viewjob/:jobId',component:ViewJobComponent},
     {path:'applicant/:jobID',component:ApplicantComponent},
+    {path:'applyedJob',component:ApplyedJobComponent},
   ],canActivate:[UserAuthGuard],
   },
 
@@ -93,6 +102,9 @@ const routes: Routes = [
     {path:'Adminheader',component:HeaderComponent},
     {path:'Adminsidenav',component:SidenavComponent},
     {path:'Admindashboard',component:DashboardComponent},
+    {path:'adminProfile',component:AdminProfileComponent},
+
+
 
     //manage user
     {path:'adduser',component:AddUserComponent},
@@ -121,6 +133,7 @@ const routes: Routes = [
     {path:'updatejob/:jobsId',component:UpdateJobComponent},
     {path:'applicantdetail',component:ManageApplicantComponent},
     {path:'showApplicant/:jobsId',component:ShowApplicantComponent},
+    {path:'disabledCompany',component:DisabledCompanyComponent},
 
   ],canActivate:[CompanyAuthGuard]
   }

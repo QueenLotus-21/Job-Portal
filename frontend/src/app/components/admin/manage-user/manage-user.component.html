@@ -9,7 +9,7 @@
 
     <input type="text" class="form-control" id="myInput" [(ngModel)]="searchText" placeholder="search here...">
   </div><br>
-  <button class="btn btn-primary add mb-2" routerLink="/admin/adduser">Add User</button>
+  <!-- <button class="btn btn-primary add mb-2" routerLink="/admin/adduser">Add User</button> -->
   <table class="table table-striped" border="1">
     <thead>
       <th>ID</th>
@@ -17,6 +17,7 @@
       <th>Email</th>
       <th>Role</th>
       <th>approved</th>
+      <th>disabled</th>
       <th>Action</th>
     </thead>
     <tbody *ngIf="users.length">
@@ -26,7 +27,8 @@
         <td>{{user.email}}</td>
         <td class="search">{{user.role}}</td>
         <td>{{user.approved}}</td>
-        <td><button class="btn btn-info" routerLink="/admin/editUser/{{user.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteUser(user.id)" >Delete</button></td>
+        <td>{{user.disable}}</td>
+        <td><button class="btn" routerLink="/admin/editUser/{{user.id}}">Edit</button>&nbsp;<button class="btn btn-danger" (click) ="deleteUser(user.id)" >Delete</button></td>
       </tr>
     </tbody>
   </table>

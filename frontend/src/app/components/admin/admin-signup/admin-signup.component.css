@@ -1,2 +1,7 @@
 
 @import '../../admin/home/home.component.css';
+.col-lg{
+  color: black;
+  margin-right: 5rem;
+  margin-left: -4rem;
+}
